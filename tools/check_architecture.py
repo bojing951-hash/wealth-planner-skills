@@ -105,6 +105,24 @@ def check(root: Path = ROOT) -> dict:
         if phrase.lower() not in protocol_text:
             warnings.append('Host research protocol may not explicitly mention: '+phrase)
 
+    # v5.2 optional financial-memory feature must never bypass the host consent
+    # boundary; these are static checks, not human authorization proofs.
+    if contract['release']=='5.2.0':
+        memfiles=['workflows/local-memory.md','scripts/memory_cli.py',
+                  'lib/wealth_core/local_memory.py','schemas/memory-changes-v5.2.schema.json']
+        for rel in memfiles:
+            if not (skill/rel).is_file():
+                messages.append('Missing v5.2 optional memory component: '+rel)
+        guide=(skill/'workflows/local-memory.md').read_text(encoding='utf-8') if (skill/'workflows/local-memory.md').is_file() else ''
+        for phrase in ('L1','L2','preview','user approval','delete','no agent scheduler'):
+            if phrase.lower() not in guide.lower():
+                messages.append('Memory guide missing consent/privacy invariant: '+phrase)
+        if 'Memory is OFF by default' not in contents:
+            messages.append('SKILL.md must explicitly default private memory OFF')
+        memory_cli=skill/'scripts/memory_cli.py'
+        if memory_cli.is_file() and 'approved-preview-sha256' not in memory_cli.read_text(encoding='utf-8'):
+            messages.append('Memory CLI must require match to user-reviewed proposed changes')
+
     align = root / ('docs/ARCHITECTURE_ALIGNMENT_v'+contract['release']+'.md')
     if not align.is_file():
         messages.append('Every release requires a completed architecture comparison: '+align.name)

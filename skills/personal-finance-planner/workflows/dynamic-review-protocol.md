@@ -14,7 +14,7 @@
 
 ## Review algorithm conducted by host
 
-1. Obtain the **prior authorized snapshot**, or label `NO_PRIOR_STATE`. If persistence was not permitted, ask user to provide previous plan; don't invent history.
+1. Obtain the **prior authorized snapshot** only after explicit L1 consent, or label `NO_PRIOR_STATE`. For opt-in stored local context follow [local-memory.md](local-memory.md); an existing vault is NOT blanket consent. If persistence was not permitted or host storage is inaccessible, ask user to supply prior plan without inventing history.
 2. Gather new date-stamped facts and current legal/macro evidence. Separate data update, **law or rule change**, assumption update, and user preference change.
 3. Classify each difference as `FACT_CHANGE`, `LEGAL_CHANGE`, `MODEL_CHANGE`, `PREFERENCE_CHANGE`, `EVIDENCE_CORRECTION`, or `NO_MATERIAL_CHANGE`.
 4. Recalculate only impacted domains, but enforce all hard constraints; state what remained fixed and why. A changed macro input first calls for sensitivity review, not automatic rebalancing.
@@ -22,3 +22,7 @@
 6. For complex law/tax disputes stop actionable optimization pending local professional review. Do not automatically file taxes, trade or move money.
 
 **Optional offline comparer:** `python3 <SKILL_DIR>/scripts/wealth_v5.py review --previous <private_prior.json> --current <private_current.json>` compares two *provided* reports. It does not observe bank accounts or verify new laws. Only use if host can run it and inputs exist.
+
+### v5.2 opt-in memory bridge
+
+On an authorized subsequent session, read a dated summary, flag stale/future-dated values, verify material changes with the user, then run relevant regular 12-state workflow gates. Show a preview of *only* the normalized changed fields (and optional short plan/decision abstracts). After L2 approval of the exact preview, use revision compare-and-swap and change fingerprint to commit. The record is never independent evidence of current account balances, tax law or investment prices; do not trade, file tax returns or automatically modify assets. If no local memory is available, continue as a one-off Skill.

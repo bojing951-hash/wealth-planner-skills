@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/wealth-planner/memory-changes-v5.2.schema.json",
+  "title": "Wealth Planner opt-in memory update payload (no raw credentials)",
+  "description": "Illustrative public schema. memory_cli.py performs its own fail-closed input validation; this file is not a permission grant.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "facts": {
+      "type": "array", "maxItems": 28,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["field", "value", "as_of"],
+        "properties": {
+          "field": {"enum": [
+            "residence.country", "residence.region", "residence.city", "tax_residency.claims",
+            "household.status", "household.dependents", "income.source_type",
+            "income.monthly_gross", "income.monthly_net_realized", "income.monthly_pf_bank_received",
+            "expenses.essential_monthly", "expenses.discretionary_monthly",
+            "assets.liquid", "assets.investments", "assets.restricted", "liabilities.total",
+            "goal.target_amount", "goal.target_date", "goal.horizon_years",
+            "risk.max_drawdown_pct", "preferences.investment_style"
+          ]},
+          "value": {"type": ["string", "number", "array"]},
+          "as_of": {"type": "string", "format": "date"},
+          "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+          "confidence": {"enum": ["user_reported", "verified", "assumption", "unknown"]},
+          "source_type": {"enum": ["user", "document_reviewed", "authorized_connector", "model", "unknown"]},
+          "source_ref": {"type": "string", "maxLength": 160},
+          "verified_at": {"type": "string", "format": "date"},
+          "basis": {"enum": ["gross", "net", "realized", "estimated", "na"]}
+        }
+      }
+    },
+    "plan": {"type": "object", "additionalProperties": false, "required": ["id", "as_of"], "properties": {
+      "id": {"type": "string", "maxLength": 64}, "as_of": {"type": "string", "format": "date"},
+      "summary": {"type": "string", "maxLength": 400}, "status": {"enum": ["hypothetical", "proposed", "user_confirmed", "blocked"]},
+      "approved_by_user": {"type": "boolean"}, "evidence_refs": {"type": "array", "maxItems": 20, "items": {"type": "string"}},
+      "model_version": {"type": "string"}, "assumptions": {"type": "object"}
+    }},
+    "decision": {"type": "object", "additionalProperties": false, "required": ["id", "as_of", "summary", "rationale"], "properties": {
+      "id": {"type": "string", "maxLength": 64}, "as_of": {"type": "string", "format": "date"},
+      "summary": {"type": "string", "maxLength": 400}, "rationale": {"type": "string", "maxLength": 400},
+      "evidence_refs": {"type": "array", "maxItems": 20, "items": {"type": "string"}},
+      "approved_by_user": {"type": "boolean"}
+    }}
+  },
+  "anyOf": [{"required": ["facts"]}, {"required": ["plan"]}, {"required": ["decision"]}]
+}

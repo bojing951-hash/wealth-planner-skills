@@ -1,16 +1,17 @@
 {
-  "release": "5.1.0",
+  "release": "5.2.0",
   "baseline_name": "Evidence-Based Wealth Planner Skill v0.4 original architecture (2026-10-11)",
   "baseline_file": "docs/BASELINE_ORIGINAL_v0.4.md",
   "baseline_sha256": "552ac0ae1a7150fba23ae5a55a5fa6347b59d303a01b3517ed098a56a8a358bb",
   "skill_path": "skills/personal-finance-planner",
   "skill_name": "personal-finance-planner",
-  "skill_version": "5.1.0",
+  "skill_version": "5.2.0",
   "roles": {
     "host": "reason, search, retrieve, call actually available tools, ask for authorization, create final report",
     "skill": "evidence-based research, decision policy, verification, safety, workflow and disclosure instructions",
     "optional_math": "local reproducible arithmetic only; never an independent agent or tax-law verifier",
-    "external": "official primary sources and consented read-only connectors; not bundled and not implicitly authorized"
+    "external": "official primary sources and consented read-only connectors; not bundled and not implicitly authorized",
+    "optional_memory": "private opt-in encrypted vault only; host reads/writes with user consent; no autonomous process or automatic cross-cloud sync"
   },
   "mandatory_skill_resources": [
     "SKILL.md",
@@ -25,24 +26,107 @@
     "policies/theory_graph.json",
     "references/long-horizon-macro.md",
     "scripts/wealth_v5.py",
-    "assets/claim-card-example.json"
+    "assets/claim-card-example.json",
+    "workflows/local-memory.md",
+    "scripts/memory_cli.py",
+    "schemas/memory-changes-v5.2.schema.json",
+    "requirements-memory.txt"
   ],
   "ten_domains": [
-    {"id":"D01","key":"profile_and_data_quality","path":"references/architecture-10-domains.md","implementation":"schemas/profile-v5.schema.json","status":"PARTIAL","unresolved":"No user-approved secure account reconciliation or document verification."},
-    {"id":"D02","key":"jurisdiction_and_compliance","path":"workflows/jurisdiction-tax.md","implementation":"lib/wealth_core/jurisdiction_v5.py","status":"PARTIAL","unresolved":"Tax residency, legally calibrated local tax rules and actual source interpretation require fresh official review."},
-    {"id":"D03","key":"personal_cashflow","path":"references/architecture-10-domains.md","implementation":"lib/wealth_core/finance.py","status":"PARTIAL","unresolved":"Not complete payroll/bank/debt and social insurance reconciliation."},
-    {"id":"D04","key":"life_cycle_and_goals","path":"references/architecture-10-domains.md","implementation":"lib/wealth_core/household.py","status":"PARTIAL","unresolved":"Full pension, education, insurance, estate, marriage and ALM projection not integrated."},
-    {"id":"D05","key":"economics_and_evidence","path":"workflows/theory-evidence-and-conflicts.md","implementation":"lib/wealth_core/evidence.py","status":"PARTIAL","unresolved":"No systematic independent primary-study and quality evaluation with real retrieval; graph is curated."},
-    {"id":"D06","key":"long_term_macro","path":"references/long-horizon-macro.md","implementation":"lib/wealth_core/macro_review.py","status":"PARTIAL","unresolved":"No live host E2E proof or validated cross-currency long-horizon return model."},
-    {"id":"D07","key":"investment_policy","path":"references/architecture-10-domains.md","implementation":"lib/wealth_core/portfolio.py","status":"PARTIAL","unresolved":"No regulated/tax-after-fee region-specific portfolio recommendation or executable IPS."},
-    {"id":"D08","key":"simulation_and_risk","path":"workflows/models-and-reporting.md","implementation":"lib/wealth_core/simulation.py","status":"PARTIAL","unresolved":"Uncalibrated scenario Monte Carlo; not empirical probability; no historical regime calibration."},
-    {"id":"D09","key":"decision_and_execution","path":"policies/core-decision.md","implementation":"lib/wealth_core/integrated.py","status":"PARTIAL","unresolved":"No tested live-host autonomous research loop; policy chiefly implemented in skill instructions."},
-    {"id":"D10","key":"audit_and_monitoring","path":"workflows/dynamic-review-protocol.md","implementation":"lib/wealth_core/dynamic.py","status":"PARTIAL","unresolved":"Only user-triggered review, not authorized secure persistence or monitoring scheduler."}
+    {
+      "id": "D01",
+      "key": "profile_and_data_quality",
+      "path": "references/architecture-10-domains.md",
+      "implementation": "schemas/profile-v5.schema.json",
+      "status": "PARTIAL",
+      "unresolved": "Opt-in dated local facts and provenance now exist; user-reported data remain unverified and account reconciliation is not available."
+    },
+    {
+      "id": "D02",
+      "key": "jurisdiction_and_compliance",
+      "path": "workflows/jurisdiction-tax.md",
+      "implementation": "lib/wealth_core/jurisdiction_v5.py",
+      "status": "PARTIAL",
+      "unresolved": "Tax residency, legally calibrated local tax rules and actual source interpretation require fresh official review."
+    },
+    {
+      "id": "D03",
+      "key": "personal_cashflow",
+      "path": "references/architecture-10-domains.md",
+      "implementation": "lib/wealth_core/finance.py",
+      "status": "PARTIAL",
+      "unresolved": "Encrypted aggregate finance snapshots exist but there is no payroll/bank/debt statement reconciliation; no account sync."
+    },
+    {
+      "id": "D04",
+      "key": "life_cycle_and_goals",
+      "path": "references/architecture-10-domains.md",
+      "implementation": "lib/wealth_core/household.py",
+      "status": "PARTIAL",
+      "unresolved": "Full pension, education, insurance, estate, marriage and ALM projection not integrated."
+    },
+    {
+      "id": "D05",
+      "key": "economics_and_evidence",
+      "path": "workflows/theory-evidence-and-conflicts.md",
+      "implementation": "lib/wealth_core/evidence.py",
+      "status": "PARTIAL",
+      "unresolved": "No systematic independent primary-study and quality evaluation with real retrieval; graph is curated."
+    },
+    {
+      "id": "D06",
+      "key": "long_term_macro",
+      "path": "references/long-horizon-macro.md",
+      "implementation": "lib/wealth_core/macro_review.py",
+      "status": "PARTIAL",
+      "unresolved": "No live host E2E proof or validated cross-currency long-horizon return model."
+    },
+    {
+      "id": "D07",
+      "key": "investment_policy",
+      "path": "references/architecture-10-domains.md",
+      "implementation": "lib/wealth_core/portfolio.py",
+      "status": "PARTIAL",
+      "unresolved": "No regulated/tax-after-fee region-specific portfolio recommendation or executable IPS."
+    },
+    {
+      "id": "D08",
+      "key": "simulation_and_risk",
+      "path": "workflows/models-and-reporting.md",
+      "implementation": "lib/wealth_core/simulation.py",
+      "status": "PARTIAL",
+      "unresolved": "Uncalibrated scenario Monte Carlo; not empirical probability; no historical regime calibration."
+    },
+    {
+      "id": "D09",
+      "key": "decision_and_execution",
+      "path": "policies/core-decision.md",
+      "implementation": "lib/wealth_core/integrated.py",
+      "status": "PARTIAL",
+      "unresolved": "No tested live-host autonomous research loop; consent must be genuinely obtained by host, not inferred from CLI flag."
+    },
+    {
+      "id": "D10",
+      "key": "audit_and_monitoring",
+      "path": "workflows/dynamic-review-protocol.md",
+      "implementation": "lib/wealth_core/local_memory.py",
+      "status": "PARTIAL",
+      "unresolved": "Opt-in encrypted dated local state, plan summaries, revision history and deletion implemented; no scheduler, cloud sync, independent Windows ACL security audit, secure OS key store or host E2E."
+    }
   ],
   "twelve_states": [
-    "INTAKE", "CAPABILITY_CHECK", "FACT_VERIFICATION", "JURISDICTION_GATE", "HOUSEHOLD_SOLVENCY",
-    "GOAL_AND_LIFECYCLE", "EVIDENCE_RESEARCH", "MACRO_SCENARIOS", "CANDIDATE_PLANS",
-    "DETERMINISTIC_AND_STOCHASTIC_VALIDATION", "POLICY_CHECK", "EXPLAIN_AND_MONITOR"
+    "INTAKE",
+    "CAPABILITY_CHECK",
+    "FACT_VERIFICATION",
+    "JURISDICTION_GATE",
+    "HOUSEHOLD_SOLVENCY",
+    "GOAL_AND_LIFECYCLE",
+    "EVIDENCE_RESEARCH",
+    "MACRO_SCENARIOS",
+    "CANDIDATE_PLANS",
+    "DETERMINISTIC_AND_STOCHASTIC_VALIDATION",
+    "POLICY_CHECK",
+    "EXPLAIN_AND_MONITOR"
   ],
   "safety_requirements": [
     "cannot_autonomously_trade_transfer_open_account_or_file_tax",

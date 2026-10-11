@@ -1,0 +1,3 @@
+# Optional ONLY for encrypted, authorized memory operations; no fallback to plaintext.
+# Do not require these dependencies for non-memory Skill workflows.
+cryptography>=42,<49

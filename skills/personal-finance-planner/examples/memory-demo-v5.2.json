@@ -1,0 +1,19 @@
+{
+  "facts": [
+    {"field": "residence.country", "value": "CN", "as_of": "2026-10-11", "confidence": "user_reported", "source_type": "user"},
+    {"field": "residence.city", "value": "Shenzhen", "as_of": "2026-10-11", "confidence": "user_reported", "source_type": "user"},
+    {"field": "income.source_type", "value": "employment", "as_of": "2026-10-11", "confidence": "user_reported", "source_type": "user"},
+    {"field": "income.monthly_net_realized", "value": 20000, "currency": "CNY", "basis": "net", "as_of": "2026-10-11", "confidence": "user_reported", "source_type": "user"},
+    {"field": "expenses.essential_monthly", "value": 10000, "currency": "CNY", "as_of": "2026-10-11", "confidence": "user_reported", "source_type": "user"},
+    {"field": "goal.target_amount", "value": 3000000, "currency": "CNY", "as_of": "2026-10-11", "confidence": "user_reported", "source_type": "user"},
+    {"field": "goal.horizon_years", "value": 20, "as_of": "2026-10-11", "confidence": "user_reported", "source_type": "user"}
+  ],
+  "plan": {
+    "id": "initial_2026",
+    "as_of": "2026-10-11",
+    "summary": "Hypothetical: first assess taxes, liquid reserves and goal feasibility",
+    "status": "hypothetical",
+    "evidence_refs": [],
+    "assumptions": {"investment_return_nominal": 0.05}
+  }
+}

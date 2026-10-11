@@ -21,3 +21,14 @@ results/
 macro_snapshot*.json
 fred_observations*.json
 financial_profile*.json
+
+# Local encrypted financial memory must NEVER be committed or shipped
+vault.enc
+.write.lock
+*.vault
+*.vault.enc
+WealthPlannerSkill/
+WealthPlannerSkillKeys/
+wealth-planner-skill/
+*.personal-memory.json
+*.private-export.json

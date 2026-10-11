@@ -64,10 +64,19 @@ class TestReleaseArchitecture(unittest.TestCase):
     def test_no_report_means_not_released(self):
         context, root = self._isolated()
         with context:
-            (root/'docs'/'ARCHITECTURE_ALIGNMENT_v5.1.0.md').unlink()
+            (root/'docs'/'ARCHITECTURE_ALIGNMENT_v5.2.0.md').unlink()
             result=guard.check(root)
             self.assertFalse(result['ok'])
             self.assertTrue(any('requires a completed architecture comparison' in e for e in result['errors']))
+
+    def test_v52_missing_memory_guide_blocks_release(self):
+        context, root = self._isolated()
+        with context:
+            target=root/'skills'/'personal-finance-planner'/'workflows'/'local-memory.md'
+            target.unlink()
+            result=guard.check(root)
+            self.assertFalse(result['ok'])
+            self.assertTrue(any('memory' in e.lower() for e in result['errors']))
 
     def test_original_domains_and_roles_in_contract(self):
         contract=json.loads((ROOT/'docs'/'architecture_contract.json').read_text(encoding='utf-8'))
