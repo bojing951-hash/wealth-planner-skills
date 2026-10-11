@@ -1,0 +1,42 @@
+{
+  "as_of_date": "2026-10-11",
+  "tax_year": 2026,
+  "person": {
+    "living_country": "FR",
+    "home_currency": "EUR",
+    "citizenships": [
+      "FR"
+    ],
+    "tax_residences_claimed": [
+      "FR"
+    ],
+    "presence_days": {
+      "FR": 300
+    },
+    "us_person_status": "no",
+    "eu_member_country": "FR"
+  },
+  "income_streams": [
+    {
+      "id": "salary",
+      "kind": "salary",
+      "amount": 4500,
+      "currency": "EUR",
+      "bank_received": true,
+      "gross_or_net": "net_declared",
+      "tax_status": "professional_verified",
+      "payer_country": "FR",
+      "activity_country": "FR",
+      "bank_country": "FR",
+      "earned_year": 2026
+    }
+  ],
+  "asset_locations": [],
+  "planned_moves": [],
+  "targets": {
+    "time_horizon_years": 20,
+    "goal": "retirement",
+    "risk_capacity": "medium",
+    "active_edge_evidence": "none"
+  }
+}

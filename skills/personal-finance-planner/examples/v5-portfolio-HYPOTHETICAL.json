@@ -1,0 +1,36 @@
+{
+  "assets": [
+    {
+      "name": "CN-equity-research",
+      "weight": 0.2,
+      "assumed_nominal_return": 0.075,
+      "expense_ratio": 0.002
+    },
+    {
+      "name": "global-equity-research",
+      "weight": 0.3,
+      "assumed_nominal_return": 0.075,
+      "expense_ratio": 0.003
+    },
+    {
+      "name": "investment-grade-bonds-research",
+      "weight": 0.35,
+      "assumed_nominal_return": 0.03,
+      "expense_ratio": 0.001
+    },
+    {
+      "name": "gold-research",
+      "weight": 0.1,
+      "assumed_nominal_return": 0.04,
+      "expense_ratio": 0.003
+    },
+    {
+      "name": "cash-research",
+      "weight": 0.05,
+      "assumed_nominal_return": 0.015,
+      "expense_ratio": 0
+    }
+  ],
+  "annual_covariance": null,
+  "note": "EXAMPLE assumptions - NOT an allocation recommendation, all numbers hypothetical."
+}

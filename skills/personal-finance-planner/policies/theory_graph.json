@@ -1,0 +1,193 @@
+{
+  "version": "0.3.0",
+  "principles": [
+    {
+      "id": "LIFECYCLE",
+      "label": "Modigliani 生命周期模型",
+      "kind": "economic_model",
+      "decision": "多阶段收入、婚育、退休、长寿及真实支出需求",
+      "assumptions": "收入路径与跨期规划、信贷与行为约束",
+      "limits": "不能推断固定储蓄率为最优",
+      "refs": [
+        "NOBEL-LIFECYCLE"
+      ]
+    },
+    {
+      "id": "FISHER",
+      "label": "Fisher实际购买力关系",
+      "kind": "math_identity",
+      "decision": "名义与真实货币口径校正、匹配未来消费币种",
+      "assumptions": "相同币种及匹配价格指数",
+      "limits": "不预测通胀或市场回报",
+      "refs": []
+    },
+    {
+      "id": "MARKOWITZ",
+      "label": "Markowitz投资组合理论",
+      "kind": "conditional_math_model",
+      "decision": "配置分散、相关性风险",
+      "assumptions": "期望收益、协方差估计有误差",
+      "limits": "只依赖历史方差可能忽略尾部、流动性",
+      "refs": [
+        "NOBEL-MARKOWITZ"
+      ]
+    },
+    {
+      "id": "BOGLE",
+      "label": "Bogle低成本广泛指数化",
+      "kind": "normative_policy_with_empirical_costs",
+      "decision": "低维护、低成本、广泛分散投资的默认候选",
+      "assumptions": "指数与投资期限、通道、费税条件匹配",
+      "limits": "不保证指数正收益，单一市场指数不等于全球分散",
+      "refs": [
+        "SEC-FEES",
+        "SEC-ALLOCATION"
+      ]
+    },
+    {
+      "id": "GRAHAM",
+      "label": "Graham《聪明的投资者》安全边际",
+      "kind": "investment_philosophy",
+      "decision": "区分价格和价值；避免高估值与过度乐观假设",
+      "assumptions": "需要可靠估值与长期研究能力",
+      "limits": "没有证明每位普通用户都可以持续选股超额收益",
+      "refs": []
+    },
+    {
+      "id": "SHARPE",
+      "label": "Sharpe主动管理算术",
+      "kind": "accounting_identity_with_assumptions",
+      "decision": "所有费用与税后收益核算",
+      "assumptions": "主动与被动整体、同一投资集合定义一致",
+      "limits": "并不证明特定主动管理人不可能跑赢",
+      "refs": [
+        "SEC-FEES"
+      ]
+    },
+    {
+      "id": "THALER",
+      "label": "Thaler/Benartzi行为储蓄",
+      "kind": "behavioral_empirical",
+      "decision": "预承诺、收入到账后的自动分账机制",
+      "assumptions": "流动性和授权约束满足",
+      "limits": "样本群体效果并非个人保证",
+      "refs": []
+    },
+    {
+      "id": "SHILLER",
+      "label": "Campbell/Shiller长期估值信息",
+      "kind": "empirical_predictive_model",
+      "decision": "把估值用于长期结果区间而非短期择时",
+      "assumptions": "估值口径与制度、历史样本可比",
+      "limits": "点预测不稳，不能保证估值回归时间",
+      "refs": []
+    },
+    {
+      "id": "BENGEN",
+      "label": "Bengen美国历史提款研究",
+      "kind": "historical_backtest",
+      "decision": "退休提款的初步压力筛查",
+      "assumptions": "市场/资产/时期/退休年限条件匹配",
+      "limits": "4%不是无风险利率，不可直接推广所有国家",
+      "refs": []
+    },
+    {
+      "id": "ALM",
+      "label": "资产负债匹配/流动性风险",
+      "kind": "risk_management_model",
+      "decision": "短期支出与长期风险投资分桶",
+      "assumptions": "预算和未来支出估计可信",
+      "limits": "不保证无风险资产的真实购买力",
+      "refs": [
+        "SEC-ALLOCATION"
+      ]
+    },
+    {
+      "id": "TAIL_RISK",
+      "label": "Taleb极端风险和模型不确定性",
+      "kind": "risk_philosophy",
+      "decision": "在方差之外追加尾部场景和鲁棒性",
+      "assumptions": "不能量化全部未知尾部",
+      "limits": "不是投资收益预测公式或一切资产配置的否定",
+      "refs": []
+    },
+    {
+      "id": "CFP",
+      "label": "CFP七步财务规划规范",
+      "kind": "professional_process",
+      "decision": "收集事实、目标、备选、建议、落实和复核",
+      "assumptions": "用户信息真实且具备所需执业资质",
+      "limits": "职业标准不替代各国执业许可",
+      "refs": [
+        "CFP-7-STEPS"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "a": "GRAHAM",
+      "b": "BOGLE",
+      "relation": "conditional_tension",
+      "question": "主动选股安全边际 vs 低成本全市场指数",
+      "resolution": "默认先比较研究能力、机会成本、税费、时间和实际可验证的超额收益；在证据缺乏时以低成本分散组合为基准，可讨论有明确风险限额的研究卫星仓，不设强制比例。",
+      "disclosure": "两者策略不等价，不可宣称同时获得主动优势与纯被动的低成本保证。"
+    },
+    {
+      "a": "MARKOWITZ",
+      "b": "TAIL_RISK",
+      "relation": "complement",
+      "question": "协方差波动率 vs 尾部及流动性风险",
+      "resolution": "协方差用于常态分散分析，叠加极端情景、最大损失容忍和流动性测试。",
+      "disclosure": "过去相关性可能在危机期失效。"
+    },
+    {
+      "a": "SHILLER",
+      "b": "BOGLE",
+      "relation": "conditional_tension",
+      "question": "长期估值与长期持有纪律",
+      "resolution": "战略配置以目标和风险承受能力为基准；估值用于情景区间和风险预算，不作为未经验证的短期买卖信号。",
+      "disclosure": "若提出估值择时策略，必须另做样本外实证与税费后回测。"
+    },
+    {
+      "a": "BENGEN",
+      "b": "LIFECYCLE",
+      "relation": "model_transfer_risk",
+      "question": "美国历史提款率 vs 全球不同寿命/货币/社会保障",
+      "resolution": "提款率只是筛选指标；按当地税、社保、人民币等消费币种、寿命和市场路径重新模拟。",
+      "disclosure": "不能把历史美国4%当作通行法律或安全担保。"
+    },
+    {
+      "a": "THALER",
+      "b": "LIFECYCLE",
+      "relation": "complement",
+      "question": "理性跨期平滑 vs 行为偏误",
+      "resolution": "生命周期模型提供目标，默认设置、预承诺和用户授权自动储蓄用于提升执行率。",
+      "disclosure": "自动化不能牺牲急需的生活流动性。"
+    },
+    {
+      "a": "FISHER",
+      "b": "SHILLER",
+      "relation": "complement",
+      "question": "购买力恒等式 vs 长期估值收益情景",
+      "resolution": "先明确名义/实际币种，再将有误差的估值预测纳入多个场景。",
+      "disclosure": "恒等式不能提升估值预测可靠性。"
+    },
+    {
+      "a": "ALM",
+      "b": "BOGLE",
+      "relation": "different_objectives",
+      "question": "短期保值流动性 vs 长期权益增长",
+      "resolution": "按目标分桶：短期资金先锁定流动性和匹配期限；长期资金再考虑多元低成本风险资产。",
+      "disclosure": "把所有资产长期化不等于适合所有资金。"
+    }
+  ],
+  "adjudication_criteria": [
+    "binding_jurisdictional_law",
+    "basic_financial_solvency",
+    "user_objective_and_time_horizon",
+    "math_and_data_quality",
+    "external_validity",
+    "behavioral_execution",
+    "fees_taxes_and_maintainability"
+  ]
+}

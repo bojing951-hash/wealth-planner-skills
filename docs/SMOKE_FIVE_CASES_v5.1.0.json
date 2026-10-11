@@ -1,0 +1,132 @@
+{
+  "kind": "OFFLINE_SYNTHETIC_SMOKE",
+  "date": "2026-10-11",
+  "not_real_tax_or_live_host": true,
+  "records": [
+    {
+      "case": "SZ",
+      "input": "skills/personal-finance-planner/examples/v5-shenzhen.json",
+      "skill_version": "5.1.0",
+      "math_version": "5.0.0",
+      "jurisdiction_scopes": [
+        "CN",
+        "CN:Guangdong",
+        "CN:Guangdong:Shenzhen"
+      ],
+      "currency_separated": [
+        "CNY"
+      ],
+      "precise_tax": "NOT_IMPLEMENTED",
+      "host_retrieval_count": 0,
+      "nominal_pf_excluded": {
+        "CNY": "0.00"
+      },
+      "monthly_investable_final": {
+        "CNY": null
+      },
+      "run_id": "v5-57352f807de31418aa89",
+      "result": "PASS"
+    },
+    {
+      "case": "SH",
+      "input": "skills/personal-finance-planner/examples/v5-shanghai.json",
+      "skill_version": "5.1.0",
+      "math_version": "5.0.0",
+      "jurisdiction_scopes": [
+        "CN",
+        "CN:Shanghai",
+        "CN:Shanghai:Shanghai"
+      ],
+      "currency_separated": [
+        "CNY"
+      ],
+      "precise_tax": "NOT_IMPLEMENTED",
+      "host_retrieval_count": 0,
+      "nominal_pf_excluded": {
+        "CNY": "0.00"
+      },
+      "monthly_investable_final": {
+        "CNY": null
+      },
+      "run_id": "v5-985122bef940b285c1ff",
+      "result": "PASS"
+    },
+    {
+      "case": "NY",
+      "input": "skills/personal-finance-planner/examples/v5-new-york.json",
+      "skill_version": "5.1.0",
+      "math_version": "5.0.0",
+      "jurisdiction_scopes": [
+        "US",
+        "US:NY",
+        "US:NY:New York"
+      ],
+      "currency_separated": [
+        "USD"
+      ],
+      "precise_tax": "NOT_IMPLEMENTED",
+      "host_retrieval_count": 0,
+      "nominal_pf_excluded": {
+        "USD": "0.00"
+      },
+      "monthly_investable_final": {
+        "USD": null
+      },
+      "run_id": "v5-55d57ea5527312eee853",
+      "result": "PASS"
+    },
+    {
+      "case": "CHI",
+      "input": "skills/personal-finance-planner/examples/v5-chicago.json",
+      "skill_version": "5.1.0",
+      "math_version": "5.0.0",
+      "jurisdiction_scopes": [
+        "US",
+        "US:IL",
+        "US:IL:Chicago"
+      ],
+      "currency_separated": [
+        "USD"
+      ],
+      "precise_tax": "NOT_IMPLEMENTED",
+      "host_retrieval_count": 0,
+      "nominal_pf_excluded": {
+        "USD": "0.00"
+      },
+      "monthly_investable_final": {
+        "USD": null
+      },
+      "run_id": "v5-cc738bea6c9eea3ffb0f",
+      "result": "PASS"
+    },
+    {
+      "case": "PF",
+      "input": "skills/personal-finance-planner/examples/v5-cn-hk-pf.json",
+      "skill_version": "5.1.0",
+      "math_version": "5.0.0",
+      "jurisdiction_scopes": [
+        "CN",
+        "CN:Guangdong",
+        "CN:Guangdong:Shenzhen",
+        "HK",
+        "US"
+      ],
+      "currency_separated": [
+        "CNY",
+        "USD"
+      ],
+      "precise_tax": "NOT_IMPLEMENTED",
+      "host_retrieval_count": 0,
+      "nominal_pf_excluded": {
+        "CNY": "0.00",
+        "USD": "50000.00"
+      },
+      "monthly_investable_final": {
+        "CNY": null,
+        "USD": null
+      },
+      "run_id": "v5-afb4c7cf38ec70076d32",
+      "result": "PASS"
+    }
+  ]
+}

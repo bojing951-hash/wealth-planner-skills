@@ -1,0 +1,41 @@
+{
+  "host": "codex_DECLARATION_SAMPLE_ONLY",
+  "capabilities": {
+    "source_discovery": {
+      "available": true,
+      "permission": "granted",
+      "tool_label": "host_search"
+    },
+    "source_fetch": {
+      "available": true,
+      "permission": "granted",
+      "tool_label": "host_fetch"
+    },
+    "execute_math": {
+      "available": true,
+      "permission": "granted",
+      "tool_label": "host_terminal_python"
+    },
+    "parse_user_files": {
+      "available": true,
+      "permission": "ask",
+      "tool_label": "host_files"
+    },
+    "authorized_account_read": {
+      "available": false,
+      "permission": "ask"
+    },
+    "private_state": {
+      "available": false,
+      "permission": "ask"
+    },
+    "scheduled_execution": {
+      "available": false,
+      "permission": "ask"
+    },
+    "professional_handoff": {
+      "available": true,
+      "permission": "ask"
+    }
+  }
+}

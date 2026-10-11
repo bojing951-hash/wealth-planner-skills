@@ -1,0 +1,23 @@
+{
+  "label": "虚构示例：平均月到账20万元、经营与交易等波动收入（非PF模拟利润）",
+  "currency": "CNY",
+  "income_type": "variable",
+  "monthly_cash_receipts": 200000,
+  "monthly_essential_spending": 40000,
+  "monthly_discretionary_spending": 10000,
+  "monthly_required_business_cost": 5000,
+  "monthly_tax_reserve": 25000,
+  "financial_assets": 100000,
+  "liquid_cash": 100000,
+  "outstanding_debt": 0,
+  "monthly_debt_payment": 0,
+  "target_net_worth": 3000000,
+  "target_years": 3,
+  "annual_investment_return_assumption": 0.05,
+  "income_interruption_months": [
+    15,
+    16,
+    17,
+    18
+  ]
+}

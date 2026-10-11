@@ -1,0 +1,103 @@
+{
+  "schema_version": "5.0.0",
+  "profile_id": "synthetic-cn-hk-pf",
+  "as_of": "2026-10-11",
+  "person": {
+    "age": 30,
+    "residence": {
+      "country": "CN",
+      "region": "Guangdong",
+      "city": "Shenzhen"
+    },
+    "citizenships": [
+      "CN"
+    ],
+    "tax_residencies_claimed": [
+      "CN"
+    ]
+  },
+  "income": [
+    {
+      "id": "payout",
+      "kind": "pf_payout",
+      "currency": "USD",
+      "period": "monthly",
+      "gross": "10000",
+      "net_received": "10000",
+      "realized": true,
+      "bank_received": true,
+      "tax_status": "unknown",
+      "source_status": "assumption",
+      "activity_country": "CN",
+      "payer_country": "US",
+      "bank_country": "HK"
+    },
+    {
+      "id": "paper-profit",
+      "kind": "pf_simulated_profit",
+      "currency": "USD",
+      "period": "monthly",
+      "gross": "786",
+      "realized": false,
+      "bank_received": false,
+      "tax_status": "not_applicable",
+      "source_status": "assumption"
+    }
+  ],
+  "expenses": [
+    {
+      "id": "rent",
+      "category": "essential",
+      "currency": "CNY",
+      "monthly_amount": "14000"
+    },
+    {
+      "id": "living",
+      "category": "essential",
+      "currency": "CNY",
+      "monthly_amount": "7000"
+    },
+    {
+      "id": "leisure",
+      "category": "discretionary",
+      "currency": "CNY",
+      "monthly_amount": "7000"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cash-CN",
+      "kind": "cash",
+      "currency": "CNY",
+      "amount": "100000",
+      "ownership": "user",
+      "liquidity": "liquid"
+    },
+    {
+      "id": "pf-balance",
+      "kind": "pf_simulated_balance",
+      "currency": "USD",
+      "amount": "50000",
+      "ownership": "user",
+      "liquidity": "unavailable"
+    }
+  ],
+  "liabilities": [],
+  "goals": [
+    {
+      "id": "wealth",
+      "currency": "CNY",
+      "target_amount": "10000000",
+      "target_date": "2046-10-11"
+    }
+  ],
+  "risk": {
+    "income_stability": "volatile"
+  },
+  "consents": {
+    "use_user_files": false,
+    "connect_accounts": false,
+    "persist": false
+  },
+  "note": "FICTIONAL TEST CASE. All financial and tax entries assumptions, NOT actual official current taxes."
+}

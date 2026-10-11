@@ -1,0 +1,61 @@
+{
+  "code": "US",
+  "version": "0.3.0",
+  "last_researched": "2026-10-11",
+  "review": "Each use must revalidate primary sources for the correct effective tax year; guidance is not a tax determination.",
+  "name": "美国 / United States",
+  "scope": "federal_plus_state",
+  "source_ids": [
+    "US-IRS-RESIDENT",
+    "US-IRS-VISA",
+    "US-IRS-TREATIES",
+    "OECD-MODEL-2025",
+    "US-IRS-ESTATE"
+  ],
+  "questions": [
+    "是否美国公民/绿卡持有者/税法居民，是否符合例外或税收协定？",
+    "实际在哪一州居住或开展经营？需州/地方税规则。",
+    "哪些收入属于美国税源及可能预扣、信息申报义务？",
+    "外国账户及资产是否触发报告义务（逐项核实）？",
+    "签证状态与税务身份如何区别？"
+  ],
+  "flags": [
+    {
+      "id": "US-WORLDWIDE",
+      "topic": "tax_residency",
+      "severity": "high",
+      "message": "美国公民或税法居民通常须就全球所得申报；签证类别不是税收居民身份的自动答案。",
+      "sources": [
+        "US-IRS-RESIDENT",
+        "US-IRS-VISA"
+      ]
+    },
+    {
+      "id": "US-STATE",
+      "topic": "state_tax",
+      "severity": "high",
+      "message": "美国联邦税不代表全部税负；确定州与地方税责任后才能给出净收入计算。",
+      "sources": [
+        "US-IRS-TREATIES"
+      ]
+    },
+    {
+      "id": "US-FILING",
+      "topic": "foreign_reporting",
+      "severity": "high",
+      "message": "外国金融账户、海外资产申报与税收协定条款须独立核实，不得用单一税率计算全部义务。",
+      "sources": [
+        "US-IRS-RESIDENT"
+      ]
+    },
+    {
+      "id": "US-ESTATE-SITUS",
+      "topic": "estate_situs",
+      "severity": "high",
+      "message": "非美国公民/非遗产税居民持有特定美国所在地资产（包括特定美国公司股票）可能涉及美国遗产税与申报；不能仅凭账户所在银行国家判断。",
+      "sources": [
+        "US-IRS-ESTATE"
+      ]
+    }
+  ]
+}

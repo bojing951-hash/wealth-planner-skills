@@ -1,0 +1,49 @@
+{
+  "code": "CN",
+  "version": "0.3.0",
+  "last_researched": "2026-10-11",
+  "review": "Each use must revalidate primary sources for the correct effective tax year; guidance is not a tax determination.",
+  "name": "中国内地 / Mainland China",
+  "scope": "national",
+  "source_ids": [
+    "CN-IIT-2018",
+    "CN-IIT-REG",
+    "OECD-TAX-RES",
+    "OECD-CRS-2025"
+  ],
+  "questions": [
+    "有无中国税法意义上的住所（户籍/家庭/经济利益等）？",
+    "在本纳税年度境内居住情况及可能适用的例外？",
+    "收入究竟属于工资、劳务、经营还是其他法定所得种类？",
+    "活动实际发生地、境外收入和已纳外国税额？",
+    "涉及外汇、跨境产品投资、继承、婚姻财产与社保的哪些具体规定？"
+  ],
+  "flags": [
+    {
+      "id": "CN-RESIDENCE",
+      "topic": "tax_residency",
+      "severity": "high",
+      "message": "税收居民判断不等于国籍或账户所在；居民个人原则上依法就境内外来源所得纳税，须核实适用例外。",
+      "sources": [
+        "CN-IIT-2018",
+        "CN-IIT-REG"
+      ]
+    },
+    {
+      "id": "CN-SOURCE",
+      "topic": "income_classification",
+      "severity": "high",
+      "message": "境内提供服务等源泉归属可能与境外支付方、香港银行收款地不同；不得据收款地得出免税结论。",
+      "sources": [
+        "CN-IIT-REG"
+      ]
+    },
+    {
+      "id": "CN-CAPITAL",
+      "topic": "investment_access",
+      "severity": "high",
+      "message": "跨境投资须核查外汇用途、账户资格、产品实际销售渠道及适当性；不可假设境外券商均可合法使用。",
+      "sources": []
+    }
+  ]
+}

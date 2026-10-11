@@ -1,0 +1,51 @@
+{
+  "code": "FR",
+  "version": "0.3.0",
+  "last_researched": "2026-10-11",
+  "review": "Each use must revalidate primary sources for the correct effective tax year; guidance is not a tax determination.",
+  "name": "法国 / France",
+  "scope": "eu_member_country",
+  "parent_region": "EU",
+  "source_ids": [
+    "FR-TAX-RESIDENT",
+    "FR-TAX-FOREIGN",
+    "EU-YOUR-EUROPE",
+    "EU-SUCCESSION"
+  ],
+  "questions": [
+    "家庭/主要住所、职业活动、经济利益中心是否落在法国？",
+    "具体收入来源国与是否存在适用的双边税收协定？",
+    "社会征费、投资账户、继承赠与与婚姻财产制度怎样影响长期净财富？",
+    "是否存在外国账户申报义务？"
+  ],
+  "flags": [
+    {
+      "id": "FR-RESIDENCE",
+      "topic": "tax_residency",
+      "severity": "high",
+      "message": "法国税务住所不是由国籍或单一183天条件决定；还考虑家庭、职业及经济利益中心。",
+      "sources": [
+        "FR-TAX-RESIDENT"
+      ]
+    },
+    {
+      "id": "FR-TREATY",
+      "topic": "crossborder_income",
+      "severity": "high",
+      "message": "法国税收居民一般应关注全球收入及相关双边税收协定；某些外国来源收入的抵免/免税方法依条约和收入类型而异。",
+      "sources": [
+        "FR-TAX-RESIDENT",
+        "FR-TAX-FOREIGN"
+      ]
+    },
+    {
+      "id": "FR-CROSSBORDER-INHERITANCE",
+      "topic": "succession",
+      "severity": "medium",
+      "message": "法国内外财产的继承准据法与继承税需独立核实；欧盟继承法规不会统一成员国继承税。",
+      "sources": [
+        "EU-SUCCESSION"
+      ]
+    }
+  ]
+}

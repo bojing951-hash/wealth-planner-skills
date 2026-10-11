@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "v5 uncalibrated user-supplied scenario specification",
+  "type": "object",
+  "required": [
+    "model_kind",
+    "currency",
+    "horizon_years",
+    "goal_basis",
+    "paths",
+    "seed",
+    "scenarios"
+  ],
+  "properties": {
+    "model_kind": {
+      "const": "UNCALIBRATED_USER_SCENARIOS"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "horizon_years": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "paths": {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 10000
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "goal_basis": {
+      "enum": [
+        "real_today",
+        "nominal_future"
+      ]
+    },
+    "assumed_initial_withdrawal_rate": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 0.15
+    },
+    "scenarios": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 5,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "annual_nominal_return_net",
+          "annual_volatility",
+          "annual_inflation",
+          "annual_income_growth",
+          "annual_spending_growth"
+        ],
+        "properties": {
+          "annual_nominal_return_net": {
+            "type": "number",
+            "minimum": -0.95,
+            "maximum": 2
+          },
+          "annual_volatility": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "annual_inflation": {
+            "type": "number",
+            "minimum": -0.2,
+            "maximum": 1
+          },
+          "annual_income_growth": {
+            "type": "number",
+            "minimum": -0.9,
+            "maximum": 2
+          },
+          "annual_spending_growth": {
+            "type": "number",
+            "minimum": -0.9,
+            "maximum": 2
+          },
+          "retire_after_years": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "income_interruption": {
+            "type": "object",
+            "required": [
+              "start_month",
+              "duration_months",
+              "income_loss_fraction"
+            ],
+            "properties": {
+              "start_month": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "duration_months": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "income_loss_fraction": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

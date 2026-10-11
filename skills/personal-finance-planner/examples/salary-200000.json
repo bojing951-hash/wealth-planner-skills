@@ -1,0 +1,19 @@
+{
+  "label": "虚构示例：税后月入人民币200,000元（稳定工资）",
+  "currency": "CNY",
+  "income_type": "stable",
+  "monthly_cash_receipts": 200000,
+  "monthly_essential_spending": 40000,
+  "monthly_discretionary_spending": 10000,
+  "monthly_required_business_cost": 0,
+  "monthly_tax_reserve": 0,
+  "financial_assets": 100000,
+  "liquid_cash": 100000,
+  "outstanding_debt": 0,
+  "monthly_debt_payment": 0,
+  "debt_annual_rate": 0,
+  "target_net_worth": 10000000,
+  "target_years": 8,
+  "annual_investment_return_assumption": 0.05,
+  "annual_inflation_assumption": 0.025
+}

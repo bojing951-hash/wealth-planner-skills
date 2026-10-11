@@ -1,0 +1,38 @@
+{
+  "model_kind": "UNCALIBRATED_USER_SCENARIOS",
+  "currency": "CNY",
+  "horizon_years": 20,
+  "goal_basis": "real_today",
+  "paths": 600,
+  "seed": 20261011,
+  "scenarios": {
+    "defensive": {
+      "annual_nominal_return_net": 0.025,
+      "annual_volatility": 0.08,
+      "annual_inflation": 0.025,
+      "annual_income_growth": 0.025,
+      "annual_spending_growth": 0.025
+    },
+    "base": {
+      "annual_nominal_return_net": 0.05,
+      "annual_volatility": 0.15,
+      "annual_inflation": 0.025,
+      "annual_income_growth": 0.025,
+      "annual_spending_growth": 0.025
+    },
+    "stress": {
+      "annual_nominal_return_net": 0.015,
+      "annual_volatility": 0.23,
+      "annual_inflation": 0.04,
+      "annual_income_growth": 0.0,
+      "annual_spending_growth": 0.04,
+      "income_interruption": {
+        "start_month": 13,
+        "duration_months": 6,
+        "income_loss_fraction": 1.0
+      }
+    }
+  },
+  "note": "FICTIONAL UNCALIBRATED PARAMETER SWEEP. No empirical claim or calibrated success probabilities.",
+  "assumed_initial_withdrawal_rate": 0.035
+}

@@ -1,0 +1,29 @@
+name: Original-architecture alignment + offline tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compare with ORIGINAL v0.4 (mandatory)
+        run: python tools/check_architecture.py --strict
+      - name: Legacy skill regression tests
+        run: python -m unittest discover -s skills/personal-finance-planner/tests -p 'test_*.py' -q
+      - name: Repo tests including Skill-first architecture
+        run: python -m unittest discover -s tests -p 'test_*.py' -q
+      - name: Optional calculator five-case smoke
+        shell: bash
+        run: |
+          for city in shenzhen shanghai new-york chicago cn-hk-pf; do
+            python skills/personal-finance-planner/scripts/wealth_v5.py run \
+              --input "skills/personal-finance-planner/examples/v5-$city.json" --format json >/dev/null
+          done

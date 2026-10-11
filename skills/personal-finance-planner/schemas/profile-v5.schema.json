@@ -1,0 +1,392 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/wealth-planner/profile-v5.schema.json",
+  "title": "Wealth Planner v5 compatible full profile",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "profile_id",
+    "as_of",
+    "person",
+    "income",
+    "expenses",
+    "assets",
+    "liabilities",
+    "goals",
+    "consents"
+  ],
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "0.4.0",
+        "5.0.0"
+      ]
+    },
+    "profile_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date"
+    },
+    "person": {
+      "type": "object",
+      "required": [
+        "residence"
+      ],
+      "properties": {
+        "age": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 120
+        },
+        "residence": {
+          "type": "object",
+          "required": [
+            "country"
+          ],
+          "properties": {
+            "country": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "region": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "city": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "citizenships": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tax_residencies_claimed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "income": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "currency",
+          "period",
+          "bank_received",
+          "realized",
+          "tax_status",
+          "source_status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "employment",
+              "bonus",
+              "self_employment",
+              "business",
+              "pf_payout",
+              "pf_simulated_profit",
+              "rental",
+              "pension",
+              "investment_distribution",
+              "other"
+            ]
+          },
+          "currency": {
+            "$ref": "#/$defs/currency"
+          },
+          "period": {
+            "const": "monthly"
+          },
+          "gross": {
+            "$ref": "#/$defs/amount"
+          },
+          "net_received": {
+            "$ref": "#/$defs/amount"
+          },
+          "bank_received": {
+            "type": "boolean"
+          },
+          "realized": {
+            "type": "boolean"
+          },
+          "tax_status": {
+            "enum": [
+              "unknown",
+              "withheld",
+              "reserved_estimate",
+              "professional_verified",
+              "settled",
+              "not_applicable"
+            ]
+          },
+          "source_status": {
+            "$ref": "#/$defs/sourceStatus"
+          },
+          "payer_country": {
+            "type": "string"
+          },
+          "activity_country": {
+            "type": "string"
+          },
+          "bank_country": {
+            "type": "string"
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "gross"
+            ]
+          },
+          {
+            "required": [
+              "net_received"
+            ]
+          }
+        ]
+      }
+    },
+    "expenses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "currency",
+          "monthly_amount"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "enum": [
+              "essential",
+              "discretionary",
+              "business",
+              "tax_reserve"
+            ]
+          },
+          "currency": {
+            "$ref": "#/$defs/currency"
+          },
+          "monthly_amount": {
+            "$ref": "#/$defs/amount"
+          },
+          "source_status": {
+            "$ref": "#/$defs/sourceStatus"
+          }
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "currency",
+          "amount",
+          "ownership",
+          "liquidity"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "cash",
+              "investment",
+              "retirement",
+              "restricted",
+              "pf_simulated_balance",
+              "other"
+            ]
+          },
+          "currency": {
+            "$ref": "#/$defs/currency"
+          },
+          "amount": {
+            "$ref": "#/$defs/amount"
+          },
+          "ownership": {
+            "enum": [
+              "user",
+              "joint",
+              "other",
+              "unknown"
+            ]
+          },
+          "beneficial_share": {
+            "$ref": "#/$defs/amount"
+          },
+          "liquidity": {
+            "enum": [
+              "liquid",
+              "long_term",
+              "restricted",
+              "unavailable"
+            ]
+          },
+          "location_country": {
+            "type": "string"
+          },
+          "source_status": {
+            "$ref": "#/$defs/sourceStatus"
+          }
+        }
+      }
+    },
+    "liabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "currency",
+          "balance"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "currency": {
+            "$ref": "#/$defs/currency"
+          },
+          "balance": {
+            "$ref": "#/$defs/amount"
+          },
+          "monthly_payment": {
+            "$ref": "#/$defs/amount"
+          }
+        }
+      }
+    },
+    "goals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "target_amount",
+          "currency",
+          "target_date"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_amount": {
+            "$ref": "#/$defs/amount"
+          },
+          "currency": {
+            "$ref": "#/$defs/currency"
+          },
+          "target_date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "properties": {
+        "income_stability": {
+          "enum": [
+            "stable",
+            "volatile",
+            "unknown"
+          ]
+        },
+        "reserve_months": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        }
+      }
+    },
+    "consents": {
+      "type": "object",
+      "required": [
+        "use_user_files",
+        "connect_accounts",
+        "persist"
+      ],
+      "properties": {
+        "use_user_files": {
+          "type": "boolean"
+        },
+        "connect_accounts": {
+          "type": "boolean"
+        },
+        "persist": {
+          "type": "boolean"
+        }
+      }
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "account_connection_requested": {
+      "type": "boolean"
+    },
+    "schedule_requested": {
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "amount": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,4})?$"
+    },
+    "sourceStatus": {
+      "enum": [
+        "user_reported",
+        "document_present",
+        "independently_verified",
+        "assumption",
+        "unknown"
+      ]
+    }
+  },
+  "$comment": "v5 runtime validates original v0.4 required common core with alias schema_version=5.0.0; model assumptions and legal source metadata supplied separately."
+}

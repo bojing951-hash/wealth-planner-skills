@@ -1,0 +1,52 @@
+{
+  "schema": "macro-snapshot-v1",
+  "as_of": "2026-10-11",
+  "planning_currency": "CNY",
+  "note": "教学用2026-10-11截面。观测数据采用带日期的官方公开值，但美国利率取2026-09-10，不是最新报价；规划情景完全为假设。实际运行须先自行联网更新并核对许可/修订情况。",
+  "observations": [
+    {
+      "id": "US_NOMINAL10Y",
+      "region": "US", "currency": "USD", "unit": "pct_per_year",
+      "value_pct": 4.95, "observed_on": "2026-09-10",
+      "quality": "sourced", "publisher": "Federal Reserve H.15 via FRED",
+      "source_url": "https://fred.stlouisfed.org/series/DGS10"
+    },
+    {
+      "id": "US_TIPS_REAL10Y",
+      "region": "US", "currency": "USD", "unit": "pct_per_year",
+      "value_pct": 2.55, "observed_on": "2026-09-10",
+      "quality": "sourced", "publisher": "Federal Reserve H.15 via FRED",
+      "source_url": "https://fred.stlouisfed.org/series/DFII10"
+    },
+    {
+      "id": "US_BREAKEVEN10Y",
+      "region": "US", "currency": "USD", "unit": "pct_per_year",
+      "value_pct": 2.40, "observed_on": "2026-09-10",
+      "quality": "sourced", "publisher": "Federal Reserve Bank of St. Louis via FRED",
+      "source_url": "https://fred.stlouisfed.org/series/T10YIE"
+    },
+    {
+      "id": "CN_NOMINAL10Y",
+      "region": "CN", "currency": "CNY", "unit": "pct_per_year",
+      "value_pct": 1.6849, "observed_on": "2026-10-10",
+      "quality": "sourced", "publisher": "中央国债登记结算有限责任公司",
+      "source_url": "https://yield.chinabond.com.cn/cbweb-cbrc-web"
+    },
+    {
+      "id": "CN_CPI_YOY",
+      "region": "CN", "currency": "CNY", "unit": "pct_per_year",
+      "value_pct": 0.5, "observed_on": "2026-07-31",
+      "released_on": "2026-08-09",
+      "quality": "sourced", "publisher": "国家统计局",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202608/t20260809_1965008.html"
+    }
+  ],
+  "planning_assumptions": {
+    "description": "本例假设是纯教学情景，不是宏观数据推算结果、咨询建议或市场预测。年化净收益率假设已扣组合费率但不覆盖所有个人税。",
+    "scenarios": {
+      "adverse": {"annual_net_return": 0.0, "annual_inflation": 0.04, "annual_nominal_income_growth": 0.0},
+      "base": {"annual_net_return": 0.05, "annual_inflation": 0.025, "annual_nominal_income_growth": 0.03},
+      "favorable": {"annual_net_return": 0.08, "annual_inflation": 0.015, "annual_nominal_income_growth": 0.04}
+    }
+  }
+}

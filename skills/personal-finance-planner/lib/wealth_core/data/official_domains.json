@@ -1,0 +1,68 @@
+{
+  "description": "Official-source URL domain allowlist used ONLY for receipt plausibility checks. An official domain is not proof of applicability or current law.",
+  "jurisdiction_domains": {
+    "CN": [
+      "gov.cn",
+      "chinatax.gov.cn"
+    ],
+    "HK": [
+      "gov.hk",
+      "ird.gov.hk"
+    ],
+    "US": [
+      "irs.gov",
+      "usa.gov",
+      "congress.gov"
+    ],
+    "TH": [
+      "rd.go.th",
+      "go.th"
+    ],
+    "FR": [
+      "gouv.fr",
+      "impots.gouv.fr"
+    ],
+    "EU": [
+      "europa.eu"
+    ],
+    "US:NY": [
+      "tax.ny.gov",
+      "ny.gov",
+      "nyc.gov"
+    ],
+    "US:IL": [
+      "tax.illinois.gov",
+      "illinois.gov"
+    ],
+    "US:NY:New York": [
+      "tax.ny.gov",
+      "nyc.gov",
+      "ny.gov"
+    ],
+    "US:IL:Chicago": [
+      "tax.illinois.gov",
+      "illinois.gov",
+      "chicago.gov"
+    ],
+    "CN:Guangdong:Shenzhen": [
+      "sz.gov.cn",
+      "guangdong.chinatax.gov.cn",
+      "gov.cn"
+    ],
+    "CN:Shanghai:Shanghai": [
+      "shanghai.gov.cn",
+      "shanghai.chinatax.gov.cn",
+      "gov.cn"
+    ],
+    "CN:Guangdong": [
+      "guangdong.chinatax.gov.cn",
+      "gd.gov.cn",
+      "gov.cn"
+    ],
+    "CN:Shanghai": [
+      "shanghai.gov.cn",
+      "shanghai.chinatax.gov.cn",
+      "gov.cn"
+    ]
+  }
+}

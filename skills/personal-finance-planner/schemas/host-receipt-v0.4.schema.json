@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Host-origin data retrieval metadata, not a verified legal interpretation",
+  "type": "array", "items": {"type": "object", "required": ["action_id", "status"],
+    "properties": {
+      "action_id": {"type": "string"}, "status": {"enum": ["completed", "failed"]},
+      "source_url": {"type": "string"}, "retrieved_on": {"type": "string", "format": "date"},
+      "content_sha256": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"},
+      "tax_year": {"type": "integer"}
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "as_of_date": "2026-10-11",
+  "tax_year": 2026,
+  "person": {
+    "living_country": "TH",
+    "home_currency": "THB",
+    "citizenships": [
+      "US"
+    ],
+    "tax_residences_claimed": [
+      "TH"
+    ],
+    "presence_days": {
+      "TH": 250
+    },
+    "us_person_status": "yes",
+    "eu_member_country": null
+  },
+  "income_streams": [
+    {
+      "id": "salary",
+      "kind": "salary",
+      "amount": 9000,
+      "currency": "USD",
+      "bank_received": true,
+      "gross_or_net": "gross_tax_unknown",
+      "tax_status": "unknown",
+      "payer_country": "US",
+      "activity_country": "TH",
+      "bank_country": "TH",
+      "earned_year": 2026
+    }
+  ],
+  "asset_locations": [
+    {
+      "kind": "brokerage",
+      "country": "US",
+      "ownership": "individual"
+    }
+  ],
+  "planned_moves": [],
+  "targets": {
+    "time_horizon_years": 15,
+    "goal": "retirement",
+    "risk_capacity": "medium",
+    "active_edge_evidence": "none"
+  }
+}

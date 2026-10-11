@@ -1,0 +1,18 @@
+{
+  "example_only": true,
+  "claim_id": "claim-costs-001",
+  "statement": "All else held equal, additional recurring investment fees reduce terminal wealth through compounding.",
+  "evidence_kind": "mathematical_relation_with_conditions",
+  "primary_source": null,
+  "publication_date": null,
+  "retrieved_on": null,
+  "sample_geography": "not applicable to algebraic identity",
+  "sample_period": "not applicable",
+  "population": "a stylized recurring-contribution investor",
+  "assumptions": ["before-fee asset returns identical", "fee differential persists", "contribution timing and tax treatment same"],
+  "counterexamples": ["different implementation and tracking quality", "different risk or investment exposures"],
+  "decision_applicability": "compare all-in costs among equivalent risk exposures",
+  "confidence_notes": "Algebraic cost drag is reliable, but it does not prove that a specific index will outperform every active manager.",
+  "competing_claims": ["active skill may offset higher fees, if substantiated"],
+  "resolution_status": "CONDITIONAL_BENCHMARK"
+}

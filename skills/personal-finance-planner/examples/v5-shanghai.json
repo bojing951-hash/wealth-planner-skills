@@ -1,0 +1,88 @@
+{
+  "schema_version": "5.0.0",
+  "profile_id": "synthetic-shanghai",
+  "as_of": "2026-10-11",
+  "person": {
+    "age": 30,
+    "residence": {
+      "country": "CN",
+      "region": "Shanghai",
+      "city": "Shanghai"
+    },
+    "citizenships": [
+      "CN"
+    ],
+    "tax_residencies_claimed": [
+      "CN"
+    ]
+  },
+  "income": [
+    {
+      "id": "wage",
+      "kind": "employment",
+      "currency": "CNY",
+      "period": "monthly",
+      "gross": "20000",
+      "net_received": "15700",
+      "realized": true,
+      "bank_received": true,
+      "tax_status": "withheld",
+      "source_status": "assumption",
+      "activity_country": "CN",
+      "payer_country": "CN",
+      "bank_country": "CN"
+    }
+  ],
+  "expenses": [
+    {
+      "id": "rent",
+      "category": "essential",
+      "currency": "CNY",
+      "monthly_amount": "6200",
+      "source_status": "assumption"
+    },
+    {
+      "id": "food",
+      "category": "essential",
+      "currency": "CNY",
+      "monthly_amount": "4250",
+      "source_status": "assumption"
+    },
+    {
+      "id": "lifestyle",
+      "category": "discretionary",
+      "currency": "CNY",
+      "monthly_amount": "1500",
+      "source_status": "assumption"
+    }
+  ],
+  "assets": [
+    {
+      "id": "bank",
+      "kind": "cash",
+      "currency": "CNY",
+      "amount": "100000",
+      "ownership": "user",
+      "liquidity": "liquid",
+      "source_status": "assumption"
+    }
+  ],
+  "liabilities": [],
+  "goals": [
+    {
+      "id": "long_term_wealth",
+      "currency": "CNY",
+      "target_amount": "1000000",
+      "target_date": "2046-10-11"
+    }
+  ],
+  "risk": {
+    "income_stability": "stable"
+  },
+  "consents": {
+    "use_user_files": false,
+    "connect_accounts": false,
+    "persist": false
+  },
+  "note": "FICTIONAL TEST CASE. All financial and tax entries assumptions, NOT actual official current taxes."
+}

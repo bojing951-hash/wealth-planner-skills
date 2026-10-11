@@ -1,0 +1,88 @@
+{
+  "schema_version": "0.4.0",
+  "profile_id": "synthetic-chicago",
+  "as_of": "2026-10-11",
+  "person": {
+    "age": 30,
+    "residence": {
+      "country": "US",
+      "region": "IL",
+      "city": "Chicago"
+    },
+    "citizenships": [
+      "US"
+    ],
+    "tax_residencies_claimed": [
+      "US"
+    ]
+  },
+  "income": [
+    {
+      "id": "wage",
+      "kind": "employment",
+      "currency": "USD",
+      "period": "monthly",
+      "gross": "20000",
+      "net_received": "13700",
+      "realized": true,
+      "bank_received": true,
+      "tax_status": "withheld",
+      "source_status": "assumption",
+      "activity_country": "US",
+      "payer_country": "US",
+      "bank_country": "US"
+    }
+  ],
+  "expenses": [
+    {
+      "id": "rent",
+      "category": "essential",
+      "currency": "USD",
+      "monthly_amount": "2600",
+      "source_status": "assumption"
+    },
+    {
+      "id": "food",
+      "category": "essential",
+      "currency": "USD",
+      "monthly_amount": "1800",
+      "source_status": "assumption"
+    },
+    {
+      "id": "lifestyle",
+      "category": "discretionary",
+      "currency": "USD",
+      "monthly_amount": "1100",
+      "source_status": "assumption"
+    }
+  ],
+  "assets": [
+    {
+      "id": "bank",
+      "kind": "cash",
+      "currency": "USD",
+      "amount": "20000",
+      "ownership": "user",
+      "liquidity": "liquid",
+      "source_status": "assumption"
+    }
+  ],
+  "liabilities": [],
+  "goals": [
+    {
+      "id": "long_term_wealth",
+      "currency": "USD",
+      "target_amount": "1000000",
+      "target_date": "2046-10-11"
+    }
+  ],
+  "risk": {
+    "income_stability": "stable"
+  },
+  "consents": {
+    "use_user_files": false,
+    "connect_accounts": false,
+    "persist": false
+  },
+  "note": "ALL NUMBERS FICTIONAL. Gross/net pair reflects assumed after-withholding receipts, not a 2026 tax estimate."
+}

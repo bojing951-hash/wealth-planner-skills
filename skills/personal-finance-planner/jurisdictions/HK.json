@@ -1,0 +1,42 @@
+{
+  "code": "HK",
+  "version": "0.3.0",
+  "last_researched": "2026-10-11",
+  "review": "Each use must revalidate primary sources for the correct effective tax year; guidance is not a tax determination.",
+  "name": "中国香港 / Hong Kong SAR",
+  "scope": "special_administrative_region",
+  "source_ids": [
+    "HK-IRD-PROFITS",
+    "HK-IRD-SOURCE",
+    "HK-IRD-FSIE",
+    "OECD-CRS-2025"
+  ],
+  "questions": [
+    "香港账户仅为收款还是本人实际在香港经营/工作？",
+    "收入分类属于薪俸、利得、物业、资本性质或其他？",
+    "开展产生利润的实质运作发生在哪里？",
+    "个人收入与某香港公司的境外被动收入能否适用相同规则？不可简单等同。",
+    "居住地税收居民身份及跨境申报义务如何？"
+  ],
+  "flags": [
+    {
+      "id": "HK-SOURCE",
+      "topic": "income_sourcing",
+      "severity": "high",
+      "message": "香港利得税适用地域来源及个案事实检验；并非银行放在香港就可以认定免税或免除其他地区纳税义务。",
+      "sources": [
+        "HK-IRD-PROFITS",
+        "HK-IRD-SOURCE"
+      ]
+    },
+    {
+      "id": "HK-FSIE",
+      "topic": "corporate_foreign_income",
+      "severity": "medium",
+      "message": "特定跨国企业集团的外地收入豁免征税机制与个人PF出金不能简单混同。",
+      "sources": [
+        "HK-IRD-FSIE"
+      ]
+    }
+  ]
+}

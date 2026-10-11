@@ -1,0 +1,43 @@
+{
+  "code": "TH",
+  "version": "0.3.0",
+  "last_researched": "2026-10-11",
+  "review": "Each use must revalidate primary sources for the correct effective tax year; guidance is not a tax determination.",
+  "name": "泰国 / Thailand",
+  "scope": "national",
+  "source_ids": [
+    "TH-RD-PIT",
+    "TH-RD-S41",
+    "TH-RD-FTC"
+  ],
+  "questions": [
+    "相应纳税年度在泰国停留天数及适用税务居住规则？",
+    "境外所得在哪一年赚得、哪一年汇入泰国？",
+    "收入类型、外国预扣税、抵免及双边协定？",
+    "拟迁移到泰国是事实还是计划，具体哪一年？",
+    "官方指引与法条对180天表述可能不完全一致，边界情况必须专业核实。"
+  ],
+  "flags": [
+    {
+      "id": "TH-REMIT",
+      "topic": "foreign_income_remittance",
+      "severity": "high",
+      "message": "境外所得的赚取年度、汇入年度及税务居民身份均重要；2024年以来的口径不能套用旧经验。",
+      "sources": [
+        "TH-RD-PIT",
+        "TH-RD-S41",
+        "TH-RD-FTC"
+      ]
+    },
+    {
+      "id": "TH-180",
+      "topic": "tax_residency",
+      "severity": "high",
+      "message": "泰国居民停留阈值应以适用税年有效法条与解释确定；本工具不自行裁定边界天数。",
+      "sources": [
+        "TH-RD-PIT",
+        "TH-RD-S41"
+      ]
+    }
+  ]
+}

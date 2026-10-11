@@ -1,0 +1,23 @@
+{
+  "classification": "HYPOTHETICAL_USER_SUPPLIED",
+  "currency": "USD",
+  "annual_gross": "240000",
+  "deductions": "15000",
+  "credits": "0",
+  "social_contributions": "15000",
+  "tax_brackets": [
+    {
+      "upper": "50000",
+      "rate": "0.10"
+    },
+    {
+      "upper": "150000",
+      "rate": "0.20"
+    },
+    {
+      "upper": null,
+      "rate": "0.30"
+    }
+  ],
+  "note": "FAKE BRACKETS FOR ARITHMETIC UNIT TEST ONLY; NOT ANY US TAX LAW."
+}

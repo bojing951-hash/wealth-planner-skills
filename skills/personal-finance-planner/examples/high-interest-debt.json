@@ -1,0 +1,15 @@
+{
+  "label": "虚构示例：高息负债、收入较稳定，先保现金安全",
+  "currency": "CNY",
+  "income_type": "stable",
+  "monthly_cash_receipts": 30000,
+  "monthly_essential_spending": 10000,
+  "monthly_discretionary_spending": 2000,
+  "financial_assets": 60000,
+  "liquid_cash": 60000,
+  "outstanding_debt": 120000,
+  "monthly_debt_payment": 5000,
+  "debt_annual_rate": 0.18,
+  "target_net_worth": 1000000,
+  "target_years": 5
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Host capability declaration; never treated as an execution receipt",
+  "type": "object",
+  "required": ["host", "capabilities"],
+  "properties": {
+    "host": {"type": "string", "minLength": 1},
+    "capabilities": {"type": "object", "additionalProperties": {"type": "object", "properties": {
+      "available": {"type": "boolean"}, "permission": {"enum": ["granted", "ask", "denied"]},
+      "tool_label": {"type": "string"}
+    }}}
+  }
+}

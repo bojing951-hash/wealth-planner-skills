@@ -1,0 +1,58 @@
+{
+  "release": "5.1.0",
+  "baseline_name": "Evidence-Based Wealth Planner Skill v0.4 original architecture (2026-10-11)",
+  "baseline_file": "docs/BASELINE_ORIGINAL_v0.4.md",
+  "baseline_sha256": "552ac0ae1a7150fba23ae5a55a5fa6347b59d303a01b3517ed098a56a8a358bb",
+  "skill_path": "skills/personal-finance-planner",
+  "skill_name": "personal-finance-planner",
+  "skill_version": "5.1.0",
+  "roles": {
+    "host": "reason, search, retrieve, call actually available tools, ask for authorization, create final report",
+    "skill": "evidence-based research, decision policy, verification, safety, workflow and disclosure instructions",
+    "optional_math": "local reproducible arithmetic only; never an independent agent or tax-law verifier",
+    "external": "official primary sources and consented read-only connectors; not bundled and not implicitly authorized"
+  },
+  "mandatory_skill_resources": [
+    "SKILL.md",
+    "references/architecture-10-domains.md",
+    "workflows/skill-first-execution.md",
+    "workflows/host-research-protocol.md",
+    "workflows/theory-evidence-and-conflicts.md",
+    "workflows/jurisdiction-tax.md",
+    "workflows/dynamic-review-protocol.md",
+    "workflows/report-contract.md",
+    "policies/core-decision.md",
+    "policies/theory_graph.json",
+    "references/long-horizon-macro.md",
+    "scripts/wealth_v5.py",
+    "assets/claim-card-example.json"
+  ],
+  "ten_domains": [
+    {"id":"D01","key":"profile_and_data_quality","path":"references/architecture-10-domains.md","implementation":"schemas/profile-v5.schema.json","status":"PARTIAL","unresolved":"No user-approved secure account reconciliation or document verification."},
+    {"id":"D02","key":"jurisdiction_and_compliance","path":"workflows/jurisdiction-tax.md","implementation":"lib/wealth_core/jurisdiction_v5.py","status":"PARTIAL","unresolved":"Tax residency, legally calibrated local tax rules and actual source interpretation require fresh official review."},
+    {"id":"D03","key":"personal_cashflow","path":"references/architecture-10-domains.md","implementation":"lib/wealth_core/finance.py","status":"PARTIAL","unresolved":"Not complete payroll/bank/debt and social insurance reconciliation."},
+    {"id":"D04","key":"life_cycle_and_goals","path":"references/architecture-10-domains.md","implementation":"lib/wealth_core/household.py","status":"PARTIAL","unresolved":"Full pension, education, insurance, estate, marriage and ALM projection not integrated."},
+    {"id":"D05","key":"economics_and_evidence","path":"workflows/theory-evidence-and-conflicts.md","implementation":"lib/wealth_core/evidence.py","status":"PARTIAL","unresolved":"No systematic independent primary-study and quality evaluation with real retrieval; graph is curated."},
+    {"id":"D06","key":"long_term_macro","path":"references/long-horizon-macro.md","implementation":"lib/wealth_core/macro_review.py","status":"PARTIAL","unresolved":"No live host E2E proof or validated cross-currency long-horizon return model."},
+    {"id":"D07","key":"investment_policy","path":"references/architecture-10-domains.md","implementation":"lib/wealth_core/portfolio.py","status":"PARTIAL","unresolved":"No regulated/tax-after-fee region-specific portfolio recommendation or executable IPS."},
+    {"id":"D08","key":"simulation_and_risk","path":"workflows/models-and-reporting.md","implementation":"lib/wealth_core/simulation.py","status":"PARTIAL","unresolved":"Uncalibrated scenario Monte Carlo; not empirical probability; no historical regime calibration."},
+    {"id":"D09","key":"decision_and_execution","path":"policies/core-decision.md","implementation":"lib/wealth_core/integrated.py","status":"PARTIAL","unresolved":"No tested live-host autonomous research loop; policy chiefly implemented in skill instructions."},
+    {"id":"D10","key":"audit_and_monitoring","path":"workflows/dynamic-review-protocol.md","implementation":"lib/wealth_core/dynamic.py","status":"PARTIAL","unresolved":"Only user-triggered review, not authorized secure persistence or monitoring scheduler."}
+  ],
+  "twelve_states": [
+    "INTAKE", "CAPABILITY_CHECK", "FACT_VERIFICATION", "JURISDICTION_GATE", "HOUSEHOLD_SOLVENCY",
+    "GOAL_AND_LIFECYCLE", "EVIDENCE_RESEARCH", "MACRO_SCENARIOS", "CANDIDATE_PLANS",
+    "DETERMINISTIC_AND_STOCHASTIC_VALIDATION", "POLICY_CHECK", "EXPLAIN_AND_MONITOR"
+  ],
+  "safety_requirements": [
+    "cannot_autonomously_trade_transfer_open_account_or_file_tax",
+    "must_check_live_host_capabilities_and_consent",
+    "must_label_facts_user_reported_assumptions_and_unknown",
+    "must_keep_pF_simulated_not_realized",
+    "must_separate_currencies_unless_dated_fx",
+    "must_separate_official_current_rules_from_assumed_brackets",
+    "must_not_claim_calibrated_probabilities_from_hypothetical_monte_carlo",
+    "must_not_claim_background_monitoring_without_host_scheduler",
+    "must_reconcile_to_original_architecture_each_release"
+  ]
+}

@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+*.log
+*.tmp
+.DS_Store
+.env
+.env.*
+!.env.example
+# NEVER publish identifiable finance / bank data
+private/
+user-data/
+userdata/
+reports/
+results/
+*statement*.csv
+*statement*.xlsx
+*.pem
+*.key
+
+# Do not accidentally commit locally assembled macro/profile contexts
+macro_snapshot*.json
+fred_observations*.json
+financial_profile*.json

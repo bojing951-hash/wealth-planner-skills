@@ -1,0 +1,38 @@
+{
+  "code": "EU",
+  "version": "0.3.0",
+  "last_researched": "2026-10-11",
+  "review": "Each use must revalidate primary sources for the correct effective tax year; guidance is not a tax determination.",
+  "name": "欧盟 / European Union (not a tax country)",
+  "scope": "regional_not_single_tax_jurisdiction",
+  "source_ids": [
+    "EU-YOUR-EUROPE",
+    "EU-SUCCESSION"
+  ],
+  "requires_member_state": true,
+  "questions": [
+    "请指定法国/德国/荷兰等具体成员国及当地州/地区（适用时）。",
+    "本国税法与双边税收协定如何处理双重居民及跨境所得？",
+    "社保协调、养老金及投资账户制度是否适用？"
+  ],
+  "flags": [
+    {
+      "id": "EU-NO-SINGLE-RATE",
+      "topic": "country_specific_tax",
+      "severity": "critical",
+      "message": "不存在可以套用整个欧盟的一套个人所得税税率；需要指定成员国并查询国家法律。",
+      "sources": [
+        "EU-YOUR-EUROPE"
+      ]
+    },
+    {
+      "id": "EU-SUCCESSION-NOT-INHERITANCE-TAX",
+      "topic": "succession_law",
+      "severity": "high",
+      "message": "欧盟跨境继承规则与成员国遗产税规则不同；继承选法并不自动改变继承税。注意丹麦、爱尔兰特殊适用范围。",
+      "sources": [
+        "EU-SUCCESSION"
+      ]
+    }
+  ]
+}

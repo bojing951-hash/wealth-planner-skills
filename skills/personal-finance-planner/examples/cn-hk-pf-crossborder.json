@@ -1,0 +1,50 @@
+{
+  "as_of_date": "2026-10-11",
+  "tax_year": 2026,
+  "person": {
+    "living_country": "CN",
+    "home_currency": "CNY",
+    "citizenships": [
+      "CN"
+    ],
+    "tax_residences_claimed": [
+      "CN"
+    ],
+    "presence_days": {
+      "CN": 300,
+      "HK": 20
+    },
+    "us_person_status": "no",
+    "eu_member_country": null
+  },
+  "income_streams": [
+    {
+      "id": "payout",
+      "kind": "prop_firm_real_payout",
+      "amount": 10000,
+      "currency": "USD",
+      "bank_received": true,
+      "gross_or_net": "gross_tax_unknown",
+      "tax_status": "unknown",
+      "payer_country": "US",
+      "activity_country": "CN",
+      "bank_country": "HK",
+      "earned_year": 2026,
+      "remitted_year": 2026
+    }
+  ],
+  "asset_locations": [
+    {
+      "kind": "cash_account",
+      "country": "HK",
+      "ownership": "individual"
+    }
+  ],
+  "planned_moves": [],
+  "targets": {
+    "time_horizon_years": 20,
+    "goal": "long_term_financial_independence",
+    "risk_capacity": "unknown",
+    "active_edge_evidence": "limited"
+  }
+}
