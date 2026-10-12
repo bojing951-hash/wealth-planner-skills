@@ -4,12 +4,12 @@ description: Evidence-based, jurisdiction-aware personal wealth planning for Cod
 license: MIT
 compatibility: Portable Agent Skill; no mandatory network connection or Python dependency to give scoped qualitative guidance. Python 3.10+ recommended only for optional deterministic checks. Financial account tools require explicit user consent.
 metadata:
-  version: "5.2.0"
+  version: "5.3.0"
   maturity: "developer-preview"
   architecture_baseline: "original-v0.4"
 ---
 
-# Personal Wealth Planner — Skill-first (5.2.0)
+# Personal Wealth Planner — Skill-first (5.3.0)
 
 ## Responsibility boundary — read first
 
@@ -28,6 +28,14 @@ The original v0.4 architecture baseline remains binding. Its ten financial domai
 7. **Build and validate feasible alternatives:** reserve-first, baseline and stress plan, goal/liability matching, scenario assumptions explicitly separated from historical/official data. Use host code tools for nontrivial arithmetic; optionally call locally bundled `scripts/wealth_v5.py` for **math/validation on user-supplied inputs**. Its `run` output is a *research aid*, not independently verified law or the Agent's final decision. See [workflows/models-and-reporting.md](workflows/models-and-reporting.md).
 8. **Explain and revisit:** disclose factual basis, exact jurisdiction/tax year, optional model assumptions and costs, blocked conclusions, multiple plans and why they differ, meaningful human review gates and a review schedule. **If the user approved local memory:** the host may preview dated facts/plan summaries, show exactly what would change, then write only after separate explicit user approval. Without permission, no persisted personal profile is created, read or updated. See [workflows/report-contract.md](workflows/report-contract.md), [workflows/dynamic-review-protocol.md](workflows/dynamic-review-protocol.md) and [workflows/local-memory.md](workflows/local-memory.md).
 
+## Professional consultation mode (v5.3) — differentiator for complete plans
+
+For requests like **"help me build a full financial plan"**, a complete family/individual financial diagnosis, a wealth-growth roadmap, or a revisit of that roadmap, **MUST** read [workflows/professional-consultation.md](workflows/professional-consultation.md) and apply its entire *problem → root cause → options → recommendation → measurable actions* loop. Use [workflows/consultation-interview.md](workflows/consultation-interview.md) for prioritized intake, [workflows/diagnosis-prioritization.md](workflows/diagnosis-prioritization.md) for actual financial bottlenecks, and [workflows/action-and-followup.md](workflows/action-and-followup.md) for a **30/90/365-day** user-owned implementation plan. These are professional quality gates, not extra Agent runtimes.
+
+**Required end product** (where inputs permit): client-specific financial baseline; TOP 1–3 problems with observed evidence, root cause vs hypothesis, importance and goal effect; goal feasibility with eligible principal and monthly contribution **gap**; >=2 meaningfully different alternatives with opportunity cost, financing and constraints; conditional recommended sequence and why alternatives rank below it; measurable owner/actions and progress-review triggers. If the current answer could be sent unchanged to anyone with a different salary, debt or horizon, it **FAILS** and should be revised. **Investment product selection is not a required v5.3 output**; avoid false specificity when not supported.
+
+For material missing data: ask at most five high-information questions and deliver only a clearly labeled partial/conditional plan. Do not invent diagnoses, current law, model probabilities, income changes or access permissions. Optional, **not mandatory**, deterministic support: `scripts/consultation_math.py` for reserve-first hypothetical goal algebra and `scripts/plan_quality.py` for structural/numerical report checks, with contract in [schemas/consultation-v5.3.schema.json](schemas/consultation-v5.3.schema.json). Those validators do **not** prove suitability or generate professional recommendations by themselves. For a narrow question, **do not force full consultation**: answer proportionately, preserving safety gates.
+
 ## Non-negotiable invariants
 
 - Distinguish **verified facts / user-reported / hypothetical / unknown**. User-owned, realized bank income is not the same as gross pay, employer pension, PF simulated profits or nominal firm account balances. Unverified income tax is an unresolved liability or modeled reserve, not zero.
@@ -42,6 +50,7 @@ The original v0.4 architecture baseline remains binding. Its ten financial domai
 | Task | Required supporting guide |
 |---|---|
 | Facts, cash flow, investments, life stages | [references/architecture-10-domains.md](references/architecture-10-domains.md), [workflows/skill-first-execution.md](workflows/skill-first-execution.md) |
+| **Comprehensive financial plan / professional consultation** | [workflows/professional-consultation.md](workflows/professional-consultation.md), [workflows/consultation-interview.md](workflows/consultation-interview.md), [workflows/diagnosis-prioritization.md](workflows/diagnosis-prioritization.md), [workflows/action-and-followup.md](workflows/action-and-followup.md) |
 | Law, tax, foreign income, pensions or inheritance | [workflows/jurisdiction-tax.md](workflows/jurisdiction-tax.md), [workflows/host-research-protocol.md](workflows/host-research-protocol.md) |
 | Bogle, Graham, Markowitz, Fisher, Modigliani, Bengen, Thaler, theory conflict | [workflows/theory-evidence-and-conflicts.md](workflows/theory-evidence-and-conflicts.md), [policies/theory_graph.json](policies/theory_graph.json) |
 | Long horizon, inflation and real rates | [references/long-horizon-macro.md](references/long-horizon-macro.md), [workflows/models-and-reporting.md](workflows/models-and-reporting.md) |

@@ -1,5 +1,15 @@
 # Changelog
 
+## v5.3.0 — Professional Financial Planning Consultation protocol (2026-10-12)
+
+- Strengthened **Skill-First** professional-client planning: decision-focused interviewing, diagnostic issue cards, root-cause vs hypothesis, material priorities, >=2 materially distinct feasible/conditional options, quantitative savings/goal gap, 30/90/365 user-owned action register and truthful review.
+- Integrated the workflow in `SKILL.md` and the reporting/state protocols **without** adding an eleventh domain, thirteenth workflow state, standalone Agent or new mandatory network backend. User-requested advanced ETF/product recommendations remain deferred.
+- Added optional reserve-first `consultation_math.py`, `plan_quality.py`, JSON report schema, synthetic Shenzhen client example, and regression tests explicitly separating structural quality from actual expertise.
+- Added **blind Skill-vs-plain-host** evaluation protocol (NOT_RUN) and real Codex/Claude Code E2E acceptance documentation (NOT_TESTED).
+- Added manifest regenerating/checking utility for the actual GitHub checkout; intentionally do not overwrite a separately edited GitHub product README.
+- Original v0.4 architecture remains immutable; report `docs/ARCHITECTURE_ALIGNMENT_v5.3.0.md`; no claim of licensed financial advice or performance improvement before independent tests.
+
+
 ## v5.2.0 — Optional persistent local memory, no new Agent (2026-10-11)
 
 - Added opt-in, **off by default** encrypted local state: dated minimal profile, financial facts, short planning decisions, revision snapshots and on-demand differences. Independent of host Agent runtime.

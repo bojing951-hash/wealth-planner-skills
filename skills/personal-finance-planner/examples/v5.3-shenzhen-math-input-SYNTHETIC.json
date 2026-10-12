@@ -1,0 +1,14 @@
+{
+  "currency": "CNY",
+  "monthly_net_received": "20000",
+  "monthly_essential": "8000",
+  "monthly_discretionary": "3000",
+  "monthly_other_obligations": "0",
+  "owned_unrestricted_cash": "100000",
+  "reserve_months": 6,
+  "near_term_goals_cash": "0",
+  "goal_target": "1000000",
+  "goal_months": 60,
+  "annual_net_return_assumed": "0.05",
+  "is_real_user_data": false
+}

@@ -1,11 +1,11 @@
 {
-  "release": "5.2.0",
+  "release": "5.3.0",
   "baseline_name": "Evidence-Based Wealth Planner Skill v0.4 original architecture (2026-10-11)",
   "baseline_file": "docs/BASELINE_ORIGINAL_v0.4.md",
   "baseline_sha256": "552ac0ae1a7150fba23ae5a55a5fa6347b59d303a01b3517ed098a56a8a358bb",
   "skill_path": "skills/personal-finance-planner",
   "skill_name": "personal-finance-planner",
-  "skill_version": "5.2.0",
+  "skill_version": "5.3.0",
   "roles": {
     "host": "reason, search, retrieve, call actually available tools, ask for authorization, create final report",
     "skill": "evidence-based research, decision policy, verification, safety, workflow and disclosure instructions",
@@ -30,7 +30,14 @@
     "workflows/local-memory.md",
     "scripts/memory_cli.py",
     "schemas/memory-changes-v5.2.schema.json",
-    "requirements-memory.txt"
+    "requirements-memory.txt",
+    "workflows/professional-consultation.md",
+    "workflows/consultation-interview.md",
+    "workflows/diagnosis-prioritization.md",
+    "workflows/action-and-followup.md",
+    "scripts/consultation_math.py",
+    "scripts/plan_quality.py",
+    "schemas/consultation-v5.3.schema.json"
   ],
   "ten_domains": [
     {
@@ -39,7 +46,7 @@
       "path": "references/architecture-10-domains.md",
       "implementation": "schemas/profile-v5.schema.json",
       "status": "PARTIAL",
-      "unresolved": "Opt-in dated local facts and provenance now exist; user-reported data remain unverified and account reconciliation is not available."
+      "unresolved": "v5.3 adaptive interview and conditional provenance guide exist, but real statements and multi-account ownership remain unverified and no host E2E."
     },
     {
       "id": "D02",
@@ -55,7 +62,7 @@
       "path": "references/architecture-10-domains.md",
       "implementation": "lib/wealth_core/finance.py",
       "status": "PARTIAL",
-      "unresolved": "Encrypted aggregate finance snapshots exist but there is no payroll/bank/debt statement reconciliation; no account sync."
+      "unresolved": "v5.3 reserve-first cashflow and optional goal math/quality gate added; still no verified payroll/bank reconciliation and unknown taxes block final investability."
     },
     {
       "id": "D04",
@@ -63,7 +70,7 @@
       "path": "references/architecture-10-domains.md",
       "implementation": "lib/wealth_core/household.py",
       "status": "PARTIAL",
-      "unresolved": "Full pension, education, insurance, estate, marriage and ALM projection not integrated."
+      "unresolved": "v5.3 goal-time/liability interview, alternate goal timelines and 30/90/365 tasks exist; no validated full pension/estate/education projection."
     },
     {
       "id": "D05",
@@ -103,7 +110,7 @@
       "path": "policies/core-decision.md",
       "implementation": "lib/wealth_core/integrated.py",
       "status": "PARTIAL",
-      "unresolved": "No tested live-host autonomous research loop; consent must be genuinely obtained by host, not inferred from CLI flag."
+      "unresolved": "v5.3 cause-to-action protocol, two-path comparison and math/traceability checks added; real host differentiated output and licensed advice not validated."
     },
     {
       "id": "D10",
@@ -111,7 +118,7 @@
       "path": "workflows/dynamic-review-protocol.md",
       "implementation": "lib/wealth_core/local_memory.py",
       "status": "PARTIAL",
-      "unresolved": "Opt-in encrypted dated local state, plan summaries, revision history and deletion implemented; no scheduler, cloud sync, independent Windows ACL security audit, secure OS key store or host E2E."
+      "unresolved": "v5.3 review and measurable-action protocol added; optional v5.2 encrypted memory persists, but no scheduler, true cross-host E2E or Windows ACL certification."
     }
   ],
   "twelve_states": [

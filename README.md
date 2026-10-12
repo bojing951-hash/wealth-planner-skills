@@ -167,9 +167,9 @@ Wealth Planner Skill 将指导 AI 按照六个步骤完成任务：
 
 通过专业知识、结构化规则和可复用工作流，让通用 AI 按照更加严谨的财务规划方法工作。
 
-**当前版本：v5.2 Developer Preview**
+**当前版本：v5.3 Developer Preview**
 
-已具备基础财务计算、循证理论框架、地区合规预检、长期模拟、动态复盘规则，以及可选的本地加密记忆（默认关闭，AES-256-GCM 加密，密钥与数据分离存储，仅存本地、绝不上传）。
+已具备基础财务计算、循证理论框架、地区合规预检、长期模拟、动态复盘规则、可选的本地加密记忆（默认关闭，AES-256-GCM 加密，密钥与数据分离存储，仅存本地、绝不上传），以及 v5.3 新增的专业咨询规划协议（结构化访谈 → 诊断排序 → 双路径比较 → 30/90/365 天行动计划）。
 
 全球税务精算、完整投资组合优化和真实宿主端到端联调等能力仍在完善中。涉及重大投资、法律与税务决定时，仍需核验权威资料并咨询合资格专业人士。
 
@@ -182,7 +182,7 @@ Wealth Planner Skill 将指导 AI 按照六个步骤完成任务：
 
 请复制完整 Skill 文件夹（而非仅 `SKILL.md`）。可选的本地验算脚本需 Python 3.10+；可选加密记忆另需 `cryptography` 库（`requirements-memory.txt`）。
 
-- [技术架构与开发指南](docs/DEVELOPMENT.md) · [架构逐项对照](docs/ARCHITECTURE_ALIGNMENT_v5.2.0.md) · [发布审查流程](docs/DEVELOPMENT_RELEASE_GATE.md) · [安全与隐私](docs/SECURITY_AND_PRIVACY.md) · [本地记忆安全设计](docs/LOCAL_MEMORY_SECURITY_v5.2.md) · [成熟度与缺口](docs/MATURITY_AND_GAPS.md)
+- [技术架构与开发指南](docs/DEVELOPMENT.md) · [架构逐项对照](docs/ARCHITECTURE_ALIGNMENT_v5.3.0.md) · [发布审查流程](docs/DEVELOPMENT_RELEASE_GATE.md) · [安全与隐私](docs/SECURITY_AND_PRIVACY.md) · [本地记忆安全设计](docs/LOCAL_MEMORY_SECURITY_v5.2.md) · [专业咨询协议](skills/personal-finance-planner/workflows/professional-consultation.md) · [成熟度与缺口](docs/MATURITY_AND_GAPS.md)
 - MIT 许可。开源仓库只放研究规范、代码和合成示例，**不放真实财务资料**。
 
 ---

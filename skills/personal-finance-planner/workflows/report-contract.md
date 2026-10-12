@@ -17,3 +17,9 @@ For a complete financial plan, include these headings or machine-readable equiva
 Failure modes that MUST be surfaced: source unavailable, law not proven current, tax residence unknown, missing bank ownership, unstable income, unknown fees, FX date missing, unrealistic investment assumptions or uncalibrated stochastic sample fraction.
 
 It is acceptable for a truthful partial report to say **"Cannot calculate precise local tax until X is verified"**; it is NOT acceptable to fill gaps with invented authoritative numbers.
+
+## v5.3 mandatory professional-delivery gate (only when user requests a COMPLETE financial plan)
+
+Follow [professional-consultation.md](professional-consultation.md). The final user-facing deliverable **MUST go beyond** the generic fields above: top 1–3 client-specific diagnostic findings + root-cause hypotheses; reconciled cash flow; goal's monthly savings requirement versus feasible amount and shortfall; at least two differentiated choices and financing/constraint trade-offs; a ranked conditional decision; **30/90/365-day** proposed tasks each with human owner, observable success check and dependencies; material unknowns and triggers for next review. Where data are missing, show a conditional partial plan plus <=5 prioritized follow-up questions—not invented full personalization.
+
+The optional schema `../schemas/consultation-v5.3.schema.json`, synthetic example `../examples/v5.3-consultation-shenzhen-SYNTHETIC.json`, `../scripts/plan_quality.py` and `../scripts/consultation_math.py` demonstrate verifiable report format and basic math. Neither a formal-looking table nor a passing structural validator is evidence that the plan is legally/tax-wise correct, empirically calibrated or better than the base host model. No background reminders, private memory writes or transactions without relevant separately established permissions.

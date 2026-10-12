@@ -1,25 +1,22 @@
-# Codex host integration — v5 developer preview
+# Codex integration — Wealth Planner Skill v5.3 Developer Preview
 
-Follow current Codex Skills documentation: https://developers.openai.com/codex/skills
+This repository uses the open Agent Skills `SKILL.md` contract. The Codex host performs **all actual reasoning, tool calls, file access and report creation**. The Skill only describes professional methods and optional finite Python validators. Do not use the legacy `host-queue` as a required runtime step or treat it as proof of executing a tool.
 
-Install **the entire Skill folder** (macOS/Linux example):
+Install the **entire** directory `skills/personal-finance-planner/` in `~/.agents/skills/personal-finance-planner/` (or a Codex-supported project Skill directory). Check your actual Codex version and supported Skills search paths.
+
+For a comprehensive scenario use the exact invocation:
+
+> Use `$personal-finance-planner` to act as a professional financial planning research assistant. Treat my information as synthetic unless verified. Diagnose my binding constraints, quantify the financial goal gap without using emergency cash, compare >=2 actionable alternatives with costs and conditions, and give a 30/90/365-day user-owned plan with explicit review criteria. Include current-law caveats and check your professional-report quality before responding.
+
+Read `workflows/professional-consultation.md` after `SKILL.md` for complete plans, then load the interview/diagnosis/action references on demand. Narrow questions should receive narrow answers.
+
+Optional if Python is available and permission given:
 
 ```bash
-mkdir -p "$HOME/.agents/skills"
-cp -R skills/personal-finance-planner "$HOME/.agents/skills/personal-finance-planner"
+python skills/personal-finance-planner/scripts/consultation_math.py --input <PRIVATE_HYPOTHETICAL_INPUT_JSON>
+python skills/personal-finance-planner/scripts/plan_quality.py --input <PRIVATE_REPORT_JSON>
 ```
 
-Then instruct Codex to use `$personal-finance-planner` and provide either a synthetic profile or user-authorized data. The installed Skill must guide Codex to **actually inspect tools available to this runtime** before claiming browsing, source collection, shell execution or private file access.
+Do not write real financial data to the public repository, run financial transactions or create/read/write persistent memory without specific user permission. Current tax, legal, research citations and return forecasts are not supplied automatically by a Skill install.
 
-Expected flow:
-
-1. Read `SKILL.md` and relevant `workflows/` based on question.
-2. Call `scripts/wealth_v5.py validate --input ...` (host shell access permitting).
-3. Truthfully declare host capabilities as ephemeral JSON; don't borrow `EXAMPLE` manifest to claim tool permission.
-4. Call `host-queue` then use actual available source tools if permitted; record downloaded public-source metadata and per-source effective date.
-5. Run `run` again with actual `--receipts` (if collected), plus explicit scenario inputs, then explain and flag unresolved law; never invent tool completion.
-6. With prior report, use `review`; no continuous monitoring unless separate authorized scheduling supported.
-
-Test standard finance, no-network fallback, CN/HK PF, NY/Chicago research scope and local privacy. Do not run against live brokerage or use a user bank password.
-
-**No GitHub URL or client E2E validation is claimed in this zip.**
+End-to-end live Codex consultation + blinded baseline-vs-Skill comparison remain **NOT_TESTED** in this project release, see `tests/host_e2e/ACCEPTANCE_CONSULTATION_v5.3.md`.
