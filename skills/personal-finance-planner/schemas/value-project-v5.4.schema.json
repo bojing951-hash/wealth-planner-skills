@@ -1,0 +1,165 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "mode": {
+      "const": "project"
+    },
+    "schema_version": {
+      "const": "5.4"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "input_status": {
+      "enum": [
+        "HYPOTHETICAL",
+        "USER_REPORTED"
+      ]
+    },
+    "months": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 600
+    },
+    "initial_invested_assets": {
+      "type": "string",
+      "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+    },
+    "initial_uncommitted_cash": {
+      "type": "string",
+      "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+    },
+    "protected_reserve_current": {
+      "type": "string",
+      "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+    },
+    "protected_reserve_target": {
+      "type": "string",
+      "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+    },
+    "one_time_cost_proposed": {
+      "type": "string",
+      "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+    },
+    "status_quo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "net_income": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        },
+        "essential_spend": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        },
+        "discretionary_spend": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        },
+        "other_outflows": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        },
+        "investment_contribution": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        }
+      },
+      "required": [
+        "net_income",
+        "essential_spend",
+        "discretionary_spend",
+        "other_outflows",
+        "investment_contribution"
+      ]
+    },
+    "proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "net_income": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        },
+        "essential_spend": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        },
+        "discretionary_spend": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        },
+        "other_outflows": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        },
+        "investment_contribution": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        }
+      },
+      "required": [
+        "net_income",
+        "essential_spend",
+        "discretionary_spend",
+        "other_outflows",
+        "investment_contribution"
+      ]
+    },
+    "assumptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "const": "HYPOTHETICAL_NOT_FORECAST"
+        },
+        "annual_investment_return": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,9})?$"
+        },
+        "annual_cash_return": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,9})?$"
+        },
+        "annual_inflation": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,9})?$"
+        }
+      },
+      "required": [
+        "status",
+        "annual_investment_return",
+        "annual_cash_return",
+        "annual_inflation"
+      ]
+    },
+    "income_basis": {
+      "enum": [
+        "HYPOTHETICAL_NET",
+        "OWNED_BANK_RECEIVED_NET_TAX_UNVERIFIED",
+        "OWNED_BANK_RECEIVED_NET_TAX_SETTLED"
+      ]
+    }
+  },
+  "required": [
+    "mode",
+    "schema_version",
+    "currency",
+    "input_status",
+    "months",
+    "initial_invested_assets",
+    "initial_uncommitted_cash",
+    "protected_reserve_current",
+    "protected_reserve_target",
+    "status_quo",
+    "proposal",
+    "assumptions",
+    "income_basis"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/wealth-planner/value-project-v5.4.schema.json",
+  "title": "Skill v5.4 hypothetical behavior-to-value projection input"
+}

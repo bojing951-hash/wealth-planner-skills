@@ -1,0 +1,32 @@
+{
+  "mode": "project",
+  "schema_version": "5.4",
+  "currency": "CNY",
+  "input_status": "HYPOTHETICAL",
+  "months": 240,
+  "initial_invested_assets": "50000",
+  "initial_uncommitted_cash": "0",
+  "protected_reserve_current": "50000",
+  "protected_reserve_target": "48000",
+  "status_quo": {
+    "net_income": "20000",
+    "essential_spend": "8000",
+    "discretionary_spend": "4000",
+    "other_outflows": "0",
+    "investment_contribution": "5000"
+  },
+  "proposal": {
+    "net_income": "20000",
+    "essential_spend": "8000",
+    "discretionary_spend": "4000",
+    "other_outflows": "0",
+    "investment_contribution": "8000"
+  },
+  "assumptions": {
+    "status": "HYPOTHETICAL_NOT_FORECAST",
+    "annual_investment_return": "0.05",
+    "annual_cash_return": "0",
+    "annual_inflation": "0.025"
+  },
+  "income_basis": "HYPOTHETICAL_NET"
+}

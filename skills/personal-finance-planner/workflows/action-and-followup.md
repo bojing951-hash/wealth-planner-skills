@@ -19,3 +19,7 @@ At follow-up, compare last **reported** state with newly confirmed state. State 
 ## Client-facing style
 
 Lead with highest-impact finding and the **next actionable decision**, not an essay about investing. Separate: *Now / conditional / deferred / refer to specialist*. Prefer numbers with one visible derivation to pages of generic warnings. Keep all important unsupported conclusions explicitly provisional.
+
+## Value tracking (v5.4)
+
+Each accepted action should also reference the v5.4 **value card**: baseline behavior, proposed behavior, financial mechanism, projected amount (additional new retained cashflow vs conditional return/reallocation), trade-off in risk/liquidity/wellbeing, and observable outcome metric. On follow-up, record `PROPOSED / USER_CONFIRMED / USER_REPORTED_EXECUTED / DOCUMENTED_EXECUTED` distinctly; **avoid translating proposed actions to observed gains**. Compare total personally owned financial assets (cash + investments) to avoid double-counting internal transfers. Measure actual budget adherence, shortfall, runway and goal progress; report the unexplained portion rather than declaring financial improvement caused by the Skill. See `value-and-behavior.md` and `references/value-attribution-method.md`.

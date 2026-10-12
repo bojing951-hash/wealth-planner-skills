@@ -1,0 +1,180 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "mode": {
+      "const": "review"
+    },
+    "schema_version": {
+      "const": "5.4"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "previous": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "type": "string",
+          "format": "date"
+        },
+        "source_status": {
+          "enum": [
+            "USER_REPORTED",
+            "HOST_REVIEWED_DOCUMENT"
+          ]
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "monthly": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "net_income": {
+              "type": "string",
+              "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+            },
+            "essential_spend": {
+              "type": "string",
+              "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+            },
+            "discretionary_spend": {
+              "type": "string",
+              "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+            },
+            "other_outflows": {
+              "type": "string",
+              "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+            },
+            "investment_contribution": {
+              "type": "string",
+              "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+            }
+          },
+          "required": [
+            "net_income",
+            "essential_spend",
+            "discretionary_spend",
+            "other_outflows",
+            "investment_contribution"
+          ]
+        },
+        "owned_liquid_assets": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        }
+      },
+      "required": [
+        "as_of",
+        "source_status",
+        "monthly",
+        "owned_liquid_assets"
+      ]
+    },
+    "current": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "type": "string",
+          "format": "date"
+        },
+        "source_status": {
+          "enum": [
+            "USER_REPORTED",
+            "HOST_REVIEWED_DOCUMENT"
+          ]
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "monthly": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "net_income": {
+              "type": "string",
+              "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+            },
+            "essential_spend": {
+              "type": "string",
+              "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+            },
+            "discretionary_spend": {
+              "type": "string",
+              "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+            },
+            "other_outflows": {
+              "type": "string",
+              "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+            },
+            "investment_contribution": {
+              "type": "string",
+              "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+            }
+          },
+          "required": [
+            "net_income",
+            "essential_spend",
+            "discretionary_spend",
+            "other_outflows",
+            "investment_contribution"
+          ]
+        },
+        "owned_liquid_assets": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,6})?$"
+        }
+      },
+      "required": [
+        "as_of",
+        "source_status",
+        "monthly",
+        "owned_liquid_assets"
+      ]
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "USER_CONFIRMED",
+            "USER_REPORTED_EXECUTED",
+            "DOCUMENTED_EXECUTED",
+            "BLOCKED",
+            "DEFERRED"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "status"
+      ]
+    }
+  },
+  "required": [
+    "mode",
+    "schema_version",
+    "currency",
+    "previous",
+    "current",
+    "action"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill v5.4 observed delta review input (NOT causality)"
+}

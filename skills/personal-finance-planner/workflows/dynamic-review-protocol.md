@@ -26,3 +26,7 @@
 ### v5.2 opt-in memory bridge
 
 On an authorized subsequent session, read a dated summary, flag stale/future-dated values, verify material changes with the user, then run relevant regular 12-state workflow gates. Show a preview of *only* the normalized changed fields (and optional short plan/decision abstracts). After L2 approval of the exact preview, use revision compare-and-swap and change fingerprint to commit. The record is never independent evidence of current account balances, tax law or investment prices; do not trade, file tax returns or automatically modify assets. If no local memory is available, continue as a one-off Skill.
+
+## v5.4 effect-remeasurement gate
+
+On user-requested periodic review, **first** obtain permitted updated facts and dated execution status. Compare actual income, expenses, non-reserved cash, long-term capital, liability balances and goal coverage to the stored *as-of* baseline. Separate reported changes, verified changes and forecast revisions. **Never** infer that the Skill caused asset growth from a simple before/after comparison; price movements, other cash flows and legal changes may dominate. Consult `workflows/value-and-behavior.md` for the seven-link behavior→value bridge. The opt-in vault may retain only a short approved plan/decision status; it is not an automatic bank ledger.

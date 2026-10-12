@@ -1,11 +1,11 @@
 {
-  "release": "5.3.0",
+  "release": "5.4.0",
   "baseline_name": "Evidence-Based Wealth Planner Skill v0.4 original architecture (2026-10-11)",
   "baseline_file": "docs/BASELINE_ORIGINAL_v0.4.md",
   "baseline_sha256": "552ac0ae1a7150fba23ae5a55a5fa6347b59d303a01b3517ed098a56a8a358bb",
   "skill_path": "skills/personal-finance-planner",
   "skill_name": "personal-finance-planner",
-  "skill_version": "5.3.0",
+  "skill_version": "5.4.0",
   "roles": {
     "host": "reason, search, retrieve, call actually available tools, ask for authorization, create final report",
     "skill": "evidence-based research, decision policy, verification, safety, workflow and disclosure instructions",
@@ -37,7 +37,14 @@
     "workflows/action-and-followup.md",
     "scripts/consultation_math.py",
     "scripts/plan_quality.py",
-    "schemas/consultation-v5.3.schema.json"
+    "schemas/consultation-v5.3.schema.json",
+    "workflows/value-and-behavior.md",
+    "references/value-attribution-method.md",
+    "scripts/value_math.py",
+    "scripts/value_quality.py",
+    "schemas/value-project-v5.4.schema.json",
+    "schemas/value-review-v5.4.schema.json",
+    "schemas/value-card-v5.4.schema.json"
   ],
   "ten_domains": [
     {
@@ -62,7 +69,7 @@
       "path": "references/architecture-10-domains.md",
       "implementation": "lib/wealth_core/finance.py",
       "status": "PARTIAL",
-      "unresolved": "v5.3 reserve-first cashflow and optional goal math/quality gate added; still no verified payroll/bank reconciliation and unknown taxes block final investability."
+      "unresolved": "v5.4 adds cashflow→behavior value bridge and reallocation check; still no bank reconciliation, verified tax or debt principal accounting."
     },
     {
       "id": "D04",
@@ -70,7 +77,7 @@
       "path": "references/architecture-10-domains.md",
       "implementation": "lib/wealth_core/household.py",
       "status": "PARTIAL",
-      "unresolved": "v5.3 goal-time/liability interview, alternate goal timelines and 30/90/365 tasks exist; no validated full pension/estate/education projection."
+      "unresolved": "v5.4 adds goal/wellbeing tradeoff in action cards; pension, insurance, estate, family liabilities still lack calibrated full-lifecycle data."
     },
     {
       "id": "D05",
@@ -102,7 +109,7 @@
       "path": "workflows/models-and-reporting.md",
       "implementation": "lib/wealth_core/simulation.py",
       "status": "PARTIAL",
-      "unresolved": "Uncalibrated scenario Monte Carlo; not empirical probability; no historical regime calibration."
+      "unresolved": "v5.4 adds consistent two-policy counterfactual and principal-vs-return reconciliation; stochastic market risks remain uncalibrated."
     },
     {
       "id": "D09",
@@ -110,7 +117,7 @@
       "path": "policies/core-decision.md",
       "implementation": "lib/wealth_core/integrated.py",
       "status": "PARTIAL",
-      "unresolved": "v5.3 cause-to-action protocol, two-path comparison and math/traceability checks added; real host differentiated output and licensed advice not validated."
+      "unresolved": "v5.4 behavior→mechanism→value→proof protocol and optional checks; real host delivery, professional recommendation suitability and blinded advantage unproven."
     },
     {
       "id": "D10",
@@ -118,7 +125,7 @@
       "path": "workflows/dynamic-review-protocol.md",
       "implementation": "lib/wealth_core/local_memory.py",
       "status": "PARTIAL",
-      "unresolved": "v5.3 review and measurable-action protocol added; optional v5.2 encrypted memory persists, but no scheduler, true cross-host E2E or Windows ACL certification."
+      "unresolved": "v5.4 adds observed-difference review, distinct from causal impact; real client followup, host E2E and independent OS security remain untested."
     }
   ],
   "twelve_states": [

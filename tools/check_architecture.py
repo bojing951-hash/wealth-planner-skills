@@ -137,6 +137,20 @@ def check(root: Path = ROOT) -> dict:
             if not (skill/rel).is_file():
                 messages.append('Missing consultation validation component: '+rel)
 
+    # v5.4 value-of-planning discipline; same 10/12 original architecture.
+    if tuple(int(x) for x in contract['release'].split('.')) >= (5,4,0):
+        value_guide=skill/'workflows/value-and-behavior.md'
+        value_text=value_guide.read_text(encoding='utf-8') if value_guide.is_file() else ''
+        for marker in ('counterfactual','NOT','wellbeing','L1/L2','new retained','attribution'):
+            if marker.lower() not in value_text.lower():
+                messages.append('v5.4 value protocol missing essential principle: '+marker)
+        for marker in ('Value and behavior protocol','workflows/value-and-behavior.md','new retained principal','Memory remains'):
+            if marker not in contents:
+                messages.append('SKILL.md not enforcing v5.4 value standard: '+marker)
+        for rel in ('scripts/value_math.py','scripts/value_quality.py','schemas/value-project-v5.4.schema.json','schemas/value-review-v5.4.schema.json','schemas/value-card-v5.4.schema.json'):
+            if not (skill/rel).is_file():
+                messages.append('v5.4 optional value component missing: '+rel)
+
     align = root / ('docs/ARCHITECTURE_ALIGNMENT_v'+contract['release']+'.md')
     if not align.is_file():
         messages.append('Every release requires a completed architecture comparison: '+align.name)

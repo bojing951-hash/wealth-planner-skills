@@ -27,3 +27,7 @@
 - `L1`: personal file/account reads require explicit consent and a specific scope.
 - `L2`: private state write requires consent and an auditable, private destination.
 - `L3`: placing trades, transferring assets, opening accounts, submitting returns or exporting sensitive data is outside autonomous Skill execution.
+
+## Value discipline (v5.4, subordinated to all hard constraints)
+
+The mathematical future value of a newly planned contribution is not realized profit. Evaluate actual human behavior, incremental after-tax **owned** funds, liquidity, risk and wellbeing. A cash-to-investment shift cannot be double-counted as new household principal. A useful **no-change** finding outranks a manufactured optimization. Require a credible status-quo comparator and separate observed facts from assumed compound growth. This augments D03/D04/D08/D09/D10 without adding a new architecture domain.

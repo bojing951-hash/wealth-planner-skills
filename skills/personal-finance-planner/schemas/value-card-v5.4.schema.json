@@ -1,0 +1,218 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "5.4"
+    },
+    "kind": {
+      "enum": [
+        "FULL_PLAN",
+        "FOLLOW_UP"
+      ]
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "memory_written": {
+      "const": false
+    },
+    "claim_of_realized_wealth_created": {
+      "const": false
+    },
+    "attribution_disclaimer": {
+      "type": "string",
+      "minLength": 35
+    },
+    "value_cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "diagnosis_link": {
+            "type": "string",
+            "minLength": 10
+          },
+          "baseline_behavior": {
+            "type": "string",
+            "minLength": 10
+          },
+          "proposed_behavior": {
+            "type": "string",
+            "minLength": 10
+          },
+          "mechanism": {
+            "type": "string",
+            "minLength": 10
+          },
+          "assumption_and_evidence": {
+            "type": "string",
+            "minLength": 10
+          },
+          "metric": {
+            "type": "string",
+            "minLength": 10
+          },
+          "success_threshold": {
+            "type": "string",
+            "minLength": 10
+          },
+          "review_window": {
+            "type": "string",
+            "minLength": 10
+          },
+          "wellbeing_tradeoff": {
+            "type": "string",
+            "minLength": 10
+          },
+          "liquidity_and_risk_check": {
+            "type": "string",
+            "minLength": 10
+          },
+          "alternatives_considered": {
+            "type": "string",
+            "minLength": 10
+          },
+          "next_action": {
+            "type": "string",
+            "minLength": 10
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "implementation_status": {
+            "enum": [
+              "PROPOSED",
+              "USER_CONFIRMED",
+              "USER_REPORTED_EXECUTED",
+              "DOCUMENTED_EXECUTED",
+              "BLOCKED",
+              "DEFERRED"
+            ]
+          },
+          "value_bridge": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "PROJECTED_COUNTERFACTUAL"
+              },
+              "status": {
+                "const": "HYPOTHETICAL_NOT_OBSERVED"
+              },
+              "currency": {
+                "type": "string",
+                "pattern": "^[A-Z]{3}$"
+              },
+              "delta_new_retained_cash": {
+                "type": "string",
+                "pattern": "^-?\\d+(?:\\.\\d{1,9})?$"
+              },
+              "delta_modeled_growth_and_allocation": {
+                "type": "string",
+                "pattern": "^-?\\d+(?:\\.\\d{1,9})?$"
+              },
+              "delta_total": {
+                "type": "string",
+                "pattern": "^-?\\d+(?:\\.\\d{1,9})?$"
+              },
+              "model_ref": {
+                "type": "string",
+                "minLength": 8
+              },
+              "same_assumptions": {
+                "type": "string",
+                "minLength": 12
+              },
+              "limitations": {
+                "type": "string",
+                "minLength": 18
+              }
+            },
+            "required": [
+              "kind",
+              "status",
+              "currency",
+              "delta_new_retained_cash",
+              "delta_modeled_growth_and_allocation",
+              "delta_total",
+              "model_ref",
+              "same_assumptions",
+              "limitations"
+            ]
+          },
+          "observed_outcome": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_MEASURED",
+                  "OBSERVED_DIFFERENCE_NOT_CAUSAL"
+                ]
+              },
+              "observation_dates": {
+                "type": "string",
+                "minLength": 12
+              },
+              "data_sources": {
+                "type": "string",
+                "minLength": 10
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "execution_evidence_ref": {
+            "type": "string",
+            "minLength": 8
+          }
+        },
+        "required": [
+          "diagnosis_link",
+          "baseline_behavior",
+          "proposed_behavior",
+          "mechanism",
+          "assumption_and_evidence",
+          "metric",
+          "success_threshold",
+          "review_window",
+          "wellbeing_tradeoff",
+          "liquidity_and_risk_check",
+          "alternatives_considered",
+          "next_action",
+          "id",
+          "implementation_status",
+          "value_bridge",
+          "observed_outcome"
+        ]
+      }
+    },
+    "next_review": {
+      "type": "string"
+    },
+    "no_change_reason": {
+      "type": "string",
+      "minLength": 35
+    },
+    "no_change_evidence": {
+      "type": "string",
+      "minLength": 20
+    }
+  },
+  "required": [
+    "contract_version",
+    "kind",
+    "currency",
+    "memory_written",
+    "claim_of_realized_wealth_created",
+    "attribution_disclaimer",
+    "value_cards"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill v5.4 professional value-card structural contract"
+}
