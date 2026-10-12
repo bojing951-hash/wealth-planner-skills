@@ -12,6 +12,7 @@ from collections import defaultdict
 from datetime import date
 from decimal import Decimal, InvalidOperation
 import json
+import re
 from pathlib import Path
 import sys
 
@@ -55,6 +56,143 @@ def _check_ids(rows: object, label: str, errors: list[str]) -> set[str]:
     return seen
 
 
+
+# The shipped JSON Schema is the format contract.  Keep this stdlib-only subset
+# here so a portable Skill validates it even when jsonschema is not installed.
+# Fail closed if the schema starts using keywords not understood here.
+_SCHEMA_PATH = Path(__file__).resolve().parents[1] / 'schemas/master-plan-v5.6.schema.json'
+_SUPPORTED_SCHEMA_KEYS = {
+    '$schema', '$id', 'title', 'description', 'type', 'const', 'enum',
+    'required', 'properties', 'additionalProperties', 'items', 'minItems',
+    'minLength', 'pattern', 'format', 'minimum', 'anyOf',
+}
+
+
+def _matches_type(value: object, typ: str) -> bool:
+    return {
+        'object': lambda: isinstance(value, dict),
+        'array': lambda: isinstance(value, list),
+        'string': lambda: isinstance(value, str),
+        'integer': lambda: isinstance(value, int) and not isinstance(value, bool),
+        'number': lambda: isinstance(value, (int, float)) and not isinstance(value, bool),
+        'boolean': lambda: isinstance(value, bool),
+        'null': lambda: value is None,
+    }[typ]()
+
+
+def _same_json_scalar(a: object, b: object) -> bool:
+    # Python's False == 0 and True == 1 are not JSON-Schema equality.
+    return type(a) is type(b) and a == b
+
+
+def _schema_validate(value: object, schema: dict, path: str = '$') -> list[str]:
+    errors: list[str] = []
+    unknown = set(schema) - _SUPPORTED_SCHEMA_KEYS
+    if unknown:
+        return [f'{path}: unsupported schema keyword(s): {sorted(unknown)}; fail closed']
+    if 'anyOf' in schema:
+        candidates = schema['anyOf']
+        if not isinstance(candidates, list) or not candidates:
+            return [f'{path}: malformed schema anyOf']
+        if not any(not _schema_validate(value, option, path) for option in candidates):
+            return [f'{path}: does not match any allowed schema alternative']
+    if 'type' in schema:
+        typ = schema['type']
+        types = typ if isinstance(typ, list) else [typ]
+        if not any(_matches_type(value, t) for t in types):
+            return [f'{path}: expected type {typ}']
+    if 'const' in schema and not _same_json_scalar(value, schema['const']):
+        errors.append(f'{path}: must equal constant {schema["const"]!r}')
+    if 'enum' in schema and not any(_same_json_scalar(value, candidate) for candidate in schema['enum']):
+        errors.append(f'{path}: invalid enum value {value!r}; allowed {schema["enum"]}')
+    if isinstance(value, dict):
+        properties = schema.get('properties', {})
+        for key in schema.get('required', []):
+            if key not in value:
+                errors.append(f'{path}: missing required field {key}')
+        if schema.get('additionalProperties') is False:
+            for key in value.keys() - properties.keys():
+                errors.append(f'{path}: extra property {key}')
+        for key, sub in properties.items():
+            if key in value:
+                errors.extend(_schema_validate(value[key], sub, f'{path}.{key}'))
+    if isinstance(value, list):
+        if 'minItems' in schema and len(value) < schema['minItems']:
+            errors.append(f'{path}: requires at least {schema["minItems"]} entries')
+        if 'items' in schema:
+            for index, item in enumerate(value):
+                errors.extend(_schema_validate(item, schema['items'], f'{path}[{index}]'))
+    if isinstance(value, str):
+        if 'minLength' in schema and len(value) < schema['minLength']:
+            errors.append(f'{path}: string shorter than {schema["minLength"]}')
+        if 'pattern' in schema and not re.search(schema['pattern'], value):
+            if 'amount' in path or 'investable' in path or 'received' in path:
+                errors.append(f'{path}: amount must be finite and nonnegative decimal string')
+            else:
+                errors.append(f'{path}: invalid pattern')
+        if schema.get('format') == 'date':
+            if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', value):
+                errors.append(f'{path}: invalid ISO date')
+            else:
+                _date(value, path, errors)
+    if 'minimum' in schema and isinstance(value, (int, float)) and not isinstance(value, bool):
+        if value < schema['minimum']:
+            errors.append(f'{path}: smaller than minimum {schema["minimum"]}')
+    return errors
+
+
+
+def permission_reference(data: dict) -> bool:
+    permission = data.get('permissions')
+    return isinstance(permission, dict) and isinstance(permission.get('plan_approval_reference'), str) and bool(permission['plan_approval_reference'].strip())
+
+def _schema_errors(data: object) -> list[str]:
+    try:
+        schema = json.loads(_SCHEMA_PATH.read_text(encoding='utf-8'))
+    except (OSError, ValueError) as exc:
+        return [f'cannot load bundled master-plan schema; fail closed: {exc}']
+
+    # Reject unsupported contract keywords even in optional fields not supplied
+    # by this client. Otherwise installing an updated schema could weaken a gate.
+    def inspect(s: dict, path: str) -> list[str]:
+        unsupported = set(s) - _SUPPORTED_SCHEMA_KEYS
+        findings = [f'{path}: unsupported schema keywords {sorted(unsupported)}; fail closed'] if unsupported else []
+        for k, child in s.get('properties', {}).items():
+            findings.extend(inspect(child, f'{path}.properties.{k}'))
+        if isinstance(s.get('items'), dict):
+            findings.extend(inspect(s['items'], f'{path}.items'))
+        for i, child in enumerate(s.get('anyOf', [])):
+            findings.extend(inspect(child, f'{path}.anyOf[{i}]'))
+        return findings
+    unsupported = inspect(schema, '$schema')
+    return unsupported or _schema_validate(data, schema)
+
+def _safe_for_accounting_checks(data: dict) -> bool:
+    """Avoid exceptions when malformed JSON is already rejected by schema checks."""
+    if not all(isinstance(data.get(k), dict) for k in ('fact_basis', 'balance_sheet', 'cash_policy', 'permissions')):
+        return False
+    bs = data['balance_sheet']
+    for rows in (bs.get('assets'), bs.get('liabilities'), *(data.get(k) for k in
+                 ('pools', 'policies', 'goals', 'actions', 'options', 'reviews', 'stress_tests'))):
+        if not isinstance(rows, list) or not all(isinstance(item, dict) for item in rows):
+            return False
+    if not all(isinstance(pool.get('allocations'), list) and
+               all(isinstance(a, dict) for a in pool['allocations']) for pool in data['pools']):
+        return False
+    # Malformed nested identifiers must not trigger unhashable exceptions in
+    # the secondary accounting checker. The schema error is sufficient.
+    for row in bs['assets'] + bs['liabilities']:
+        if not isinstance(row.get('id'), str):
+            return False
+    for pool in data['pools']:
+        for row in pool['allocations']:
+            if not isinstance(row.get('asset_id'), str):
+                return False
+    return all(isinstance(a.get('policy_id'), str) and
+               type(a.get('within_days')) in (int, str)
+               for a in data['actions'])
+
+
 def validate(data: object) -> list[str]:
     """Check report completeness and a few accounting/permission invariants.
 
@@ -71,6 +209,12 @@ def validate(data: object) -> list[str]:
         if key not in data:
             errors.append(f'missing required section: {key}')
     if errors:
+        return errors
+    # Standalone validation must enforce ALL enums/required/types, not just
+    # a few manually selected fields. No optional dependency is necessary.
+    schema_errors = _schema_errors(data)
+    errors.extend(schema_errors)
+    if schema_errors and not _safe_for_accounting_checks(data):
         return errors
     if data['schema_version'] != '5.6.0':
         errors.append('schema_version must be 5.6.0')
@@ -124,6 +268,24 @@ def validate(data: object) -> list[str]:
         errors.append('tax obligation cannot be verified while tax_status is not VERIFIED')
     if facts.get('asset_completeness') == 'INCOMPLETE' and bs.get('net_worth_status') == 'RECONCILED':
         errors.append('cannot claim reconciled net worth when balance sheet is incomplete')
+    # A flag is not itself evidence. Even with a syntactically valid schema,
+    # a reconciled claim is unsupportable with unknown owned balances or debts.
+    if facts.get('asset_completeness') == 'RECONCILED' or bs.get('net_worth_status') == 'RECONCILED':
+        unresolved = []
+        for a in assets:
+            if a['ownership'] in ('OWNED', 'RESTRICTED_BENEFICIAL') and (
+                a['amount'] is None or a['provenance'] == 'UNKNOWN'
+            ):
+                unresolved.append(f'asset {a["id"]}')
+        for debt in debts:
+            if debt['amount'] is None or debt['provenance'] == 'UNKNOWN':
+                unresolved.append(f'liability {debt["id"]}')
+        if unresolved:
+            errors.append('cannot claim reconciled/complete balance sheet with unresolved owned amounts or liabilities: ' + ', '.join(unresolved))
+        if not facts.get('reconciliation_reference'):
+            errors.append('reconciliation_reference is required for a claim of reconciled/complete assets; flags alone cannot certify missing accounts')
+    if data.get('status') == 'USER_APPROVED' and not permission_reference(data):
+        errors.append('plan USER_APPROVED requires explicit plan_approval_reference; an AI or report status alone is not consent')
 
     pools, policies, goals, actions, options = (data.get(k) for k in ('pools','policies','goals','actions','options'))
     pool_ids = _check_ids(pools, 'pools', errors)

@@ -1,5 +1,13 @@
 # Changelog
 
+## v5.6.1 — Master Plan integrity hotfix + controlled user-experience evaluation kit (2026-10-12)
+
+- Fix a demonstrated validator gap: `RECONCILED` or arbitrary invalid enumeration values could pass despite unknown balances. Enforce the shipped JSON Schema without an external dependency and cross-check unknown owned assets/liabilities and reconciliation claims.
+- Plans marked `USER_APPROVED` now need a non-empty separately obtained approval reference; the reference is an audit note, **not** user authentication. Existing DRAFT and CONDITIONAL Master Plan JSON remains backward compatible (`schema_version=5.6.0`).
+- Add synthetic regression cases for invalid nested enums/types, extra fields, missing required fields, impossible dates, unresolved debts, unsupported schema changes and false completion/approval flags; extend GitHub CI.
+- Add reproducible human-reviewed, blinded same-host Skill-vs-plain-AI evaluation **scoring kit** and real-host acceptance checklist. Only a **SYNTHETIC harness dry-run** is performed here; genuine Codex/Claude Code E2E and independent A/B remain **NOT_RUN**. No claim of demonstrated model performance improvement.
+- Preserve original v0.4 architecture (ten domains and twelve states), Skill-First, safety gates, optional private memory, and existing professional planning methods. Neither algorithms nor financial services are materially expanded.
+
 ## v5.6.0 — Personal Wealth Master Plan & Governance (2026-10-12)
 
 - **Flagship deliverable, not a new Agent:** a comprehensive user-owned wealth charter: one asset/liability ledger, dated lifetime goal obligations, non-double-counted purpose earmarks, conditional decision rules, matched options + stress, accountable 30/90/365 actions, review scorecard and approvals.
