@@ -1,0 +1,282 @@
+{
+  "schema_version": "5.6.0",
+  "as_of": "2026-10-12",
+  "status": "CONDITIONAL",
+  "client_scope": {
+    "jurisdiction": "CN/Guangdong/Shenzhen; HK bank receipt nexus is not tax residency",
+    "summary": "SYNTHETIC high-income, high market-correlated cashflow client; not a real person",
+    "profile_provenance": "HYPOTHETICAL"
+  },
+  "fact_basis": {
+    "tax_status": "UNVERIFIED",
+    "tax_year": 2026,
+    "income_source_provenance": "HYPOTHETICAL",
+    "asset_completeness": "INCOMPLETE",
+    "explanation": "All inputs hypothetical; tax residence, income characterization and bank/broker ownership not verified."
+  },
+  "balance_sheet": {
+    "assets": [
+      {
+        "id": "bank_usd",
+        "currency": "USD",
+        "amount": null,
+        "ownership": "OWNED",
+        "kind": "CASH",
+        "as_of": "2026-10-12",
+        "provenance": "UNKNOWN",
+        "description": "Illustrative HK bank, actual current deposit unknown; not a real bank record"
+      },
+      {
+        "id": "broker_net",
+        "currency": "USD",
+        "amount": null,
+        "ownership": "OWNED",
+        "kind": "BROKER_NET_EQUITY",
+        "as_of": "2026-10-12",
+        "provenance": "UNKNOWN",
+        "description": "Brokerage monthly P&L range does not establish net equity or withdrawable cash"
+      },
+      {
+        "id": "pf_simulated",
+        "currency": "USD",
+        "amount": "50000",
+        "ownership": "NON_OWNED_PF",
+        "kind": "PF_SIMULATED",
+        "as_of": "2026-10-12",
+        "provenance": "HYPOTHETICAL",
+        "description": "Not personally owned; illustrative only; prohibited in pools"
+      }
+    ],
+    "liabilities": [
+      {
+        "id": "car_loan",
+        "currency": "USD",
+        "amount": null,
+        "kind": "Vehicle loan outstanding balance unknown; monthly debt service assumed USD 1500",
+        "as_of": "2026-10-12",
+        "provenance": "UNKNOWN"
+      }
+    ],
+    "net_worth_status": "UNKNOWN",
+    "net_worth_notes": "NAV, bank balance, margin balances, loan principal, taxes and other obligations unknown; do not claim a net worth."
+  },
+  "cash_policy": {
+    "income_status": "HYPOTHETICAL",
+    "monthly_bank_received": "60000",
+    "income_currency": "USD",
+    "tax_reserve_status": "UNKNOWN",
+    "investable_amount": null,
+    "surplus_statement": "Illustrative $60k bank credit less $4.5k known monthly spending (or $5.5k if $1k prior leisure persists) BEFORE unresolved tax/operating/loan principal distinction; not investable cash."
+  },
+  "goals": [
+    {
+      "id": "G-FI",
+      "purpose": "Financial independence from active trading; verify lifestyle, dependants, target horizon",
+      "priority": "IMPORTANT",
+      "currency": "USD",
+      "target_amount": null,
+      "target_date": null,
+      "real_or_nominal": "UNSPECIFIED",
+      "funding_status": "UNKNOWN",
+      "blocker": "Age, desired passive spending, existing assets and taxes unknown"
+    }
+  ],
+  "pools": [
+    {
+      "id": "POOL-LIQ",
+      "purpose": "LIQUIDITY",
+      "objective": "Cover essential expenses and debt payments through a joint-income shock",
+      "allocations": [],
+      "funding_rule": "Propose reserve based on verified spend and true cash once current bank equity known; no cash moved automatically"
+    },
+    {
+      "id": "POOL-TAX",
+      "purpose": "TAX_RESERVE",
+      "objective": "Avoid committing money potentially owed for taxes",
+      "allocations": [],
+      "funding_rule": "No arbitrary tax rate; set conditional hold pending specialist computation based on current law"
+    },
+    {
+      "id": "POOL-OPER",
+      "purpose": "OPERATING",
+      "objective": "Protect trading business continuity within risk limits",
+      "allocations": [],
+      "funding_rule": "Cash allocation conditional on verified operation costs and strategy constraints"
+    },
+    {
+      "id": "POOL-LONG",
+      "purpose": "LONGEVITY",
+      "objective": "Fund non-trading retirement spending with capital whose long horizon permits risk",
+      "allocations": [],
+      "funding_rule": "Evaluate only after personal ownership, law and goals verified"
+    }
+  ],
+  "policies": [
+    {
+      "id": "POL-RECON",
+      "objective": "Establish one owned-wealth ledger and no fake income",
+      "when": "At each bank/broker statement review",
+      "then": "Reconcile PF cash receipts, brokerage net equity and internal transfers with dated evidence",
+      "block_if": "Ownership or source ambiguity means no claims of verified deposits",
+      "decision_owner": "USER",
+      "status": "PROPOSED",
+      "metric": "Bank receipts reconciled; NAV not added to P&L",
+      "review_trigger": "At material payout, broker drawdown or year end"
+    },
+    {
+      "id": "POL-TAX",
+      "objective": "Keep unresolved taxes out of presumed free investment money",
+      "when": "Before deciding a transfer from traded income into long-term assets",
+      "then": "Obtain a qualified CN/HK cross-border tax opinion, preserve tax/operating holds as provisional",
+      "block_if": "Unknown resident status or income classification; no exact liability or unconditional investment allocation",
+      "decision_owner": "JOINT_REVIEW",
+      "status": "BLOCKED",
+      "metric": "Tax status/cash reserve verified in writing by appropriate professional",
+      "review_trigger": "Tax residency changes, tax year changes, new broker/legal entity"
+    },
+    {
+      "id": "POL-PROTECT",
+      "objective": "Finance household essential cash and business risk separately",
+      "when": "Once current owned cash and expenses verified",
+      "then": "Present reserve-first vs gradual long-horizon funding options for user approval",
+      "block_if": "No verified owned cash, deficit or tax hold insufficient",
+      "decision_owner": "USER",
+      "status": "PROPOSED",
+      "metric": "Protected liquid months and amount truly transferred to long-term capital",
+      "review_trigger": "Loss of trading income or joint income/portfolio stress"
+    }
+  ],
+  "options": [
+    {
+      "id": "OPT-0",
+      "type": "STATUS_QUO",
+      "description": "Leave current trading/broker funds managed as before while verifying account balances and taxes",
+      "prerequisites": [
+        "No new external transfers until ownership, liquidity and tax obligations are understood"
+      ],
+      "tradeoffs": "May leave correlated income and assets; preserves trading flexibility and liquidity",
+      "effect_status": "NOT_QUANTIFIED",
+      "why_it_loses": "Does not establish independent long-term capital or explicit household protection"
+    },
+    {
+      "id": "OPT-1",
+      "type": "ALTERNATIVE",
+      "description": "Create policy earmarks for liquidity and uncertain tax, then propose recurring extraction of verified post-obligation surplus into distinct long-horizon capital",
+      "prerequisites": [
+        "Bank and broker reconciliation",
+        "Tax issue triage",
+        "User risk and FI goal confirmation"
+      ],
+      "tradeoffs": "May reduce capital usable in active trading; more recordkeeping, no guaranteed investment gain",
+      "effect_status": "NOT_QUANTIFIED",
+      "why_it_loses": "Blocked as an unconditional percentage or transfer until outstanding liabilities, tax and NAV are known"
+    }
+  ],
+  "stress_tests": [
+    {
+      "id": "S-1",
+      "shock": "Income receipts zero for six months AND personally owned brokerage equity declines materially",
+      "finding": "Without starting cash/NAV unknown, cannot claim survival; compute six-month bills under $4.5k/$5.5k monthly spending scenarios once verified",
+      "model_status": "ILLUSTRATIVE"
+    }
+  ],
+  "actions": [
+    {
+      "id": "A-30",
+      "policy_id": "POL-RECON",
+      "owner": "USER",
+      "within_days": 30,
+      "description": "Reconcile monthly external receipts and personally owned brokerage net equity, car loan balance, essential vs discretionary spending",
+      "prerequisite": "Private user-provided aggregate records; optional L1 permission for reads",
+      "proof_metric": "Dated cash/broker/liability ledger with income source and missing lines",
+      "status": "PROPOSED",
+      "proof_reference": null
+    },
+    {
+      "id": "A-90",
+      "policy_id": "POL-TAX",
+      "owner": "LICENSED_PROFESSIONAL",
+      "within_days": 90,
+      "description": "Confirm cross-border tax status and classify material income, then propose realistic cash tax reserve",
+      "prerequisite": "Engage qualified practitioner with relevant jurisdictions and current-year law",
+      "proof_metric": "Written issue list with professional findings and exceptions; no invented rates",
+      "status": "BLOCKED",
+      "proof_reference": null
+    },
+    {
+      "id": "A-365",
+      "policy_id": "POL-PROTECT",
+      "owner": "USER",
+      "within_days": 365,
+      "description": "Review actual capital moved from active trading to genuinely separate household long-term capital after valid obligations",
+      "prerequisite": "Approved policy and reconciled capital flows, no autonomous account action",
+      "proof_metric": "Owned net new retained assets by currency; tax/compliance status; no transfer double count",
+      "status": "PROPOSED",
+      "proof_reference": null
+    }
+  ],
+  "reviews": [
+    {
+      "cadence": "MONTHLY",
+      "trigger": "On user-requested review or actually authorized scheduler, when statements are available",
+      "metrics": [
+        "Owned net cash newly retained, by USD currency",
+        "Current liquid coverage months (if confirmed)"
+      ],
+      "owner": "USER"
+    },
+    {
+      "cadence": "ANNUALLY",
+      "trigger": "End of tax year or major change in law/household",
+      "metrics": [
+        "Verified owned net worth by currency",
+        "Goals funded vs dated needs",
+        "Policy exceptions and blocker resolutions"
+      ],
+      "owner": "JOINT_REVIEW"
+    },
+    {
+      "cadence": "EVENT",
+      "trigger": "Concurrent loss of trading income and drop in brokerage equity",
+      "metrics": [
+        "Cash-runway under 6m stop",
+        "Unfunded contractual liabilities"
+      ],
+      "owner": "USER"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "B-TAX",
+      "question": "Which jurisdiction(s) regard the person as tax resident and how is each income stream characterized?",
+      "blocks": "Exact tax liability and unconditional after-tax investment funding",
+      "owner": "LICENSED_PROFESSIONAL"
+    },
+    {
+      "id": "B-NAV",
+      "question": "What is personal brokerage net equity and how much profit was bank withdrawn versus retained?",
+      "blocks": "Exact net worth, risk exposure and liquidity allocations",
+      "owner": "USER"
+    },
+    {
+      "id": "B-GOAL",
+      "question": "What is the spending level and date for independence?",
+      "blocks": "Precise FI amount and policy allocation",
+      "owner": "USER"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-SYN",
+      "claim": "Illustrative 60k PF deposit and 100k–300k claimed trading P&L, not a verified balance or tax fact",
+      "classification": "HYPOTHETICAL",
+      "as_of": "2026-10-12",
+      "source": "Synthetic scenario only; no real person or bank account"
+    }
+  ],
+  "permissions": {
+    "memory_enabled": false,
+    "autonomous_financial_actions": false,
+    "note": "No actions or files were written to any real financial account, no consent assumed."
+  }
+}

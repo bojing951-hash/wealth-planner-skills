@@ -1,0 +1,844 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/wealth-planner/master-plan-v5.6.schema.json",
+  "title": "Personal Wealth Master Plan v5.6 – optional research aid, not an investment instruction",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "5.6.0"
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "CONDITIONAL",
+        "USER_APPROVED"
+      ]
+    },
+    "client_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "jurisdiction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "profile_provenance": {
+          "type": "string",
+          "enum": [
+            "HYPOTHETICAL",
+            "USER_REPORTED",
+            "DOCUMENTED",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "required": [
+        "jurisdiction",
+        "summary",
+        "profile_provenance"
+      ]
+    },
+    "fact_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tax_status": {
+          "enum": [
+            "UNVERIFIED",
+            "PARTIALLY_VERIFIED",
+            "VERIFIED"
+          ]
+        },
+        "tax_year": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 2000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "income_source_provenance": {
+          "type": "string",
+          "enum": [
+            "HYPOTHETICAL",
+            "USER_REPORTED",
+            "DOCUMENTED",
+            "UNKNOWN"
+          ]
+        },
+        "asset_completeness": {
+          "enum": [
+            "INCOMPLETE",
+            "RECONCILED"
+          ]
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "tax_status",
+        "income_source_provenance",
+        "asset_completeness",
+        "explanation"
+      ]
+    },
+    "balance_sheet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "currency": {
+                "type": "string",
+                "pattern": "^[A-Z]{3}$"
+              },
+              "amount": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "ownership": {
+                "enum": [
+                  "OWNED",
+                  "RESTRICTED_BENEFICIAL",
+                  "NON_OWNED_PF",
+                  "THIRD_PARTY"
+                ]
+              },
+              "kind": {
+                "enum": [
+                  "CASH",
+                  "BROKER_NET_EQUITY",
+                  "PROPERTY",
+                  "BUSINESS_CAPITAL",
+                  "RETIREMENT",
+                  "PF_SIMULATED",
+                  "OTHER"
+                ]
+              },
+              "as_of": {
+                "type": "string",
+                "format": "date"
+              },
+              "provenance": {
+                "type": "string",
+                "enum": [
+                  "HYPOTHETICAL",
+                  "USER_REPORTED",
+                  "DOCUMENTED",
+                  "UNKNOWN"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "currency",
+              "amount",
+              "ownership",
+              "kind",
+              "as_of",
+              "provenance",
+              "description"
+            ]
+          }
+        },
+        "liabilities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "currency": {
+                "type": "string",
+                "pattern": "^[A-Z]{3}$"
+              },
+              "amount": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "minLength": 1
+              },
+              "as_of": {
+                "type": "string",
+                "format": "date"
+              },
+              "provenance": {
+                "type": "string",
+                "enum": [
+                  "HYPOTHETICAL",
+                  "USER_REPORTED",
+                  "DOCUMENTED",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "currency",
+              "amount",
+              "kind",
+              "as_of",
+              "provenance"
+            ]
+          }
+        },
+        "net_worth_status": {
+          "enum": [
+            "UNKNOWN",
+            "PARTIAL",
+            "RECONCILED"
+          ]
+        },
+        "net_worth_notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "assets",
+        "liabilities",
+        "net_worth_status",
+        "net_worth_notes"
+      ]
+    },
+    "cash_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "income_status": {
+          "enum": [
+            "USER_REPORTED",
+            "DOCUMENTED",
+            "UNKNOWN",
+            "HYPOTHETICAL"
+          ]
+        },
+        "monthly_bank_received": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "income_currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "tax_reserve_status": {
+          "enum": [
+            "UNKNOWN",
+            "HYPOTHETICAL_HOLD",
+            "VERIFIED_OBLIGATION"
+          ]
+        },
+        "investable_amount": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "surplus_statement": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "income_status",
+        "monthly_bank_received",
+        "income_currency",
+        "tax_reserve_status",
+        "investable_amount",
+        "surplus_statement"
+      ]
+    },
+    "goals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "priority": {
+            "enum": [
+              "ESSENTIAL",
+              "IMPORTANT",
+              "OPTIONAL"
+            ]
+          },
+          "currency": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}$"
+          },
+          "target_amount": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "real_or_nominal": {
+            "enum": [
+              "REAL_TODAY",
+              "NOMINAL_FUTURE",
+              "UNSPECIFIED"
+            ]
+          },
+          "funding_status": {
+            "enum": [
+              "UNKNOWN",
+              "PARTIAL",
+              "FUNDED",
+              "PROVISIONAL"
+            ]
+          },
+          "blocker": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "purpose",
+          "priority",
+          "currency",
+          "target_amount",
+          "target_date",
+          "real_or_nominal",
+          "funding_status",
+          "blocker"
+        ]
+      }
+    },
+    "pools": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "enum": [
+              "LIQUIDITY",
+              "LIFESTYLE",
+              "LONGEVITY",
+              "GROWTH",
+              "LEGACY",
+              "OPERATING",
+              "TAX_RESERVE",
+              "UNASSIGNED"
+            ]
+          },
+          "objective": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allocations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "asset_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z]{3}$"
+                },
+                "amount": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                }
+              },
+              "required": [
+                "asset_id",
+                "currency",
+                "amount"
+              ]
+            }
+          },
+          "funding_rule": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "purpose",
+          "objective",
+          "allocations",
+          "funding_rule"
+        ]
+      }
+    },
+    "policies": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "objective": {
+            "type": "string",
+            "minLength": 1
+          },
+          "when": {
+            "type": "string",
+            "minLength": 1
+          },
+          "then": {
+            "type": "string",
+            "minLength": 1
+          },
+          "block_if": {
+            "type": "string",
+            "minLength": 1
+          },
+          "decision_owner": {
+            "enum": [
+              "USER",
+              "LICENSED_PROFESSIONAL",
+              "JOINT_REVIEW"
+            ]
+          },
+          "status": {
+            "enum": [
+              "PROPOSED",
+              "USER_APPROVED",
+              "BLOCKED",
+              "DEFERRED"
+            ]
+          },
+          "metric": {
+            "type": "string",
+            "minLength": 1
+          },
+          "review_trigger": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "objective",
+          "when",
+          "then",
+          "block_if",
+          "decision_owner",
+          "status",
+          "metric",
+          "review_trigger"
+        ]
+      }
+    },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "enum": [
+              "STATUS_QUO",
+              "ALTERNATIVE"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "prerequisites": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "tradeoffs": {
+            "type": "string",
+            "minLength": 1
+          },
+          "effect_status": {
+            "enum": [
+              "HYPOTHETICAL",
+              "NOT_QUANTIFIED"
+            ]
+          },
+          "why_it_loses": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "description",
+          "prerequisites",
+          "tradeoffs",
+          "effect_status",
+          "why_it_loses"
+        ]
+      }
+    },
+    "stress_tests": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "shock": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding": {
+            "type": "string",
+            "minLength": 1
+          },
+          "model_status": {
+            "enum": [
+              "ILLUSTRATIVE",
+              "SOURCED_HISTORICAL",
+              "UNKNOWN"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "shock",
+          "finding",
+          "model_status"
+        ]
+      }
+    },
+    "actions": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "policy_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner": {
+            "enum": [
+              "USER",
+              "LICENSED_PROFESSIONAL",
+              "HOST_RESEARCH_ONLY"
+            ]
+          },
+          "within_days": {
+            "enum": [
+              30,
+              90,
+              365
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "prerequisite": {
+            "type": "string",
+            "minLength": 1
+          },
+          "proof_metric": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "PROPOSED",
+              "USER_APPROVED",
+              "DOCUMENTED_EXECUTED",
+              "BLOCKED",
+              "DEFERRED"
+            ]
+          },
+          "proof_reference": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "policy_id",
+          "owner",
+          "within_days",
+          "description",
+          "prerequisite",
+          "proof_metric",
+          "status",
+          "proof_reference"
+        ]
+      }
+    },
+    "reviews": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "cadence": {
+            "enum": [
+              "MONTHLY",
+              "QUARTERLY",
+              "ANNUALLY",
+              "EVENT"
+            ]
+          },
+          "trigger": {
+            "type": "string",
+            "minLength": 1
+          },
+          "metrics": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "owner": {
+            "enum": [
+              "USER",
+              "JOINT_REVIEW"
+            ]
+          }
+        },
+        "required": [
+          "cadence",
+          "trigger",
+          "metrics",
+          "owner"
+        ]
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "blocks": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner": {
+            "enum": [
+              "USER",
+              "LICENSED_PROFESSIONAL",
+              "HOST_RESEARCH_ONLY"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "question",
+          "blocks",
+          "owner"
+        ]
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "classification": {
+            "type": "string",
+            "enum": [
+              "HYPOTHETICAL",
+              "USER_REPORTED",
+              "DOCUMENTED",
+              "UNKNOWN"
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date"
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "claim",
+          "classification",
+          "as_of",
+          "source"
+        ]
+      }
+    },
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "memory_enabled": {
+          "type": "boolean"
+        },
+        "autonomous_financial_actions": {
+          "const": false
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "memory_enabled",
+        "autonomous_financial_actions",
+        "note"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "as_of",
+    "status",
+    "client_scope",
+    "fact_basis",
+    "balance_sheet",
+    "cash_policy",
+    "goals",
+    "pools",
+    "policies",
+    "options",
+    "stress_tests",
+    "actions",
+    "reviews",
+    "blockers",
+    "evidence",
+    "permissions"
+  ]
+}

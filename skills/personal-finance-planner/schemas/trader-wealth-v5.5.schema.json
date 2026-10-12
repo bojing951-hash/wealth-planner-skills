@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/wealth-planner/schema/trader-wealth-v5.5",
+  "title": "Private-input single-currency trade-income reconciliation (OPTIONAL math utility)",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "as_of",
+    "currency",
+    "income_items",
+    "outflows",
+    "tax"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "5.5"
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "income_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "period",
+          "currency",
+          "evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "kind": {
+            "enum": [
+              "PF_BANK_PAYOUT",
+              "OTHER_EXTERNAL_RECEIPT",
+              "BROKER_PROFIT_RANGE",
+              "BROKER_WITHDRAWAL_TRANSFER",
+              "PF_SIMULATED_PNL"
+            ]
+          },
+          "period": {
+            "const": "MONTHLY"
+          },
+          "currency": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}$"
+          },
+          "evidence": {
+            "enum": [
+              "USER_REPORTED",
+              "DOCUMENTED",
+              "HYPOTHETICAL"
+            ]
+          },
+          "amount": {
+            "type": "string",
+            "pattern": "^\\d+(\\.\\d{1,2})?$"
+          },
+          "range": {
+            "type": "object",
+            "properties": {
+              "low": {
+                "type": "string",
+                "pattern": "^-?\\d+(\\.\\d{1,2})?$"
+              },
+              "high": {
+                "type": "string",
+                "pattern": "^-?\\d+(\\.\\d{1,2})?$"
+              }
+            },
+            "required": [
+              "low",
+              "high"
+            ],
+            "additionalProperties": false
+          },
+          "settlement_status": {
+            "enum": [
+              "CLAIMED_BANK_RECEIVED",
+              "DOCUMENTED_BANK_RECEIVED",
+              "PENDING"
+            ]
+          },
+          "realization": {
+            "enum": [
+              "UNKNOWN",
+              "REALIZED_IN_BROKER",
+              "UNREALIZED"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "outflows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "amount",
+          "currency",
+          "period",
+          "evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "category": {
+            "enum": [
+              "ESSENTIAL",
+              "DISCRETIONARY",
+              "DEBT_PAYMENT",
+              "OPERATING_COST"
+            ]
+          },
+          "amount": {
+            "type": "string",
+            "pattern": "^\\d+(\\.\\d{1,2})?$"
+          },
+          "currency": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}$"
+          },
+          "period": {
+            "const": "MONTHLY"
+          },
+          "evidence": {
+            "enum": [
+              "CURRENT_USER_REPORTED",
+              "PRIOR_NOT_RECONFIRMED",
+              "DOCUMENTED"
+            ]
+          },
+          "reference_group": {
+            "type": "string"
+          },
+          "apr": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "principal_balance": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "tax": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "UNKNOWN",
+            "DOCUMENTED_LIABILITY"
+          ]
+        },
+        "monthly_cash_requirement": {
+          "type": "string",
+          "pattern": "^\\d+(\\.\\d{1,2})?$"
+        },
+        "source_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "verified_rule": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "operating_costs_complete": {
+      "type": "boolean"
+    },
+    "outflows_complete": {
+      "type": "boolean"
+    },
+    "reserve_months": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 36
+    },
+    "balances": {
+      "type": "object",
+      "properties": {
+        "unrestricted_cash_after_earmarks": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^\\d+(\\.\\d{1,2})?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "broker_net_equity": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^\\d+(\\.\\d{1,2})?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "car_loan_balance": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^\\d+(\\.\\d{1,2})?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "broker_nav_is_net_of_margin_debt": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "hypothetical_provision_rates": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 0.95
+          }
+        ]
+      },
+      "maxItems": 5
+    }
+  },
+  "additionalProperties": false,
+  "description": "Always validate semantic ownership and source documentation outside this schema. Skill-host decides final policy; this has NO legal tax or trading functionality."
+}

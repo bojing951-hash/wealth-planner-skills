@@ -1,10 +1,10 @@
-# Wealth Planner Skills · v5.2.0 · Skill-First Developer Preview
+# Wealth Planner Skills · v5.6.0 · Skill-First Developer Preview
 
 **An evidence-based, jurisdiction-aware personal wealth-planning methodology for Codex, Claude Code, and other compatible host agents.**
 
 > This project is **a portable Skill, not another Agent**. The host handles reasoning, tool discovery, authorized source retrieval, file analysis, programming, and user-facing reports. The Skill supplies domain guidance, evidence rules, financial decision gates, safety constraints, and optional deterministic verification code. No financial accounts, trading permissions, credentials or background scheduler are installed or implied.
 
-**Authoritative architecture:** [`docs/BASELINE_ORIGINAL_v0.4.md`](docs/BASELINE_ORIGINAL_v0.4.md) (unaltered original, SHA256-pinned). Every new release requires [`docs/ARCHITECTURE_ALIGNMENT_v5.2.0.md`](docs/ARCHITECTURE_ALIGNMENT_v5.2.0.md)-style 10-domain, 12-state, role/safety and gap comparisons. Run `python3 tools/check_architecture.py --strict` before publishing.
+**Authoritative architecture:** [`docs/BASELINE_ORIGINAL_v0.4.md`](docs/BASELINE_ORIGINAL_v0.4.md) (unaltered original, SHA256-pinned). Every new release requires [`docs/ARCHITECTURE_ALIGNMENT_v5.6.0.md`](docs/ARCHITECTURE_ALIGNMENT_v5.6.0.md)-style 10-domain, 12-state, role/safety and gap comparisons. Run `python3 tools/check_architecture.py --strict` before publishing.
 
 ## Install
 
@@ -20,6 +20,12 @@ Copy the complete `skills/personal-finance-planner/` folder:
 Example host prompt:
 
 > 使用 personal-finance-planner，假设我在纽约居住、税前 W-2 年薪 24 万美元，希望 20 年以后退休。请按专业流程核验适用联邦／纽约州／纽约市税法与 401(k) 规则，列出未确定信息；再用明确标注的收益及通胀假设做风险情景计算，不要虚构已查阅的来源，不要自动交易。
+
+## NEW v5.6: Personal Wealth Master Plan — 全面的个人财富政策
+
+完整的财务规划不再仅仅交付一份风险清单，而是 **全资产/负债底账 → 人生目标与未来义务 → 单次计量资金用途分层 → 资金管理与决策规则 → 两种政策方案及压力情景 → 30/90/365天责任行动 → 复核记分卡**。这一系列结果构成用户自己可修改、可复盘的长期财富制度。资金的用途标记并不是一次实际划款，程序不操作用户银行或券商。
+
+专业工作流：[Personal Wealth Master Plan](skills/personal-finance-planner/workflows/personal-wealth-master-plan.md)；客户填写模板：[Master Plan 模板](skills/personal-finance-planner/assets/personal-wealth-master-plan-template.md)；[宿主使用提示词](docs/HOST_PROMPTS_v5.6.md)；可选静态核对：[master_plan_quality.py](skills/personal-finance-planner/scripts/master_plan_quality.py)。如果税务、证券净权益或用户目标尚未核实，输出**有用但条件性的**政策草案，不生成伪精确的可投资金额。
 
 ## Skill-first runtime
 
@@ -54,8 +60,19 @@ python3 skills/personal-finance-planner/scripts/wealth_v5.py run \
   --input skills/personal-finance-planner/examples/v5-shenzhen.json --format json
 ```
 
-The bundled calculator can validate income ownership, currencies, cash flow, assumed compound growth, portfolio math, seeded *uncalibrated* simulations, and on-demand comparison. It cannot independently certify a legal/tax determination, establish real-world retirement probabilities, or fetch official sources. v5.2.0 is the **Skill release**; the preserved v5.0.0 math backend is for compatibility, not a new validated market model.
+The bundled calculator can validate income ownership, currencies, cash flow, assumed compound growth, portfolio math, seeded *uncalibrated* simulations, and on-demand comparison. It cannot independently certify a legal/tax determination, establish real-world retirement probabilities, or fetch official sources. v5.5.0 is the **Skill release**; the preserved v5.0.0 math backend is for compatibility, not a new validated market model.
 
+
+
+## NEW in v5.5: personally owned trading wealth and cross-border financial planning
+
+When someone receives PF payouts while also reporting significant **personally owned brokerage** gains, the Skill now directs the host to build **two reconciled ledgers**, not just a generic tax-warning report:
+
+- **Bank receipts / cash obligations:** distinguish claimed versus documented PF cash, current versus unreconfirmed past expenses, vehicle-loan cash payments, operating costs and unknown taxes.
+- **Balance sheet and ownership:** separately show broker net account equity (including unrealized assets), realized P&L, margin liabilities and brokerage-to-bank internal transfers; never double-count either transferred funds or broker monthly gains already in NAV.
+- **Professional wealth policy:** research conditional operating / tax / reserves / short-term goal / long-term capital structure, compare 2–3 realistic alternatives and simultaneous PF-income and portfolio-loss stress, with 30/90/365-day verification.
+
+No fixed percentage or current tax rate is invented when amounts are unverified. **The host still performs research and decisions.** Optional `scripts/trader_wealth_reconcile.py` and `scripts/trader_plan_quality.py` only check math and report structure. See [synthetic example](docs/EXAMPLE_HIGH_INCOME_TRADER_v5.5.md), [release alignment](docs/ARCHITECTURE_ALIGNMENT_v5.5.0.md) and [real-host acceptance checklist](tests/host_e2e/ACCEPTANCE_TRADER_v5.5.md).
 
 ## NEW in v5.2: opt-in, local financial memory (NOT a separate Agent)
 
@@ -90,7 +107,7 @@ Use [`workflows/local-memory.md`](skills/personal-finance-planner/workflows/loca
 | Real host search, tax-law source analysis, account connections | **Host-dependent, not executed by Skill or validated E2E here** |
 | Calibrated 10–30 year success odds | **Not implemented** |
 
-Details and acceptance history: [`docs/MATURITY_AND_GAPS.md`](docs/MATURITY_AND_GAPS.md), [`docs/ARCHITECTURE_ALIGNMENT_v5.2.0.md`](docs/ARCHITECTURE_ALIGNMENT_v5.2.0.md), [`tests/host_e2e/ACCEPTANCE_v5.1.md`](tests/host_e2e/ACCEPTANCE_v5.1.md).
+Details and acceptance history: [`docs/MATURITY_AND_GAPS.md`](docs/MATURITY_AND_GAPS.md), [`docs/ARCHITECTURE_ALIGNMENT_v5.6.0.md`](docs/ARCHITECTURE_ALIGNMENT_v5.6.0.md), [`tests/host_e2e/ACCEPTANCE_TRADER_v5.5.md`](tests/host_e2e/ACCEPTANCE_TRADER_v5.5.md).
 
 ## Development, architecture audit and tests
 

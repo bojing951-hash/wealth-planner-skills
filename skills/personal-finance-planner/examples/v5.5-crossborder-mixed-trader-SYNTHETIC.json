@@ -1,0 +1,75 @@
+{
+  "schema_version": "5.5",
+  "as_of": "2026-10-12",
+  "currency": "USD",
+  "income_items": [
+    {
+      "id": "pf_payout",
+      "kind": "PF_BANK_PAYOUT",
+      "amount": "24000",
+      "currency": "USD",
+      "settlement_status": "CLAIMED_BANK_RECEIVED",
+      "evidence": "USER_REPORTED",
+      "period": "MONTHLY"
+    },
+    {
+      "id": "broker_profit",
+      "kind": "BROKER_PROFIT_RANGE",
+      "currency": "USD",
+      "range": {
+        "low": "15000",
+        "high": "70000"
+      },
+      "realization": "UNKNOWN",
+      "evidence": "USER_REPORTED",
+      "period": "MONTHLY"
+    }
+  ],
+  "outflows": [
+    {
+      "id": "rent",
+      "category": "ESSENTIAL",
+      "amount": "1800",
+      "currency": "USD",
+      "evidence": "CURRENT_USER_REPORTED",
+      "period": "MONTHLY"
+    },
+    {
+      "id": "living",
+      "category": "ESSENTIAL",
+      "amount": "1250",
+      "currency": "USD",
+      "evidence": "CURRENT_USER_REPORTED",
+      "period": "MONTHLY"
+    },
+    {
+      "id": "car_loan_payment",
+      "category": "DEBT_PAYMENT",
+      "amount": "900",
+      "currency": "USD",
+      "evidence": "CURRENT_USER_REPORTED",
+      "period": "MONTHLY"
+    },
+    {
+      "id": "leisure_prior",
+      "category": "DISCRETIONARY",
+      "amount": "700",
+      "currency": "USD",
+      "evidence": "PRIOR_NOT_RECONFIRMED",
+      "period": "MONTHLY",
+      "reference_group": "leisure"
+    }
+  ],
+  "tax": {
+    "status": "UNKNOWN"
+  },
+  "operating_costs_complete": false,
+  "reserve_months": 12,
+  "balances": {
+    "unrestricted_cash_after_earmarks": null,
+    "broker_net_equity": null,
+    "car_loan_balance": null
+  },
+  "hypothetical_provision_rates": [],
+  "outflows_complete": false
+}

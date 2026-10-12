@@ -1,0 +1,42 @@
+{
+  "skill_version_loaded": "5.5.0",
+  "plan_status": "CONDITIONAL_PARTIAL",
+  "financial_facts": {
+    "reported_external_received_per_month_PROVISIONAL": "24000.00",
+    "current_cash_outflows": "3950.00",
+    "higher_lifestyle_cash_outflows_if_prior_spend_continues": "4650.00"
+  },
+  "exact_current_tax": "NOT_VERIFIED",
+  "safe_investable_cash": "UNKNOWN",
+  "known_personal_net_worth": "UNKNOWN",
+  "stocks_monthly_profit_counted_as_bank_cash": false,
+  "broker_withdrawal_counted_as_new_household_wealth": false,
+  "liquid_runway_claimed_without_balance": false,
+  "tax_rate_claimed_as_statute_without_source": false,
+  "user_value": [
+    {
+      "decision": "Verify cash receipts and split self-trading receipts from broker performance",
+      "trigger": "Personal brokerage P&L is not proven to be withdrawable bank cash",
+      "expected_mechanism": "Prevents overcommitting personal free cash and double counting NAV",
+      "next_observation": "Period-matched personal bank credits, broker equity, fees and withdrawals"
+    },
+    {
+      "decision": "Adopt a reversible conditional wealth-policy waterfall",
+      "trigger": "Recurring reported inflow exists but owned balance sheet, income tax and operating costs are unknown",
+      "expected_mechanism": "Reduces risk of accidental obligation shortfall and defines separate long-horizon capital only after gates",
+      "next_observation": "Reported funds allocated to obligations, verified tax accrual and unrestricted cash reserve"
+    }
+  ],
+  "strategy_options": [
+    {"name":"Defensive liquidity and verification", "eligibility_gate":"User confirms unrestricted cash and current obligations", "downside":"Foregone market exposure", "decision_tradeoff":"Liquidity-first until ownership and tax clarified"},
+    {"name":"Long-horizon release policy", "eligibility_gate":"Tax and short-term liabilities verified; broker NAV and drawdowns known", "downside":"Capital market drawdowns and lower liquidity", "decision_tradeoff":"Potential accumulation with risk after verified surplus"}
+  ],
+  "funds_waterfall": ["settled personal cash credits", "contractual debt/basic living/operating costs", "unresolved tax liabilities", "near-term reserve and goal funding", "long-term owned capital only after gates"],
+  "joint_stress":{"pf_receipt_interruption":true,"broker_drawdown_same_period":true,"liquid_runway_status":"UNKNOWN"},
+  "actions": [
+    {"horizon":"D30","action":"Compile aggregate bank receipts, trading operational fees and brokerage NAV with matching dates","owner":"USER","metric":"Reconciled owned assets and realized deposits","status":"PROPOSED"},
+    {"horizon":"D90","action":"Choose a conditional funding policy after tax classification and loan terms are reviewed","owner":"USER","metric":"Funded after-tax reserve and actual net-long-term addition","status":"PROPOSED"},
+    {"horizon":"D365","action":"Compare actual capital changes with earlier forecasts, including trading and market effects","owner":"USER","metric":"Actual net contributions separated from market P&L and cash-transfer shifts","status":"PROPOSED"}
+  ],
+  "memory_write_authorized": false
+}
