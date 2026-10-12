@@ -80,3 +80,12 @@ jobs:
             echo 'ERROR: v5.6 negative fixture passed' >&2
             exit 1
           fi
+
+      - name: v5.6.1 verified schema negative regression + human AB scoring harness smoke
+        shell: bash
+        run: |
+          python skills/personal-finance-planner/scripts/master_plan_quality.py --input skills/personal-finance-planner/examples/v5.6-high-income-trader-SYNTHETIC.json
+          python -m unittest tests.test_master_plan_v561 tests.test_blind_eval_v561 -q
+          python tests/skill_vs_baseline/evaluate_blind.py \
+            --scores tests/skill_vs_baseline/SAMPLE_ONLY_scores_v561.json \
+            --unblind tests/skill_vs_baseline/SAMPLE_ONLY_unblind_v561.json >/dev/null

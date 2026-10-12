@@ -1,11 +1,11 @@
 {
-  "release": "5.6.0",
+  "release": "5.6.1",
   "baseline_name": "Evidence-Based Wealth Planner Skill v0.4 original architecture (2026-10-11)",
   "baseline_file": "docs/BASELINE_ORIGINAL_v0.4.md",
   "baseline_sha256": "552ac0ae1a7150fba23ae5a55a5fa6347b59d303a01b3517ed098a56a8a358bb",
   "skill_path": "skills/personal-finance-planner",
   "skill_name": "personal-finance-planner",
-  "skill_version": "5.6.0",
+  "skill_version": "5.6.1",
   "roles": {
     "host": "reason, search, retrieve, call actually available tools, ask for authorization, create final report",
     "skill": "evidence-based research, decision policy, verification, safety, workflow and disclosure instructions",
@@ -67,7 +67,7 @@
       "path": "references/architecture-10-domains.md",
       "implementation": "schemas/profile-v5.schema.json",
       "status": "PARTIAL",
-      "unresolved": "v5.6: master plan asset/governance reconciliation is a new deliverable; no proven account balance read or beneficial-ownership verification."
+      "unresolved": "v5.6.1: master plan rejects inconsistent RECONCILED flags, invalid enums and missing reconciliation reference; reference is still not independent account verification."
     },
     {
       "id": "D02",
@@ -131,7 +131,7 @@
       "path": "policies/core-decision.md",
       "implementation": "lib/wealth_core/integrated.py",
       "status": "PARTIAL",
-      "unresolved": "v5.6: rule grammar WHEN/THEN/BLOCK/APPROVER/CHECK and 30/90/365 action register; no actual client execution or regulated recommendations."
+      "unresolved": "v5.6.1: USER_APPROVED requires explicit approval reference; only the host can actually verify human permission, and real host E2E remains untested."
     },
     {
       "id": "D10",
@@ -139,7 +139,7 @@
       "path": "workflows/dynamic-review-protocol.md",
       "implementation": "lib/wealth_core/local_memory.py",
       "status": "PARTIAL",
-      "unresolved": "v5.6: comprehensive review charter and scorecard; consented private history optional, host E2E, automatic schedule and audited custody absent."
+      "unresolved": "v5.6.1: blind evaluation kit and host acceptance criteria added; actual same-model real host Skill/no-Skill effectiveness experiment not yet performed."
     }
   ],
   "twelve_states": [

@@ -87,6 +87,14 @@
         "explanation": {
           "type": "string",
           "minLength": 1
+        },
+        "reconciliation_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "description": "Explicit source or user-confirmed scope of the account completeness reconciliation; flags cannot establish completeness."
         }
       },
       "required": [
@@ -813,6 +821,14 @@
         "note": {
           "type": "string",
           "minLength": 1
+        },
+        "plan_approval_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "description": "Reference to separately obtained human approval of the plan, not proof the CLI authenticated a human."
         }
       },
       "required": [

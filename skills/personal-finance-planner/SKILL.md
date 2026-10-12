@@ -4,12 +4,12 @@ description: Evidence-based, jurisdiction-aware personal wealth planning for Cod
 license: MIT
 compatibility: Portable Agent Skill; no mandatory network connection or Python dependency to give scoped qualitative guidance. Python 3.10+ recommended only for optional deterministic checks. Financial account tools require explicit user consent.
 metadata:
-  version: "5.6.0"
+  version: "5.6.1"
   maturity: "developer-preview"
   architecture_baseline: "original-v0.4"
 ---
 
-# Personal Wealth Planner — Skill-first (5.6.0)
+# Personal Wealth Planner — Skill-first (5.6.1)
 
 ## Responsibility boundary — read first
 
@@ -60,7 +60,7 @@ When a user requests a **complete personal wealth plan, lifetime financial manag
 
 This client-controlled Master Plan must organize (1) whole-wealth asset/liability ownership and provenance, (2) dated life goals and funding obligations, (3) **non-double-counted** purpose earmarks for liquidity/lifestyle/longevity/growth/legacy plus tax and business needs when relevant, (4) conditional **WHEN → THEN → BLOCK IF → APPROVER → CHECK** wealth-policy rules, (5) status-quo vs feasible alternative with a joint-shock scenario when material, (6) named 30/90/365-day actions and outcome metrics, and (7) dated governance/review triggers and the exact missing facts. Full template: [assets/personal-wealth-master-plan-template.md](assets/personal-wealth-master-plan-template.md).
 
-**Fail closed on unverified exact tax/asset ownership or an unconditional investable amount, but do not halt useful non-tax planning.** No assumed product pick, model-guaranteed financial independence, fixed arbitrary savings percentage, self-executing bank/broker orders or forced life goals. The three-layer label (*asset ledger, analytic purpose earmark, optional operational account action*) must remain separate. The Skill supplies rules; the **host** does all actual research/decisions/tool calls. Optional stdlib-only `scripts/master_plan_quality.py` checks structured JSON completeness, source labeling, pool over-allocation, rights and approval status (schema: `schemas/master-plan-v5.6.schema.json`); **it does not determine investment suitability**. Master plan and asset data are private, only opt-in memory is allowed for short summaries.
+**Fail closed on unverified exact tax/asset ownership or an unconditional investable amount, but do not halt useful non-tax planning.** No assumed product pick, model-guaranteed financial independence, fixed arbitrary savings percentage, self-executing bank/broker orders or forced life goals. The three-layer label (*asset ledger, analytic purpose earmark, optional operational account action*) must remain separate. The Skill supplies rules; the **host** does all actual research/decisions/tool calls. Optional stdlib-only `scripts/master_plan_quality.py` checks structured JSON completeness, source labeling, pool over-allocation, rights and approval status (schema: `schemas/master-plan-v5.6.schema.json`); **it does not determine investment suitability**. As of v5.6.1 the optional validator enforces the complete bundled v5.6.0 JSON data contract with standard-library checks; `RECONCILED` requires no unknown owned balances/liabilities plus an explicit reconciliation reference, and `USER_APPROVED` requires an approval reference. These references are only audit claims, never cryptographic proof or professional verification. Master plan and asset data are private, only opt-in memory is allowed for short summaries.
 
 ## Non-negotiable invariants
 

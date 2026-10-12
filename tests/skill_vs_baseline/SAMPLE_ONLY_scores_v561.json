@@ -1,0 +1,19 @@
+{
+  "evaluation_id": "SYNTHETIC_DEMO_NOT_A_REAL_MODEL_EXPERIMENT",
+  "ratings": [
+    {
+      "case_id":"fictional_trader",
+      "candidate_id":"A",
+      "reviewer_id":"FAKE_REVIEWER_1",
+      "scores":{"financial_facts":1,"problem_diagnosis":1,"legal_tax_honesty":2,"plan_alternatives":1,"cashflow_math":2,"stress_tests":1,"conditional_policies":0,"user_actions":1,"review_and_memory":0,"plain_language_value":1},
+      "critical_failures":[]
+    },
+    {
+      "case_id":"fictional_trader",
+      "candidate_id":"B",
+      "reviewer_id":"FAKE_REVIEWER_1",
+      "scores":{"financial_facts":3,"problem_diagnosis":3,"legal_tax_honesty":3,"plan_alternatives":3,"cashflow_math":3,"stress_tests":3,"conditional_policies":3,"user_actions":3,"review_and_memory":3,"plain_language_value":3},
+      "critical_failures":[]
+    }
+  ]
+}
