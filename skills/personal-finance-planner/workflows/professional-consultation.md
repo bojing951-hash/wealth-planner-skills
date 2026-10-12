@@ -15,6 +15,10 @@
 5. **Verify / decide (DETERMINISTIC_AND_STOCHASTIC_VALIDATION → POLICY_CHECK):** Recalculate each important financial claim using the host calculator or optional `scripts/consultation_math.py`; check cash-flow conservation and comparable nominal/real units, liquidity, horizon, adverse cases, and plausible execution. Use `scripts/plan_quality.py` (optional) on a structured report to catch missing links and simple numerical inconsistencies. **Quality gate checks structure, not substantive suitability.** No uncalibrated MC probability presented as real odds. No unverified jurisdiction-specific implementation instructions.
 6. **Hand off / revisit (EXPLAIN_AND_MONITOR):** Issue an **executive diagnosis** and personal master plan: ranked problems, chosen conditional policy, rejected alternative and reasons, 30/90/365-day actions with owners/metrics, verification blockers and material change triggers. Provide the next smallest reversible action. Refer for licensed tax/legal/insurance advice when needed. Only store facts, decisions and progress in optional encrypted memory **after specific opt-in / per-change approval**; never imply ongoing monitoring without a scheduler.
 
+## Required quantitative value bridge (v5.4 addon, not an extra planning state)
+
+After diagnosing the binding constraint and selecting actions, **read `value-and-behavior.md`**. The host must show exactly how a proposed *behavior* changes the client's resource allocation and what measurable outcome could result. Keep a status quo comparison with identical model assumptions. Separate additional unconsumed principal from modeled growth, and treat investing already saved cash as asset *reallocation*, not created savings. For risk-reduction, insurance, high-cost debt or family/time objectives, use appropriate risk/cost/goal metrics rather than artificially forcing an investment-return claim. Show implementation dates and action state; an unexecuted plan has **zero observed gain**. Allow explicit `NO_CHANGE_RECOMMENDED` when warranted. An opt-in remembered historical state is a user-provided dated record, not verified proof of causality.
+
 ## Report acceptance — full-plan mode
 
 A user-visible plan must include, in this order (labels may vary, do not overproduce irrelevant detail):
@@ -26,7 +30,8 @@ A user-visible plan must include, in this order (labels may vary, do not overpro
 5. **At least two defensible choices:** mechanism, approximate quantified effect, implementation cost, risk/limitations, suitability under client's constraints, reasons a proposal is deferred or rejected.
 6. **Recommended sequence:** what to prioritize NOW vs later with dependency gates. Do not give a complex allocation when cash runway or legal status blocks it.
 7. **30 / 90 / 365-day action plan:** observable action, named human owner, deadline/window, measurable success condition, contingencies, approval required, current status (PROPOSED vs DONE).
-8. **Follow-up + audit:** what to measure, when to revisit, events triggering replan, sources actually checked, tax/year law status, unresolved questions and opt-in memory status.
+8. **Behavior → Value → Proof:** for each priority action, baseline vs changed behavior, constrained mechanism, status-quo comparator, additional retained principal vs hypothetical returns/other effects, liquidity and wellbeing trade-offs, and dated measurement. Mark conditional/observed/attributed claims separately. Read `value-and-behavior.md`; use the v5.4 value card format for structured full plans.
+9. **Follow-up + audit:** what to measure, when to revisit, events triggering replan, sources actually checked, tax/year law status, unresolved questions and opt-in memory status.
 
 **If inputs are materially missing:** ask no more than five high-impact questions at once; optionally present a **conditional** partial diagnosis using clearly labeled scenarios and the specific fields needed to finalize. Do NOT manufacture completeness by assuming net salary, jurisdiction, debt APR, age, tax treatment, risk tolerance or exact account values.
 

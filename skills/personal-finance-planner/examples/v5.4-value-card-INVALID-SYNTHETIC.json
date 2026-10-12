@@ -1,0 +1,43 @@
+{
+  "contract_version": "5.4",
+  "kind": "FULL_PLAN",
+  "currency": "CNY",
+  "memory_written": false,
+  "claim_of_realized_wealth_created": false,
+  "attribution_disclaimer": "全部20年结果都是相同市场假设下的数学反事实演算，不是已经实现的财富、经验证的超额收益或者建议的因果效果。实际效果必须根据用户执行记录及周期匹配的数据另行核对。",
+  "value_cards": [
+    {
+      "id": "BEHAVIOR-01",
+      "diagnosis_link": "现金结余只有每月5000元，重要的长期积累目标主要受到持续可投入现金流的约束（完全虚构案例）。",
+      "baseline_behavior": "必要支出8000元、可选消费7000元，月末结余及投入各5000元。",
+      "proposed_behavior": "用户若愿意减少3000元低价值非必要消费，则月投资变成8000元，前提是生活品质与必要开支不受损。",
+      "mechanism": "每月额外留下3000元真实拥有的结余，逐期投入长期资产；未来市场收益只是条件性的资金增长。",
+      "assumption_and_evidence": "用户收入和消费均为虚构数字；收益率5%、现金利率0%、年通胀2.5%全部是假设，非投资预测。",
+      "metric": "月末净结余（元）、月投资到账（元）、应急资金覆盖月数、主观消费满意度（每月）。",
+      "success_threshold": "连续三个整月净结余较基线至少增加3000元且现金储备不少于48000元，且生活满意度未明显降低。",
+      "review_window": "D30 首次核对，D90 检查持续三个月的执行情况，D365 做年度复核。",
+      "wellbeing_tradeoff": "只有用户证实3000元属于低价值开支时才可考虑，若牺牲健康、家庭时间或重要体验就不强制削减。",
+      "liquidity_and_risk_check": "目前虚构应急储备50000元超过假设阈值48000元；追加风险资产仍可能亏损，不动用储备。",
+      "alternatives_considered": "备选A保留原消费与原投入；备选B保持消费但提升净收入3000元，需核对执行成本与税后实际到账。",
+      "next_action": "用户先分类复盘上月消费，挑选一项可逆的3000元试验；一个月后再决定是否维持。",
+      "implementation_status": "PROPOSED",
+      "value_bridge": {
+        "kind": "PROJECTED_COUNTERFACTUAL",
+        "status": "HYPOTHETICAL_NOT_OBSERVED",
+        "currency": "CNY",
+        "delta_new_retained_cash": "720000.00",
+        "delta_modeled_growth_and_allocation": "497413.46",
+        "delta_total": "1500000.00",
+        "model_ref": "scripts/value_math.py v5.4 project (synthetic)",
+        "same_assumptions": "两种选择共享相同起始资产、投资/现金收益、通胀、期限和原币种。",
+        "limitations": "只有固定回报情景，没有市场风险参数校准、税费证明和行为可行性证明；不等于实际创造收益。"
+      },
+      "observed_outcome": {
+        "status": "OBSERVED_DIFFERENCE_NOT_CAUSAL",
+        "observation_dates": "2026-01 to 2026-04",
+        "data_sources": "user statement"
+      }
+    }
+  ],
+  "next_review": "用户允许后30天重新核对到账、消费与执行记录；不自动启用后台监控。"
+}

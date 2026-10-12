@@ -4,12 +4,12 @@ description: Evidence-based, jurisdiction-aware personal wealth planning for Cod
 license: MIT
 compatibility: Portable Agent Skill; no mandatory network connection or Python dependency to give scoped qualitative guidance. Python 3.10+ recommended only for optional deterministic checks. Financial account tools require explicit user consent.
 metadata:
-  version: "5.3.0"
+  version: "5.4.0"
   maturity: "developer-preview"
   architecture_baseline: "original-v0.4"
 ---
 
-# Personal Wealth Planner — Skill-first (5.3.0)
+# Personal Wealth Planner — Skill-first (5.4.0)
 
 ## Responsibility boundary — read first
 
@@ -36,6 +36,14 @@ For requests like **"help me build a full financial plan"**, a complete family/i
 
 For material missing data: ask at most five high-information questions and deliver only a clearly labeled partial/conditional plan. Do not invent diagnoses, current law, model probabilities, income changes or access permissions. Optional, **not mandatory**, deterministic support: `scripts/consultation_math.py` for reserve-first hypothetical goal algebra and `scripts/plan_quality.py` for structural/numerical report checks, with contract in [schemas/consultation-v5.3.schema.json](schemas/consultation-v5.3.schema.json). Those validators do **not** prove suitability or generate professional recommendations by themselves. For a narrow question, **do not force full consultation**: answer proportionately, preserving safety gates.
 
+## Value and behavior protocol (v5.4) — measurable financial benefit
+
+For a **complete** personal plan or follow-up, the host MUST read [workflows/value-and-behavior.md](workflows/value-and-behavior.md) and [references/value-attribution-method.md](references/value-attribution-method.md) after the v5.3 diagnostic protocol. It must produce a **behavior → financial mechanism → conditional value → observable proof** chain for each top action, or clearly justify why no change is currently warranted. This is a cross-cutting standard (D03/D04/D08/D09/D10), **not** an 11th domain or an autonomous agent. A generic "save more, diversify, compound" paragraph is NOT a value assessment.
+
+Every material intervention must report: (1) the specific constraint and existing behavior; (2) the proposed human-owned change and practical prerequisites; (3) how net retained cash, taxes/fees, debt, liquidity, goal coverage or wellbeing would change; (4) the matched **status quo counterfactual**, same currency and model assumptions; (5) the **incremental new retained principal separately from hypothetical return/reallocation effects**; (6) action/consent status and real-life trade-off; (7) a dated metric and review method. Crucially, **money transferred from idle cash into an ETF is not new household net worth**, and modeled 20-year wealth differences are not earned profit or evidence that advice caused them. A report that implies so fails the professional gate. If reserve funding, taxes or legal permissibility are unknown, recommendations remain conditional.
+
+Optional host-run checks: `scripts/value_math.py` (`project` / `review`) and `scripts/value_quality.py`; sample contracts [schemas/value-project-v5.4.schema.json](schemas/value-project-v5.4.schema.json), [schemas/value-review-v5.4.schema.json](schemas/value-review-v5.4.schema.json), [schemas/value-card-v5.4.schema.json](schemas/value-card-v5.4.schema.json). These are **not mandatory runtime engines**; the host carries out evidence research, planning, tool use and final reasoning. Memory remains **OFF by default**: never save detailed results unless L1/L2 host-approved policy permits a short private state/decision summary.
+
 ## Non-negotiable invariants
 
 - Distinguish **verified facts / user-reported / hypothetical / unknown**. User-owned, realized bank income is not the same as gross pay, employer pension, PF simulated profits or nominal firm account balances. Unverified income tax is an unresolved liability or modeled reserve, not zero.
@@ -56,6 +64,7 @@ For material missing data: ask at most five high-information questions and deliv
 | Long horizon, inflation and real rates | [references/long-horizon-macro.md](references/long-horizon-macro.md), [workflows/models-and-reporting.md](workflows/models-and-reporting.md) |
 | Plans changing, legal updates or new income | [workflows/dynamic-review-protocol.md](workflows/dynamic-review-protocol.md) |
 | User-authorized local financial memory / two-session continuity / delete | [workflows/local-memory.md](workflows/local-memory.md), [schemas/memory-changes-v5.2.schema.json](schemas/memory-changes-v5.2.schema.json) |
+| Value of planning, behavior change, measured progress and counterfactual | [workflows/value-and-behavior.md](workflows/value-and-behavior.md), [references/value-attribution-method.md](references/value-attribution-method.md) |
 | Output requirements, evidence and uncertainty | [workflows/report-contract.md](workflows/report-contract.md), [policies/core-decision.md](policies/core-decision.md) |
 
 ## Optional reproducible calculator (NOT the default workflow)

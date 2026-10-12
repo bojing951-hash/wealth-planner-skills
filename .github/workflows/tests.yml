@@ -29,7 +29,7 @@ jobs:
             python skills/personal-finance-planner/scripts/wealth_v5.py run \
               --input "skills/personal-finance-planner/examples/v5-$city.json" --format json >/dev/null
           done
-      - name: Verify committed content manifest (v5.3)
+      - name: Verify committed content manifest (v5.4)
         run: python tools/manifest.py --verify
       - name: Professional full-plan synthetic acceptance (NOT a real host A/B test)
         run: |
@@ -38,5 +38,24 @@ jobs:
           if python skills/personal-finance-planner/scripts/plan_quality.py \
             --input skills/personal-finance-planner/examples/v5.3-generic-failure-SYNTHETIC.json; then
             echo 'ERROR: generic non-client-specific response passed mandatory gate' >&2
+            exit 1
+          fi
+
+      - name: v5.4 value math counterfactual and review smoke (hypothetical only)
+        run: |
+          python skills/personal-finance-planner/scripts/value_math.py project \
+            --input skills/personal-finance-planner/examples/v5.4-spending-behavior-SYNTHETIC.json > /dev/null
+          python skills/personal-finance-planner/scripts/value_math.py project \
+            --input skills/personal-finance-planner/examples/v5.4-reallocate-not-new-savings-SYNTHETIC.json > /dev/null
+          python skills/personal-finance-planner/scripts/value_math.py review \
+            --input skills/personal-finance-planner/examples/v5.4-followup-SYNTHETIC.json > /dev/null
+      - name: v5.4 value-card acceptance and deliberate negative
+        shell: bash
+        run: |
+          python skills/personal-finance-planner/scripts/value_quality.py \
+            --input skills/personal-finance-planner/examples/v5.4-value-card-SYNTHETIC.json
+          if python skills/personal-finance-planner/scripts/value_quality.py \
+            --input skills/personal-finance-planner/examples/v5.4-value-card-INVALID-SYNTHETIC.json; then
+            echo 'ERROR: false value/double counting report passed check' >&2
             exit 1
           fi

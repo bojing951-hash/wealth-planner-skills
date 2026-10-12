@@ -1,0 +1,33 @@
+{
+  "mode": "review",
+  "schema_version": "5.4",
+  "currency": "CNY",
+  "previous": {
+    "as_of": "2026-01-31",
+    "source_status": "USER_REPORTED",
+    "monthly": {
+      "net_income": "20000",
+      "essential_spend": "8000",
+      "discretionary_spend": "7000",
+      "other_outflows": "0",
+      "investment_contribution": "5000"
+    },
+    "owned_liquid_assets": "100000"
+  },
+  "current": {
+    "as_of": "2026-04-30",
+    "source_status": "USER_REPORTED",
+    "monthly": {
+      "net_income": "20000",
+      "essential_spend": "8000",
+      "discretionary_spend": "4000",
+      "other_outflows": "0",
+      "investment_contribution": "8000"
+    },
+    "owned_liquid_assets": "112000"
+  },
+  "action": {
+    "id": "BEHAVIOR-01",
+    "status": "USER_REPORTED_EXECUTED"
+  }
+}

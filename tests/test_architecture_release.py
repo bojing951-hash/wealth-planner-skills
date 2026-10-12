@@ -64,7 +64,8 @@ class TestReleaseArchitecture(unittest.TestCase):
     def test_no_report_means_not_released(self):
         context, root = self._isolated()
         with context:
-            (root/'docs'/'ARCHITECTURE_ALIGNMENT_v5.3.0.md').unlink()
+            ver=json.loads((root/'docs'/'architecture_contract.json').read_text())['release']
+            (root/'docs'/f'ARCHITECTURE_ALIGNMENT_v{ver}.md').unlink()
             result=guard.check(root)
             self.assertFalse(result['ok'])
             self.assertTrue(any('requires a completed architecture comparison' in e for e in result['errors']))
