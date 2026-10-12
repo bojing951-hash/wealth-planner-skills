@@ -4,12 +4,12 @@ description: Evidence-based, jurisdiction-aware personal wealth planning for Cod
 license: MIT
 compatibility: Portable Agent Skill; no mandatory network connection or Python dependency to give scoped qualitative guidance. Python 3.10+ recommended only for optional deterministic checks. Financial account tools require explicit user consent.
 metadata:
-  version: "5.4.0"
+  version: "5.6.0"
   maturity: "developer-preview"
   architecture_baseline: "original-v0.4"
 ---
 
-# Personal Wealth Planner — Skill-first (5.4.0)
+# Personal Wealth Planner — Skill-first (5.6.0)
 
 ## Responsibility boundary — read first
 
@@ -44,6 +44,24 @@ Every material intervention must report: (1) the specific constraint and existin
 
 Optional host-run checks: `scripts/value_math.py` (`project` / `review`) and `scripts/value_quality.py`; sample contracts [schemas/value-project-v5.4.schema.json](schemas/value-project-v5.4.schema.json), [schemas/value-review-v5.4.schema.json](schemas/value-review-v5.4.schema.json), [schemas/value-card-v5.4.schema.json](schemas/value-card-v5.4.schema.json). These are **not mandatory runtime engines**; the host carries out evidence research, planning, tool use and final reasoning. Memory remains **OFF by default**: never save detailed results unless L1/L2 host-approved policy permits a short private state/decision summary.
 
+## Cross-border high-income / own-brokerage wealth structuring (v5.5.0; retained in v5.6)
+
+**MUST TRIGGER** [workflows/high-income-crossborder-trader.md](workflows/high-income-crossborder-trader.md) and [references/wealth-ownership-ledger.md](references/wealth-ownership-ledger.md) when users disclose PF payouts, substantial personal brokerage profit, cross-border bank receipts or mixed trading/business income. This is the **professional-wealth-structuring branch** of D01/D02/D03/D04/D08/D09/D10, not an Agent and not a requirement for simple budgeting questions.
+
+A full plan is NOT complete if it merely lists tax warnings and five unanswered questions. **Proactively deliver a preliminary two-ledger cashflow + net-worth reconciliation, essential/full-lifestyle budget range, funding-dependency waterfall, at least two feasible conditional paths, stress with simultaneous trading-income stop and brokerage drawdown, and an action/metric schedule**, while clearly blocking only those conclusions genuinely requiring missing tax/account/asset data. The personally owned, dated net brokerage asset value counts toward net worth when provided (net of liabilities); reported brokerage P&L does NOT automatically represent received cash, and it MUST NOT be added a second time to brokerage NAV. Brokerage withdrawals to bank are internal transfers, not new household income. Split loan instalments as cash obligations vs interest/principal in net worth.
+
+When the user references previously stated spending, retrieve permitted conversation facts; reconcile confirmed current items vs historical items needing reconfirmation. Never assert one-month high income **funded** a reserve without unrestricted cash balance. Do not prescribe unresearched fixed tax-reserve percentages as if they were effective rates, or freeze all non-tax planning because tax remains unresolved. The optional `scripts/trader_wealth_reconcile.py` is only a local accounting validator, never a required runtime or independent recommendation engine. For real user data, favor host-private stdin rather than public or auto-presumed `/tmp` persistence.
+
+**Version integrity:** reports must disclose the actually loaded *installed* `SKILL.md` version and (when available) source path. GitHub releases and host-installed copies can diverge; never claim v5.5 worked just because the repository contains it. The user may report an earlier `5.1.0` run; that report is an old-host observation, not validation of latest v5.5.
+
+## Personal Wealth Master Plan (v5.6) — the flagship deliverable for comprehensive clients
+
+When a user requests a **complete personal wealth plan, lifetime financial management rules or ongoing governance**, the host **MUST** read [workflows/personal-wealth-master-plan.md](workflows/personal-wealth-master-plan.md) and [references/wealth-policy-and-governance.md](references/wealth-policy-and-governance.md). Apply this **after** v5.3 diagnosis, v5.4 behavior/value analysis and (for material trading income) v5.5 ownership reconciliation. Produce a usable **Personal Wealth Master Plan**, not a single risk checklist or a pile of generic advice.
+
+This client-controlled Master Plan must organize (1) whole-wealth asset/liability ownership and provenance, (2) dated life goals and funding obligations, (3) **non-double-counted** purpose earmarks for liquidity/lifestyle/longevity/growth/legacy plus tax and business needs when relevant, (4) conditional **WHEN → THEN → BLOCK IF → APPROVER → CHECK** wealth-policy rules, (5) status-quo vs feasible alternative with a joint-shock scenario when material, (6) named 30/90/365-day actions and outcome metrics, and (7) dated governance/review triggers and the exact missing facts. Full template: [assets/personal-wealth-master-plan-template.md](assets/personal-wealth-master-plan-template.md).
+
+**Fail closed on unverified exact tax/asset ownership or an unconditional investable amount, but do not halt useful non-tax planning.** No assumed product pick, model-guaranteed financial independence, fixed arbitrary savings percentage, self-executing bank/broker orders or forced life goals. The three-layer label (*asset ledger, analytic purpose earmark, optional operational account action*) must remain separate. The Skill supplies rules; the **host** does all actual research/decisions/tool calls. Optional stdlib-only `scripts/master_plan_quality.py` checks structured JSON completeness, source labeling, pool over-allocation, rights and approval status (schema: `schemas/master-plan-v5.6.schema.json`); **it does not determine investment suitability**. Master plan and asset data are private, only opt-in memory is allowed for short summaries.
+
 ## Non-negotiable invariants
 
 - Distinguish **verified facts / user-reported / hypothetical / unknown**. User-owned, realized bank income is not the same as gross pay, employer pension, PF simulated profits or nominal firm account balances. Unverified income tax is an unresolved liability or modeled reserve, not zero.
@@ -65,6 +83,8 @@ Optional host-run checks: `scripts/value_math.py` (`project` / `review`) and `sc
 | Plans changing, legal updates or new income | [workflows/dynamic-review-protocol.md](workflows/dynamic-review-protocol.md) |
 | User-authorized local financial memory / two-session continuity / delete | [workflows/local-memory.md](workflows/local-memory.md), [schemas/memory-changes-v5.2.schema.json](schemas/memory-changes-v5.2.schema.json) |
 | Value of planning, behavior change, measured progress and counterfactual | [workflows/value-and-behavior.md](workflows/value-and-behavior.md), [references/value-attribution-method.md](references/value-attribution-method.md) |
+| **PF/own-broker trading income, cross-border high-income client** | [workflows/high-income-crossborder-trader.md](workflows/high-income-crossborder-trader.md), [references/wealth-ownership-ledger.md](references/wealth-ownership-ledger.md) |
+| **Comprehensive personal wealth master plan and governance** | [workflows/personal-wealth-master-plan.md](workflows/personal-wealth-master-plan.md), [references/wealth-policy-and-governance.md](references/wealth-policy-and-governance.md), [assets/personal-wealth-master-plan-template.md](assets/personal-wealth-master-plan-template.md) |
 | Output requirements, evidence and uncertainty | [workflows/report-contract.md](workflows/report-contract.md), [policies/core-decision.md](policies/core-decision.md) |
 
 ## Optional reproducible calculator (NOT the default workflow)

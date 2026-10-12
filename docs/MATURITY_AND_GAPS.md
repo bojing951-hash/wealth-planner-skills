@@ -20,3 +20,10 @@
 7. **Publishing**: the v5.3 implementation was created as local patch/snapshot against inspected GitHub main, not pushed by this environment; GitHub product README is separately maintained and must not be overwritten by an older ZIP copy.
 
 **Release documentation:** `ARCHITECTURE_ALIGNMENT_v5.3.0.md`, `TEST_REPORT_v5.3.md`, `DEVELOPMENT_RELEASE_GATE.md`. Do not state professional planning quality is proven merely because unit/structure checks pass.
+
+## v5.6 additional deliverable — Personal Wealth Master Plan (Developer Preview)
+
+- Added a professionally structured, **client-owned** comprehensive wealth charter (unique owned-asset ledger, lifecycle goals, once-only-purpose earmarks, conditional policy rules, status quo/alternative/stress, 30/90/365 actions, review scorecard) that the host can produce using the optional template.
+- Does not create a new financial advisor Agent, trade engine, wealth management account, fiduciary service, or automatic monitor. Optional `master_plan_quality.py` is a pure static/audit helper only.
+- Not complete: actual current tax calculations, client records and beneficial ownership verification, income/portfolio risk calibration, fully operational retirement/estate implementation, consented real-host E2E, blind comparison of advice quality.
+- Always treat `docs/ARCHITECTURE_ALIGNMENT_v5.6.0.md` and `docs/TEST_REPORT_v5.6.md` as current release-specific evidence; the older sections above are retained for historical context.

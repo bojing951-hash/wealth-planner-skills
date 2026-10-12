@@ -1,5 +1,27 @@
 # Changelog
 
+## v5.6.0 — Personal Wealth Master Plan & Governance (2026-10-12)
+
+- **Flagship deliverable, not a new Agent:** a comprehensive user-owned wealth charter: one asset/liability ledger, dated lifetime goal obligations, non-double-counted purpose earmarks, conditional decision rules, matched options + stress, accountable 30/90/365 actions, review scorecard and approvals.
+- Methods synthesise **public** CFP process and purpose-based liquidity/lifestyle/growth/legacy vs liquidity/longevity/legacy organizational concepts; not affiliated, not a copy of proprietary models, and no implication of proven superior returns.
+- Added optional `master_plan_quality.py` static/ownership/currency/purpose-overallocation/unknown-tax/action-evidence safety checks, matching JSON Schema, client-facing Markdown template, two synthetic positive cases and intentional negative fixture with tests.
+- Preserved **Skill-First** and original v0.4 ten domains/twelve states, with optional validators only; no independent Agent, fund picker, transfers, tax filing, new external connection or background monitor.
+- Requires renewed original-architecture alignment and reports genuine tested vs untested, not a false claim of professional certification.
+
+
+## v5.5.0 — Cross-border trader wealth structuring and real-plan quality (2026-10-12)
+
+- **Skill-First** optional professional branch for clients with material PF cash payouts, personally owned brokerage P&L/equity, offshore bank payments and leveraged vehicle debt. No external account write, independent Agent, hidden transfer, background daemon or investment product picker.
+- New accounting/evidence guard: bank credits (user-reported vs documented), personal brokerage NAV (owned) vs realized/unrealized P&L, internal bank-broker transfers, PF simulated non-owned funds, and vehicle-loan cash service vs principal reduction. Previous discretionary expenses are shown as a reconfirmation scenario, not silently dropped or duplicated.
+- Explicit policy to **continue useful non-tax planning despite unknown taxes**: cash waterfall, 2+ conditional options, simultaneous payout loss and broker drawdown, 30/90/365 measurable actions. No arbitrary tax percentage treated as tax law; no presumed reserve funded from a good income month.
+- Added optional stdlib-only `trader_wealth_reconcile.py` + `trader_plan_quality.py`, synthetic (not client) fixture and negative tests. Helpers validate arithmetic/report structure only and are not autonomous financial/tax advisors.
+- Skill must disclose **actually loaded installed Skill version**, since an old v5.1.0 host copy may coexist with newer GitHub source. `/tmp` does not guarantee restart deletion; avoid writing sensitive finance input into public projects or unprotected temporary files.
+- The original v0.4 architecture SHA256 is unchanged; updated mandatory ten-domain/twelve-state alignment contract and release comparison. **Real host E2E and Skill-vs-no-Skill blinded advantage remain NOT_TESTED.**
+
+## v5.4.0 — Financial planning behavior-to-value attribution (2026-10-12)
+
+- Required behavior → financial mechanism → matched counterfactual → observed review metric for material full financial plans, separating new savings, reallocation and hypothetical return. Added optional v5.4 arithmetic/quality utilities and synthetic tests. No actual causal value or live host validation asserted.
+
 ## v5.3.0 — Professional Financial Planning Consultation protocol (2026-10-12)
 
 - Strengthened **Skill-First** professional-client planning: decision-focused interviewing, diagnostic issue cards, root-cause vs hypothesis, material priorities, >=2 materially distinct feasible/conditional options, quantitative savings/goal gap, 30/90/365 user-owned action register and truthful review.

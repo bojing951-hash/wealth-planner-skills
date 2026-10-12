@@ -1,11 +1,11 @@
 {
-  "release": "5.4.0",
+  "release": "5.6.0",
   "baseline_name": "Evidence-Based Wealth Planner Skill v0.4 original architecture (2026-10-11)",
   "baseline_file": "docs/BASELINE_ORIGINAL_v0.4.md",
   "baseline_sha256": "552ac0ae1a7150fba23ae5a55a5fa6347b59d303a01b3517ed098a56a8a358bb",
   "skill_path": "skills/personal-finance-planner",
   "skill_name": "personal-finance-planner",
-  "skill_version": "5.4.0",
+  "skill_version": "5.6.0",
   "roles": {
     "host": "reason, search, retrieve, call actually available tools, ask for authorization, create final report",
     "skill": "evidence-based research, decision policy, verification, safety, workflow and disclosure instructions",
@@ -44,7 +44,21 @@
     "scripts/value_quality.py",
     "schemas/value-project-v5.4.schema.json",
     "schemas/value-review-v5.4.schema.json",
-    "schemas/value-card-v5.4.schema.json"
+    "schemas/value-card-v5.4.schema.json",
+    "workflows/high-income-crossborder-trader.md",
+    "references/wealth-ownership-ledger.md",
+    "scripts/trader_wealth_reconcile.py",
+    "scripts/trader_plan_quality.py",
+    "schemas/trader-wealth-v5.5.schema.json",
+    "examples/v5.5-crossborder-mixed-trader-SYNTHETIC.json",
+    "examples/v5.5-client-value-card-SYNTHETIC.json",
+    "workflows/personal-wealth-master-plan.md",
+    "references/wealth-policy-and-governance.md",
+    "assets/personal-wealth-master-plan-template.md",
+    "schemas/master-plan-v5.6.schema.json",
+    "scripts/master_plan_quality.py",
+    "examples/v5.6-high-income-trader-SYNTHETIC.json",
+    "examples/v5.6-salary-shenzhen-SYNTHETIC.json"
   ],
   "ten_domains": [
     {
@@ -53,7 +67,7 @@
       "path": "references/architecture-10-domains.md",
       "implementation": "schemas/profile-v5.schema.json",
       "status": "PARTIAL",
-      "unresolved": "v5.3 adaptive interview and conditional provenance guide exist, but real statements and multi-account ownership remain unverified and no host E2E."
+      "unresolved": "v5.6: master plan asset/governance reconciliation is a new deliverable; no proven account balance read or beneficial-ownership verification."
     },
     {
       "id": "D02",
@@ -61,7 +75,7 @@
       "path": "workflows/jurisdiction-tax.md",
       "implementation": "lib/wealth_core/jurisdiction_v5.py",
       "status": "PARTIAL",
-      "unresolved": "Tax residency, legally calibrated local tax rules and actual source interpretation require fresh official review."
+      "unresolved": "v5.6: expert handoff and legal stop conditions embedded in Master Plan; no live certified tax or estate scheme."
     },
     {
       "id": "D03",
@@ -69,7 +83,7 @@
       "path": "references/architecture-10-domains.md",
       "implementation": "lib/wealth_core/finance.py",
       "status": "PARTIAL",
-      "unresolved": "v5.4 adds cashflow→behavior value bridge and reallocation check; still no bank reconciliation, verified tax or debt principal accounting."
+      "unresolved": "v5.6: same assets earmarked once across purpose pools; no real bank automation or fully verified liabilities."
     },
     {
       "id": "D04",
@@ -77,7 +91,7 @@
       "path": "references/architecture-10-domains.md",
       "implementation": "lib/wealth_core/household.py",
       "status": "PARTIAL",
-      "unresolved": "v5.4 adds goal/wellbeing tradeoff in action cards; pension, insurance, estate, family liabilities still lack calibrated full-lifecycle data."
+      "unresolved": "v5.6: goal/liability register and liquidity/longevity/legacy purpose mapping; cash flow lifetime forecast and actual family specifics still unverified."
     },
     {
       "id": "D05",
@@ -85,7 +99,7 @@
       "path": "workflows/theory-evidence-and-conflicts.md",
       "implementation": "lib/wealth_core/evidence.py",
       "status": "PARTIAL",
-      "unresolved": "No systematic independent primary-study and quality evaluation with real retrieval; graph is curated."
+      "unresolved": "v5.6: purpose/decision governance principles from public CFP/wealth-planning materials; no systematic primary literature meta-analysis."
     },
     {
       "id": "D06",
@@ -93,7 +107,7 @@
       "path": "references/long-horizon-macro.md",
       "implementation": "lib/wealth_core/macro_review.py",
       "status": "PARTIAL",
-      "unresolved": "No live host E2E proof or validated cross-currency long-horizon return model."
+      "unresolved": "v5.6: maintain sourced long-term macro scenarios and material-change review; no calibrated global capital market assumptions."
     },
     {
       "id": "D07",
@@ -101,7 +115,7 @@
       "path": "references/architecture-10-domains.md",
       "implementation": "lib/wealth_core/portfolio.py",
       "status": "PARTIAL",
-      "unresolved": "No regulated/tax-after-fee region-specific portfolio recommendation or executable IPS."
+      "unresolved": "v5.6: strengthens investment policy *rules* and eligible capital boundaries; actual products, suitability and local after-tax IPS still not certified."
     },
     {
       "id": "D08",
@@ -109,7 +123,7 @@
       "path": "workflows/models-and-reporting.md",
       "implementation": "lib/wealth_core/simulation.py",
       "status": "PARTIAL",
-      "unresolved": "v5.4 adds consistent two-policy counterfactual and principal-vs-return reconciliation; stochastic market risks remain uncalibrated."
+      "unresolved": "v5.6: stress tests and same-basis option comparison required; real market joint-income risk probabilities remain uncalibrated."
     },
     {
       "id": "D09",
@@ -117,7 +131,7 @@
       "path": "policies/core-decision.md",
       "implementation": "lib/wealth_core/integrated.py",
       "status": "PARTIAL",
-      "unresolved": "v5.4 behavior→mechanism→value→proof protocol and optional checks; real host delivery, professional recommendation suitability and blinded advantage unproven."
+      "unresolved": "v5.6: rule grammar WHEN/THEN/BLOCK/APPROVER/CHECK and 30/90/365 action register; no actual client execution or regulated recommendations."
     },
     {
       "id": "D10",
@@ -125,7 +139,7 @@
       "path": "workflows/dynamic-review-protocol.md",
       "implementation": "lib/wealth_core/local_memory.py",
       "status": "PARTIAL",
-      "unresolved": "v5.4 adds observed-difference review, distinct from causal impact; real client followup, host E2E and independent OS security remain untested."
+      "unresolved": "v5.6: comprehensive review charter and scorecard; consented private history optional, host E2E, automatic schedule and audited custody absent."
     }
   ],
   "twelve_states": [

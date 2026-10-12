@@ -29,7 +29,7 @@ jobs:
             python skills/personal-finance-planner/scripts/wealth_v5.py run \
               --input "skills/personal-finance-planner/examples/v5-$city.json" --format json >/dev/null
           done
-      - name: Verify committed content manifest (v5.4)
+      - name: Verify committed content manifest (v5.5)
         run: python tools/manifest.py --verify
       - name: Professional full-plan synthetic acceptance (NOT a real host A/B test)
         run: |
@@ -57,5 +57,26 @@ jobs:
           if python skills/personal-finance-planner/scripts/value_quality.py \
             --input skills/personal-finance-planner/examples/v5.4-value-card-INVALID-SYNTHETIC.json; then
             echo 'ERROR: false value/double counting report passed check' >&2
+            exit 1
+          fi
+
+      - name: v5.5 synthetic trader ledger and report-quality smoke
+        shell: bash
+        run: |
+          ledger="$(mktemp)"
+          trap 'rm -f "$ledger"' EXIT
+          python skills/personal-finance-planner/scripts/trader_wealth_reconcile.py \
+            --input skills/personal-finance-planner/examples/v5.5-crossborder-mixed-trader-SYNTHETIC.json > "$ledger"
+          python skills/personal-finance-planner/scripts/trader_plan_quality.py \
+            --ledger "$ledger" \
+            --plan skills/personal-finance-planner/examples/v5.5-client-value-card-SYNTHETIC.json
+
+      - name: v5.6 Personal Wealth Master Plan structural and negative smoke
+        shell: bash
+        run: |
+          python skills/personal-finance-planner/scripts/master_plan_quality.py --input skills/personal-finance-planner/examples/v5.6-high-income-trader-SYNTHETIC.json
+          python skills/personal-finance-planner/scripts/master_plan_quality.py --input skills/personal-finance-planner/examples/v5.6-salary-shenzhen-SYNTHETIC.json
+          if python skills/personal-finance-planner/scripts/master_plan_quality.py --input skills/personal-finance-planner/examples/v5.6-invalid-double-count-SYNTHETIC.json; then
+            echo 'ERROR: v5.6 negative fixture passed' >&2
             exit 1
           fi

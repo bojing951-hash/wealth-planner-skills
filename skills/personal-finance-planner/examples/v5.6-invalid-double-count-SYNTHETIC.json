@@ -1,0 +1,213 @@
+{
+  "schema_version": "5.6.0",
+  "as_of": "2026-10-12",
+  "status": "CONDITIONAL",
+  "client_scope": {
+    "jurisdiction": "CN/Guangdong/Shenzhen",
+    "summary": "SYNTHETIC salary 20k net per month, 100k cash, desired independent 10-year wealth target",
+    "profile_provenance": "HYPOTHETICAL"
+  },
+  "fact_basis": {
+    "tax_status": "UNVERIFIED",
+    "tax_year": 2026,
+    "income_source_provenance": "HYPOTHETICAL",
+    "asset_completeness": "INCOMPLETE",
+    "explanation": "All inputs hypothetical; tax residence, income characterization and bank/broker ownership not verified."
+  },
+  "balance_sheet": {
+    "assets": [
+      {
+        "id": "cash_cny",
+        "currency": "CNY",
+        "amount": "100000",
+        "ownership": "OWNED",
+        "kind": "CASH",
+        "as_of": "2026-10-12",
+        "provenance": "HYPOTHETICAL",
+        "description": "Hypothetical cash held personally; not audited"
+      }
+    ],
+    "liabilities": [],
+    "net_worth_status": "PARTIAL",
+    "net_worth_notes": "Only cash assumed; other assets/obligations not demonstrated."
+  },
+  "cash_policy": {
+    "income_status": "HYPOTHETICAL",
+    "monthly_bank_received": "20000",
+    "income_currency": "CNY",
+    "tax_reserve_status": "UNKNOWN",
+    "investable_amount": "9000",
+    "surplus_statement": "Hypothetical salary 20k and spending 11k leave 9k before other unknown costs; do not call this final investable sum."
+  },
+  "goals": [
+    {
+      "id": "G1",
+      "purpose": "One million CNY owned financial assets within 10 years",
+      "priority": "IMPORTANT",
+      "currency": "CNY",
+      "target_amount": "1000000",
+      "target_date": "2036-10-12",
+      "real_or_nominal": "NOMINAL_FUTURE",
+      "funding_status": "PROVISIONAL",
+      "blocker": "Future salary, spend, current total assets and investment path unknown"
+    }
+  ],
+  "pools": [
+    {
+      "id": "P-LIQ",
+      "purpose": "LIQUIDITY",
+      "objective": "Reserve six months of hypothetical essential spend at 8k/month",
+      "allocations": [
+        {
+          "asset_id": "cash_cny",
+          "currency": "CNY",
+          "amount": "48000"
+        }
+      ],
+      "funding_rule": "Only a purpose earmark; no transfer or investment is executed"
+    },
+    {
+      "id": "P-UNASSIGNED",
+      "purpose": "UNASSIGNED",
+      "objective": "Await short-horizon goals and actual obligations before long-run risk allocation",
+      "allocations": [
+        {
+          "asset_id": "cash_cny",
+          "currency": "CNY",
+          "amount": "90000"
+        }
+      ],
+      "funding_rule": "Retain while clarifying retirement/large-purchase goals and actual tax status"
+    }
+  ],
+  "policies": [
+    {
+      "id": "SAV",
+      "objective": "Create predictable cash retention without sacrificing essential spending",
+      "when": "On each confirmed net salary receipt",
+      "then": "Show a manually approved reserve/top-up and long-term contribution split from cash actually available",
+      "block_if": "Any negative cash month, unpaid bills or unresolved tax obligations",
+      "decision_owner": "USER",
+      "status": "PROPOSED",
+      "metric": "Actual owned savings net of internal account transfers",
+      "review_trigger": "Monthly actual expense statement"
+    },
+    {
+      "id": "GOAL",
+      "objective": "Keep 10-year target plausible under variable returns",
+      "when": "At quarterly goal review",
+      "then": "Show 0%, illustrative positive and stress paths with horizon/amount sensitivity",
+      "block_if": "Assumptions presented as guaranteed or goal cash invested at wrong horizon",
+      "decision_owner": "USER",
+      "status": "PROPOSED",
+      "metric": "Actual dated liquid and long-term assets vs nominal goal",
+      "review_trigger": "Quarterly and material income change"
+    }
+  ],
+  "options": [
+    {
+      "id": "IMPROVE",
+      "type": "ALTERNATIVE",
+      "description": "Explore only voluntary consumption changes or salary increases that could lift retained monthly cash, if acceptable to client",
+      "prerequisites": [
+        "User approves without harm to minimum lifestyle",
+        "Check recurring expenses"
+      ],
+      "tradeoffs": "Potential leisure or effort cost; improvements cannot be presumed",
+      "effect_status": "HYPOTHETICAL",
+      "why_it_loses": "Not preferred if changes undermine wellbeing or cannot be sustained"
+    }
+  ],
+  "stress_tests": [
+    {
+      "id": "S1",
+      "shock": "Six months without salary with investment market drawdown",
+      "finding": "48k earmark covers six months of 8k essentials, if this spend is correct and funds liquid; elective spend and other obligations separate",
+      "model_status": "ILLUSTRATIVE"
+    }
+  ],
+  "actions": [
+    {
+      "id": "T30",
+      "policy_id": "SAV",
+      "owner": "USER",
+      "within_days": 30,
+      "description": "Confirm actual take-home pay, essential spend and other known obligations",
+      "prerequisite": "User agrees to summarize private finance without sharing passwords",
+      "proof_metric": "Actual month receipts-expenses and reserve balance verified by user",
+      "status": "DOCUMENTED_EXECUTED",
+      "proof_reference": null
+    },
+    {
+      "id": "T90",
+      "policy_id": "GOAL",
+      "owner": "USER",
+      "within_days": 90,
+      "description": "Choose dated spending goals and model paths for the CNY 1m target",
+      "prerequisite": "Actual funding and timing established",
+      "proof_metric": "User-approved target date, life costs and scenario assumptions",
+      "status": "PROPOSED",
+      "proof_reference": null
+    },
+    {
+      "id": "T365",
+      "policy_id": "SAV",
+      "owner": "USER",
+      "within_days": 365,
+      "description": "Compare twelve months of actual net saving to assumed 9k/mo",
+      "prerequisite": "Dated receipts/spend, explicit review request",
+      "proof_metric": "CNY net-new household wealth retained net of internal transfers",
+      "status": "PROPOSED",
+      "proof_reference": null
+    }
+  ],
+  "reviews": [
+    {
+      "cadence": "MONTHLY",
+      "trigger": "On authorized actual budget review",
+      "metrics": [
+        "actual retained CNY cash flow",
+        "cash reserve coverage months"
+      ],
+      "owner": "USER"
+    },
+    {
+      "cadence": "ANNUALLY",
+      "trigger": "One year or meaningful household change",
+      "metrics": [
+        "owned financial assets",
+        "goal funding progress",
+        "policy deviation count"
+      ],
+      "owner": "USER"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "B1",
+      "question": "Are the hypothetical income and expenses actually received/paid net of tax?",
+      "blocks": "Unconditional monthly investing amount",
+      "owner": "USER"
+    },
+    {
+      "id": "B2",
+      "question": "Do home purchase and family support needs exist before 2036?",
+      "blocks": "Long-term risk bucket eligibility",
+      "owner": "USER"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "20k salary, 11k spending and 100k cash are all hypothetical inputs",
+      "classification": "HYPOTHETICAL",
+      "as_of": "2026-10-12",
+      "source": "Synthetic test case"
+    }
+  ],
+  "permissions": {
+    "memory_enabled": false,
+    "autonomous_financial_actions": false,
+    "note": "No actions or files were written to any real financial account, no consent assumed."
+  }
+}

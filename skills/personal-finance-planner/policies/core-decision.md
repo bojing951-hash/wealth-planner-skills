@@ -31,3 +31,7 @@
 ## Value discipline (v5.4, subordinated to all hard constraints)
 
 The mathematical future value of a newly planned contribution is not realized profit. Evaluate actual human behavior, incremental after-tax **owned** funds, liquidity, risk and wellbeing. A cash-to-investment shift cannot be double-counted as new household principal. A useful **no-change** finding outranks a manufactured optimization. Require a credible status-quo comparator and separate observed facts from assumed compound growth. This augments D03/D04/D08/D09/D10 without adding a new architecture domain.
+
+## v5.5 account classification and non-blocking due diligence
+
+A material cross-border tax unknown is a **hard block on exact tax liability or tax-optimized implementation**, not a blanket veto on household budgeting, reconciling personally owned liquid assets, sizing an expense-only reserve scenario or researching alternative wealth policies. Actively perform allowed planning and document each conditional gate. Brokerage account **net equity** is an owned asset if beneficial ownership is established; trading P&L is not a second asset, and own-bank withdrawals from own broker are not external income. A monthly loan instalment is a cash obligation, with interest and principal requiring separate net-worth treatment. The host must obtain current primary law for legally actionable steps; the optional accounting checker does not provide legal verification.
