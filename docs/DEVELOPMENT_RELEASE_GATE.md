@@ -28,3 +28,10 @@
 | D01 | ... | ... | ... | ... | ... |
 
 Each iteration appends new evidence; do not retroactively rewrite old test outcomes. The architecture guard tests manifest/file presence, **not professional correctness**.
+
+## Additional v5.3 gates (Professional Financial Consultation)
+
+11. For a **full** planning task, verify the host was directed to read `workflows/professional-consultation.md`; its final deliverable must contain a client-specific financial diagnosis, cause/evidence, quantified goal gap with emergency reserves excluded, >=2 differentiated alternatives and their opportunity costs, recommended conditional sequence, concrete 30/90/365 actions, and follow-up status. For narrower tasks, do not require irrelevant sections.
+12. Run `python skills/personal-finance-planner/scripts/plan_quality.py --input skills/personal-finance-planner/examples/v5.3-consultation-shenzhen-SYNTHETIC.json`, and check that the mock generic response *fails*. This only tests the data/report contract; it cannot prove skill-vs-no-skill model quality.
+13. Run `python tools/manifest.py --write` on the **actual GitHub checkout** after integrating changes; inspect the output to exclude personal finance data. Commit the updated `MANIFEST.sha256`, and run `python tools/manifest.py --verify` in CI. Do not blindly reuse stale v5.2 README hashes in a new release.
+14. For an empirical product improvement claim, use real Codex and Claude Code same-host **blinded A/B** protocol in `tests/skill_vs_baseline/README.md`. Unless actual blinded runs are documented, mark `NOT_RUN` and do not claim superiority.

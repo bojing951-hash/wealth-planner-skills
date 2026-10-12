@@ -57,7 +57,7 @@ class OriginalArchitectureAlignmentTests(unittest.TestCase):
         text=(SKILL/'SKILL.md').read_text()
         self.assertLess(len(text.splitlines()),500)
         self.assertIn('name: personal-finance-planner',text)
-        self.assertIn('version: "5.2.0"',text)
+        self.assertIn('version: "5.3.0"',text)
         self.assertIn('Skill supplies the financial methodology',text)
 
     def test_host_is_exec_owner_and_cli_queue_not_mandatory(self):

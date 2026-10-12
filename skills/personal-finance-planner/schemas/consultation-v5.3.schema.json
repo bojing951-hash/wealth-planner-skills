@@ -1,0 +1,515 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/wealth-planner/consultation-v5.3.schema.json",
+  "title": "Professional financial consultation acceptance structure — skill-first v5.3",
+  "description": "A client-facing plan can be prose, but the optional structural gate accepts this restricted machine report. Does not certify financial suitability or actual law.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "report_kind",
+    "as_of",
+    "mode",
+    "client_objective",
+    "data_quality",
+    "financial_snapshot",
+    "diagnoses",
+    "goal_feasibility",
+    "options",
+    "recommendation",
+    "actions",
+    "review",
+    "audit"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "5.3.0"
+    },
+    "report_kind": {
+      "const": "COMPREHENSIVE"
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date"
+    },
+    "mode": {
+      "enum": [
+        "HYPOTHETICAL",
+        "USER_REPORTED",
+        "PARTIALLY_VERIFIED"
+      ]
+    },
+    "client_objective": {
+      "type": "string",
+      "minLength": 1
+    },
+    "data_quality": {
+      "type": "object",
+      "required": [
+        "verified",
+        "user_reported",
+        "assumed",
+        "unknown",
+        "material_gaps"
+      ],
+      "properties": {
+        "verified": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "user_reported": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "assumed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unknown": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "material_gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "financial_snapshot": {
+      "type": "object",
+      "required": [
+        "currency",
+        "monthly_net_received",
+        "monthly_essential",
+        "monthly_discretionary",
+        "monthly_other_obligations",
+        "monthly_surplus",
+        "owned_unrestricted_cash",
+        "reserve_months",
+        "emergency_reserve_target",
+        "near_term_goal_cash",
+        "eligible_long_term_initial"
+      ],
+      "properties": {
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "reserve_months": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 60
+        },
+        "monthly_net_received": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+          "description": "Decimal string, units in snapshot currency"
+        },
+        "monthly_essential": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+          "description": "Decimal string, units in snapshot currency"
+        },
+        "monthly_discretionary": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+          "description": "Decimal string, units in snapshot currency"
+        },
+        "monthly_other_obligations": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+          "description": "Decimal string, units in snapshot currency"
+        },
+        "monthly_surplus": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+          "description": "Decimal string, units in snapshot currency"
+        },
+        "owned_unrestricted_cash": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+          "description": "Decimal string, units in snapshot currency"
+        },
+        "emergency_reserve_target": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+          "description": "Decimal string, units in snapshot currency"
+        },
+        "near_term_goal_cash": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+          "description": "Decimal string, units in snapshot currency"
+        },
+        "eligible_long_term_initial": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+          "description": "Decimal string, units in snapshot currency"
+        }
+      }
+    },
+    "diagnoses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "priority",
+          "observed_condition",
+          "root_cause_or_hypothesis",
+          "goal_effect",
+          "priority_reason",
+          "evidence_refs"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "priority": {
+            "enum": [
+              "CRITICAL",
+              "HIGH",
+              "MEDIUM",
+              "LOW"
+            ]
+          },
+          "observed_condition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "root_cause_or_hypothesis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "goal_effect": {
+            "type": "string",
+            "minLength": 1
+          },
+          "priority_reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "no_material_issue_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goal_feasibility": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "goal_id",
+          "target",
+          "months",
+          "monthly_required",
+          "monthly_available",
+          "monthly_gap",
+          "basis",
+          "limitations",
+          "assumption_status"
+        ],
+        "properties": {
+          "goal_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "type": "string",
+            "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+            "description": "target in financial_snapshot.currency"
+          },
+          "months": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "monthly_required": {
+            "type": "string",
+            "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+            "description": "required investment per month"
+          },
+          "monthly_available": {
+            "type": "string",
+            "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+            "description": "conditional surplus"
+          },
+          "monthly_gap": {
+            "type": "string",
+            "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+            "description": "max(0, required - available)"
+          },
+          "basis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "limitations": {
+            "type": "string",
+            "minLength": 1
+          },
+          "assumption_status": {
+            "const": "HYPOTHETICAL_NOT_FORECAST"
+          }
+        }
+      }
+    },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "feasibility",
+          "mechanism",
+          "quantified_or_bounded_effect",
+          "tradeoffs",
+          "issue_ids",
+          "monthly_commitment",
+          "preconditions",
+          "risks"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "feasibility": {
+            "enum": [
+              "FEASIBLE",
+              "CONDITIONAL",
+              "INFEASIBLE"
+            ]
+          },
+          "mechanism": {
+            "type": "string",
+            "minLength": 1
+          },
+          "quantified_or_bounded_effect": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tradeoffs": {
+            "type": "string",
+            "minLength": 1
+          },
+          "issue_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "monthly_commitment": {
+            "type": "string",
+            "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+            "description": "monthly amount, currency as snapshot"
+          },
+          "preconditions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "risks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "funding_change_source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "extra_monthly_cash_needed": {
+            "type": "string",
+            "pattern": "^-?\\d+(?:\\.\\d{1,4})?$",
+            "description": "conditional extra funding needed"
+          }
+        }
+      }
+    },
+    "recommendation": {
+      "type": "object",
+      "required": [
+        "chosen_option_id",
+        "reason_for_ranking",
+        "blockers",
+        "is_authorized_to_execute"
+      ],
+      "properties": {
+        "chosen_option_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason_for_ranking": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blockers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "is_authorized_to_execute": {
+          "const": false
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "issue_id",
+          "horizon",
+          "owner",
+          "status",
+          "action",
+          "success_measure",
+          "prerequisites"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "issue_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "horizon": {
+            "enum": [
+              "D30",
+              "D90",
+              "D365"
+            ]
+          },
+          "owner": {
+            "enum": [
+              "USER",
+              "LICENSED_PROFESSIONAL",
+              "HOST_RESEARCH_ONLY"
+            ]
+          },
+          "status": {
+            "enum": [
+              "PROPOSED",
+              "USER_CONFIRMED",
+              "DONE",
+              "BLOCKED",
+              "DEFERRED"
+            ]
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1
+          },
+          "success_measure": {
+            "type": "string",
+            "minLength": 1
+          },
+          "prerequisites": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "triggers",
+        "memory_status",
+        "has_background_monitoring"
+      ],
+      "properties": {
+        "triggers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "memory_status": {
+          "enum": [
+            "OFF",
+            "OPT_IN_NOT_WRITTEN",
+            "APPROVED_PERSISTED"
+          ]
+        },
+        "has_background_monitoring": {
+          "const": false
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "required": [
+        "tax_legal_status",
+        "model_limitations",
+        "tools_actually_used",
+        "material_unknowns"
+      ],
+      "properties": {
+        "tax_legal_status": {
+          "enum": [
+            "VERIFIED_FOR_SCOPE",
+            "NOT_VERIFIED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "model_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "tools_actually_used": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "material_unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

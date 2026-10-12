@@ -107,7 +107,7 @@ def check(root: Path = ROOT) -> dict:
 
     # v5.2 optional financial-memory feature must never bypass the host consent
     # boundary; these are static checks, not human authorization proofs.
-    if contract['release']=='5.2.0':
+    if tuple(int(x) for x in contract['release'].split('.')) >= (5,2,0):
         memfiles=['workflows/local-memory.md','scripts/memory_cli.py',
                   'lib/wealth_core/local_memory.py','schemas/memory-changes-v5.2.schema.json']
         for rel in memfiles:
@@ -122,6 +122,20 @@ def check(root: Path = ROOT) -> dict:
         memory_cli=skill/'scripts/memory_cli.py'
         if memory_cli.is_file() and 'approved-preview-sha256' not in memory_cli.read_text(encoding='utf-8'):
             messages.append('Memory CLI must require match to user-reviewed proposed changes')
+
+    # v5.3 professional consulting requirements; forbid another independently running Agent.
+    if tuple(int(x) for x in contract['release'].split('.')) >= (5,3,0):
+        consulting = (skill/'workflows/professional-consultation.md')
+        content=consulting.read_text(encoding='utf-8') if consulting.is_file() else ''
+        for marker in ('root cause', '30/90/365', 'two', 'HOST-driven', 'D01', 'D10'):
+            if marker.lower() not in content.lower():
+                messages.append('Professional consultation workflow missing gate: '+marker)
+        for marker in ('Professional consultation mode', 'problem → root cause', 'workflows/professional-consultation.md'):
+            if marker not in contents:
+                messages.append('SKILL.md is not routing comprehensive-plan requests: '+marker)
+        for rel in ('scripts/plan_quality.py','scripts/consultation_math.py','schemas/consultation-v5.3.schema.json'):
+            if not (skill/rel).is_file():
+                messages.append('Missing consultation validation component: '+rel)
 
     align = root / ('docs/ARCHITECTURE_ALIGNMENT_v'+contract['release']+'.md')
     if not align.is_file():

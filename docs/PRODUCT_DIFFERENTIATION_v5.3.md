@@ -1,0 +1,9 @@
+# Why v5.3 should differ from asking an ordinary host model
+
+**Before:** A host (with or without Skill) could produce a plausible educational list: set a budget, diversify ETFs, save consistently, review your finances. Such a reply may be accurate but does not identify the user's true binding constraint or translate it to a choice.
+
+**v5.3 Skill deliverable contract:** (1) interview for missing decision-changing facts; (2) reconcile protected cash and actual net deposits, not hypothetical balances; (3) rank issues by solvency and impact; (4) find underlying constraint with traceable evidence; (5) state *at least two materially different paths*, including numeric savings-vs-timeline trade-offs; (6) give client-owned, measurable, 30/90/365-day next steps and progress checks; (7) admit legal and data blockers rather than pretending a complete tailored plan.
+
+**Worked synthetic example:** A 28-year-old Shenzhen user reports CNY20,000 net monthly, 8,000 essential and 3,000 discretionary spending, CNY100,000 free cash, and a target of CNY1m in five years. At 6 months assumed emergency cash CNY48,000, initial candidate long-term capital is CNY52,000. At *hypothetical fixed* 5% nominal net return, current CNY9,000/month contributes to CNY676,690 after five years, versus the target CNY1m. Required monthly amount is CNY13,767.61, a gap of CNY4,767.61. This identifies a **cashflow–deadline mismatch**, not a "lack of investment intelligence". If the user can relax to eight years, the same hypothetical path is ~CNY1.13m; alternatively preserve five years but first find credible after-tax additional funding. See `EXAMPLE_PROFESSIONAL_PLAN_v5.3_SHENZHEN.md`.
+
+**Not established:** There are no observations showing that a real user prefers v5.3 over the same model without it. The unit tests compare only a deliberately weak mock against the structural gate. An independently blinded actual host study is a required next validation stage.

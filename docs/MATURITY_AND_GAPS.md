@@ -1,20 +1,22 @@
-# v5.1 Skill-first maturity — Developer Preview
+# Wealth Planner Skill v5.3 — Developer Preview, Skill-First
 
-## What actually changed from v5.0
+**Binding baseline:** original v0.4 plan (10 professional domains; 12 states), unchanged SHA256. Codex/Claude Code host performs search/research/inference/file/compute; Skill supplies professional methods and user-facing quality gates. Optional calculator and encrypted local memory are support utilities only.
 
-- The **Skill** is now authoritative: professional workflow, evidence policy, legal/household hard gates, macro and dynamic reviews direct the **host** to call its actual tools. No homegrown `host-queue` step is mandatory for normal use.
-- The optional v5 calculator backend remains **backward-compatible**; the profile schema stays `5.0.0` and the calculator identifies as `5.0.0` even when the packaging Skill release is `5.1.0`.
-- The exact v0.4 architecture plan is preserved as an immutable baseline; structural assertions and a mandatory release comparison enforce its ten domains and twelve states.
-- Added release gates and host E2E manual acceptance cases; NOT a claim that live host testing occurred.
+## Implemented and tested offline
 
-## Explicit limitations
+- v5.3 complete-plan consultative **interview → client-specific diagnosis → root cause vs hypothesis → compare options → prioritized execution → review** procedure.
+- Financial-math helper to exclude emergency/near-term cash and refill shortfalls before modeling contributions; warning that hypothetical fixed returns are not forecasts.
+- Structural report acceptance checker that detects missing root cause, unlinked actions, arithmetic inconsistencies, overbudget assumptions and unauthorized action claims.
+- Synthetic Shenzhen sample plan and planned blind A/B evaluation protocol. Old tax/legal/theory/scenario/memory functions retained with their prior scope.
 
-1. **Real cross-country tax and law:** no certified region/tax-year tax plugins; primary-law retrieval is delegated to actual host, unverified cases blocked or hypothetical.
-2. **Investment / portfolio:** conditional model and evidence instructions with optional math; not a personalized licensed investment product recommendation.
-3. **Macro and theory:** curated references with conditional literature interpretation; no live academic-source freshness proof without host retrieval.
-4. **Stochastic paths:** uncalibrated user-assumed Monte Carlo, no predictive claim.
-5. **Private finance:** no connector permission on install; no auto-sync or secure cloud account database; L1/L2 require consent.
-6. **Monitoring:** review is on demand; no always-on task or automated order placement.
-7. **Host interoperability:** SKILL.md follows open standard, but real Codex and Claude Code end-to-end installation, tool permissions, source retrieval and user-facing report output **remain NOT_TESTED** in this environment.
+## Still missing or not proven
 
-**Release status**: `Developer Preview`; structural guard + unit and offline smoke pass as recorded in `docs/ARCHITECTURE_ALIGNMENT_v5.1.0.md`. The guard is not a substitute for real financial/legal expertise or host E2E evaluation.
+1. **Actual host client effectiveness**: Codex and Claude Code consultation run/anonymous no-Skill A/B **NOT_TESTED**; the mock contrast test does not establish user-perceived quality gains.
+2. **Finance expertise**: independent planner review, comprehensive insurance, estate, social security, household obligations and real statement verification not completed.
+3. **Local jurisdiction**: no certified exact country/state tax engine, source validity depends on actual host retrieval; cross-border legal advice requires professional checks.
+4. **Portfolio**: no advanced tax-after-fee asset allocation, region-specific product suitability, fee/portfolio optimization; intentionally deferred for v5.3.
+5. **Economics**: return/inflation assumptions in examples are synthetic; stochastic simulations are not calibrated forecasts.
+6. **Memory**: opt-in encrypted local memory has partial OS testing only; no default sync, unattended monitoring or real cross-host E2E.
+7. **Publishing**: the v5.3 implementation was created as local patch/snapshot against inspected GitHub main, not pushed by this environment; GitHub product README is separately maintained and must not be overwritten by an older ZIP copy.
+
+**Release documentation:** `ARCHITECTURE_ALIGNMENT_v5.3.0.md`, `TEST_REPORT_v5.3.md`, `DEVELOPMENT_RELEASE_GATE.md`. Do not state professional planning quality is proven merely because unit/structure checks pass.

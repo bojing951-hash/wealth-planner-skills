@@ -1,0 +1,200 @@
+{
+  "schema_version": "5.3.0",
+  "report_kind": "COMPREHENSIVE",
+  "as_of": "2026-10-12",
+  "mode": "HYPOTHETICAL",
+  "client_objective": "28岁深圳工资收入者，计划从10万元现金起步，在5年内达到100万元净金融资产。",
+  "data_quality": {
+    "verified": [],
+    "user_reported": [],
+    "assumed": [
+      "月净到账CNY 20,000（假设已结清相关个税）；必要开支8,000；可选开支3,000",
+      "100,000为个人可动用的无负债现金；无其他需预留短期支出（仅示例）",
+      "应急储备6个月必要支出为可修改经验参数",
+      "长期资产年化5%为恒定名义净回报假设，绝非未来收益预测"
+    ],
+    "unknown": [
+      "真实税务与社保扣缴情况",
+      "风险容忍与未来住房计划",
+      "职业收入中断概率与真实账户归属"
+    ],
+    "material_gaps": [
+      "需要核实实际税后到账、其他负债和五年内的大额现金目标才能形成真正的个性化行动方案"
+    ]
+  },
+  "financial_snapshot": {
+    "currency": "CNY",
+    "monthly_net_received": "20000.00",
+    "monthly_essential": "8000.00",
+    "monthly_discretionary": "3000.00",
+    "monthly_other_obligations": "0.00",
+    "monthly_surplus": "9000.00",
+    "owned_unrestricted_cash": "100000.00",
+    "reserve_months": 6,
+    "emergency_reserve_target": "48000.00",
+    "near_term_goal_cash": "0.00",
+    "eligible_long_term_initial": "52000.00"
+  },
+  "diagnoses": [
+    {
+      "id": "I-01",
+      "priority": "HIGH",
+      "observed_condition": "当前每月可结余9,000元；在5%恒定净年收益假设下，五年目标要求每月约13,767.61元投入。",
+      "root_cause_or_hypothesis": "当前计划目标期限与净可投入现金流的算术差距，而非缺少某只高收益基金。",
+      "goal_effect": "若应急储备48,000元与长期本金隔离，五年估算期末676,690元，较100万元目标缺约323,310元。",
+      "priority_reason": "该差距可以直接算出且五年期限刚性；应优先研究增加真实结余或延长期限而非假设更高投资收益。",
+      "evidence_refs": [
+        "financial_snapshot.monthly_surplus",
+        "financial_snapshot.eligible_long_term_initial",
+        "goal_feasibility.goal_1"
+      ]
+    },
+    {
+      "id": "I-02",
+      "priority": "MEDIUM",
+      "observed_condition": "六个月必要开支共48,000元，占现有10万元可动用现金的48%。",
+      "root_cause_or_hypothesis": "短期生存资金必须与承担长期资产波动风险的本金分离。",
+      "goal_effect": "将全部10万元当作长线本金会高估可承担风险的初始投资资金48,000元。",
+      "priority_reason": "保留现金缓冲属于流动性硬约束，但在假设现金足额的情况下并无当前补足缺口。",
+      "evidence_refs": [
+        "financial_snapshot.emergency_reserve_target",
+        "financial_snapshot.owned_unrestricted_cash"
+      ]
+    }
+  ],
+  "goal_feasibility": [
+    {
+      "goal_id": "goal_1",
+      "target": "1000000.00",
+      "months": 60,
+      "monthly_required": "13767.61",
+      "monthly_available": "9000.00",
+      "monthly_gap": "4767.61",
+      "basis": "52,000初始长期本金、月末定期投资、5%恒定名义年化净收益（每月复利）。",
+      "limitations": "非市场收益预测；未包含现金储备收益、未来税制变化、市场回撤、工作中断、住房支出和实际手续费。",
+      "assumption_status": "HYPOTHETICAL_NOT_FORECAST"
+    }
+  ],
+  "options": [
+    {
+      "id": "A",
+      "feasibility": "FEASIBLE",
+      "mechanism": "保持每月9,000元固定储蓄及原有支出水平，先保证应急储备的现金隔离。",
+      "quantified_or_bounded_effect": "五年按假设净年化5%估算可积累676,690元，目标缺约323,310元。",
+      "tradeoffs": "无额外收入压力，生活品质不变，但按该假设无法完成五年100万元目标。",
+      "issue_ids": [
+        "I-01",
+        "I-02"
+      ],
+      "monthly_commitment": "9000.00",
+      "preconditions": [
+        "净到账20,000、支出11,000持续成立；未来短期现金需求不增加"
+      ],
+      "risks": [
+        "市场收益低于5%或收入中断会使实际结果更差"
+      ]
+    },
+    {
+      "id": "B",
+      "feasibility": "CONDITIONAL",
+      "mechanism": "在不增加杠杆情况下把每月净可投入金额提高到13,767.61元；先确定增加收入或减少开支的可信来源。",
+      "quantified_or_bounded_effect": "按固定5%假设，五年数学目标刚好可达；当前结余每月还少4,767.61元。",
+      "tradeoffs": "降低储蓄压力的方案A与五年目标之间的取舍；可选支出仅3,000元，不能简单把全部差额推给娱乐开支。",
+      "issue_ids": [
+        "I-01"
+      ],
+      "monthly_commitment": "13767.61",
+      "extra_monthly_cash_needed": "4767.61",
+      "funding_change_source": "须通过实际新增税后工作收入或经用户确认的其他可持续现金流补足；当前尚不存在此资金。",
+      "preconditions": [
+        "核实税后增收至少4,767.61/月的真实来源及持续性"
+      ],
+      "risks": [
+        "高储蓄率目标可能带来职业和家庭压力；假设投资收益并不保证"
+      ]
+    },
+    {
+      "id": "C",
+      "feasibility": "CONDITIONAL",
+      "mechanism": "若五年期限可谈判，先将100万元目标调整到八年，并保持每月9,000元结余。",
+      "quantified_or_bounded_effect": "同样5%固定收益假设下八年约1,131,557元，超过名义100万元，但未修正购买力。",
+      "tradeoffs": "不增加月度现金压力，牺牲三年目标时间；真实结果可能低于假设。",
+      "issue_ids": [
+        "I-01"
+      ],
+      "monthly_commitment": "9000.00",
+      "preconditions": [
+        "用户接受八年期限；无额外不可预见的短期支出"
+      ],
+      "risks": [
+        "通胀后购买力与名义金额不同，且投资收益不是确定值"
+      ]
+    }
+  ],
+  "recommendation": {
+    "chosen_option_id": "C",
+    "reason_for_ranking": "在当前已声明的现金流约束下，优先维持必要储备和每月9,000元可持续储蓄；若目标期限可以调整，八年方案对生活现金流的压力小于未经证实的增收方案。",
+    "blockers": [
+      "实际税后收入与未来大额住房/家庭支出未核验；若用户必须五年达标则需重新讨论真正可实现的收入路径。"
+    ],
+    "is_authorized_to_execute": false
+  },
+  "actions": [
+    {
+      "id": "A-01",
+      "issue_id": "I-02",
+      "horizon": "D30",
+      "owner": "USER",
+      "status": "PROPOSED",
+      "action": "核实工资单、三个月生活支出与实际可动用现金，明确储备用途和可用账户。",
+      "success_measure": "完成一张含来源日期的现金流与资产负债表，确认应急现金是否达到48,000元。",
+      "prerequisites": "用户自行核对合法财务记录，仅提供不含账号和身份证信息的汇总数据。"
+    },
+    {
+      "id": "A-02",
+      "issue_id": "I-01",
+      "horizon": "D90",
+      "owner": "USER",
+      "status": "PROPOSED",
+      "action": "与家庭确认五年目标是否刚性，比较延长到八年与增加税后收入的可行路径。",
+      "success_measure": "明确选定一个目标期限，并以连续三个月真实结余验证每月9,000元是否可持续。",
+      "prerequisites": "先完成30天财务核对，确认没有三年内购房或其他大额刚性支出。"
+    },
+    {
+      "id": "A-03",
+      "issue_id": "I-01",
+      "horizon": "D365",
+      "owner": "USER",
+      "status": "PROPOSED",
+      "action": "12个月后比较实际累计净资产、税后收入与原先财务情景，重新评估财富目标。",
+      "success_measure": "形成实际与假设月结余差异表，记录目标期限变化与下一年度每月预算。",
+      "prerequisites": "由用户自愿保留每月数据；如使用记忆，需单独授权每次读写。"
+    }
+  ],
+  "review": {
+    "triggers": [
+      "实际月结余连续两个月低于7,000元",
+      "收入中断、家庭结构变化或确认三年内住房支出",
+      "税收居民或资产所有权改变"
+    ],
+    "memory_status": "OFF",
+    "has_background_monitoring": false
+  },
+  "audit": {
+    "tax_legal_status": "NOT_VERIFIED",
+    "model_limitations": [
+      "收益率5%仅为条件假设，非投资建议或预测",
+      "人民币名义值未扣通货膨胀",
+      "储备假设与财务数据未经独立核实"
+    ],
+    "tools_actually_used": [
+      "optional consultation_math.py deterministic scenario calculation",
+      "optional plan_quality.py structural validation"
+    ],
+    "material_unknowns": [
+      "实际净收入和税负",
+      "年龄、家庭责任与住房预算是否如假设",
+      "实际风险容忍度及合法投资渠道"
+    ]
+  }
+}

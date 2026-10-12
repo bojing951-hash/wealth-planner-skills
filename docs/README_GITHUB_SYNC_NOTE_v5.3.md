@@ -1,0 +1,5 @@
+# GitHub synchronization note — v5.3
+
+This offline complete-source snapshot originates from the v5.2 archived repository with changes matching the inspected GitHub HEAD `074960d` for the Skill and immutable architecture, plus new v5.3 modifications. The actual GitHub product `README.md` was separately customized after the archived ZIP; it is **not** the same as the root README packaged in this offline full-source snapshot. The remote deleted `README.zh-CN.md` and moved the technical README to `docs/DEVELOPMENT.md`.
+
+**Do not replace all GitHub files using the full snapshot archive.** Use the increment-only v5.3 `.patch`, which does not touch `README.md`, `README.zh-CN.md`, `docs/DEVELOPMENT.md` or the stale `MANIFEST.sha256`. On your current GitHub checkout apply the patch and run `python tools/manifest.py --write` to hash the real files (with your product README), then run tests and commit. The standalone Skill ZIP does not have this README mismatch and can be installed independently.
