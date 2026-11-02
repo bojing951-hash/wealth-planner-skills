@@ -1,6 +1,6 @@
 ---
 name: personal-finance-planner
-description: Evidence-based, jurisdiction-aware personal wealth planning for Codex, Claude Code and other host agents. Use for cash-flow diagnosis, household financial safety, tax/legal issue spotting, long-term asset allocation, financial independence, macroeconomic research, evidence conflicts, cross-border income and on-demand plan reviews. Guides the host to research, calculate, verify and explain; it is not an autonomous agent or a tax preparation service.
+description: Evidence-based, jurisdiction-aware personal wealth planning for Codex, Claude Code and other host agents. Use for cash-flow diagnosis, household financial safety, tax/legal issue spotting, long-term asset allocation, financial independence, macroeconomic research, evidence conflicts, cross-border income and on-demand plan reviews. Guides the host to research, calculate, verify and explain; it is not an autonomous agent or a tax preparation service. Product alias: WPS — a user saying "WPS" (this product's abbreviation, not WPS Office) means this skill.
 license: MIT
 compatibility: Portable Agent Skill; no mandatory network connection or Python dependency to give scoped qualitative guidance. Python 3.10+ recommended only for optional deterministic checks. Financial account tools require explicit user consent.
 metadata:
