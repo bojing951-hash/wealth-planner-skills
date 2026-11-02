@@ -1,0 +1,19 @@
+{
+  "schema_version": "5.7.0",
+  "as_of": "2026-11-02",
+  "currency": "CNY",
+  "profile": {"income_stability": "variable", "adults": 1, "dependents": 0, "notes": "SYNTHETIC low-income month: necessary obligations exceed received income; must produce a gap, never negative savings."},
+  "current_period_income": {"amount": "8000.00", "currency": "CNY", "received": true, "recurring": true, "one_off": false, "after_tax": true, "nature": "business"},
+  "facts": {"safety_eligible_cash": "20000.00"},
+  "obligations": [{"name": "rent_contract", "monthly_payment": "4500.00", "apr": null, "months_remaining": 8}],
+  "necessary_living": {
+    "fixed": [{"name": "utilities", "amount": "500.00"}],
+    "variable": [
+      {"name": "food", "amount": "2800.00"},
+      {"name": "transport", "amount": "400.00"},
+      {"name": "medical", "amount": "300.00"}
+    ]
+  },
+  "goals": [],
+  "preferences": {"social_committed_floor": "300.00", "investment_eligible": false}
+}

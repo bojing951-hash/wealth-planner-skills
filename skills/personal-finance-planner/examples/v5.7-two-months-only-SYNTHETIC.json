@@ -1,0 +1,19 @@
+{
+  "schema_version": "5.7.0",
+  "as_of": "2026-11-02",
+  "currency": "CNY",
+  "profile": {"income_stability": "unknown", "adults": 1, "dependents": 0, "notes": "SYNTHETIC '30k then 50k, ~40k savings' style case: two months only, opening balance UNKNOWN. The engine must NOT claim consumption=40k, retention=50% or normal income=40k."},
+  "current_period_income": {"amount": "50000.00", "currency": "CNY", "received": true, "recurring": null, "one_off": false, "after_tax": null, "nature": "mixed"},
+  "income_history": [
+    {"month": "2026-09", "amount": "30000.00", "received": true, "recurring": null},
+    {"month": "2026-10", "amount": "50000.00", "received": true, "recurring": null}
+  ],
+  "facts": {"safety_eligible_cash": "40000.00", "opening_balance_before_period": null},
+  "obligations": [],
+  "necessary_living": {
+    "fixed": [{"name": "rent", "amount": "4000.00"}],
+    "variable": [{"name": "food_transport_utilities", "amount": "3500.00"}]
+  },
+  "goals": [{"name": "emergency_reserve", "purpose_pool": "liquidity"}],
+  "preferences": {"social_committed_floor": "600.00", "social_free_preference": "1200.00", "investment_eligible": false}
+}

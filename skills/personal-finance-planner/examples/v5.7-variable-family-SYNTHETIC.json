@@ -1,0 +1,48 @@
+{
+  "schema_version": "5.7.0",
+  "as_of": "2026-11-02",
+  "currency": "CNY",
+  "profile": {"income_stability": "variable", "adults": 2, "dependents": 1, "notes": "SYNTHETIC variable-income freelancer family with mortgage, car loan and an 18% credit-card balance."},
+  "current_period_income": {"amount": "31000.00", "currency": "CNY", "received": true, "recurring": true, "one_off": false, "after_tax": true, "nature": "business"},
+  "income_history": [
+    {"month": "2026-01", "amount": "15000.00", "received": true, "recurring": true},
+    {"month": "2026-02", "amount": "28000.00", "received": true, "recurring": true},
+    {"month": "2026-03", "amount": "12000.00", "received": true, "recurring": true},
+    {"month": "2026-04", "amount": "42000.00", "received": true, "recurring": true},
+    {"month": "2026-05", "amount": "18000.00", "received": true, "recurring": true},
+    {"month": "2026-06", "amount": "58000.00", "received": true, "recurring": true},
+    {"month": "2026-07", "amount": "22000.00", "received": true, "recurring": true},
+    {"month": "2026-08", "amount": "16000.00", "received": true, "recurring": true},
+    {"month": "2026-09", "amount": "35000.00", "received": true, "recurring": true},
+    {"month": "2026-10", "amount": "24000.00", "received": true, "recurring": true}
+  ],
+  "facts": {"safety_eligible_cash": "52000.00", "pf_simulated_funds": "0.00", "restricted_investment_assets": "0.00"},
+  "obligations": [
+    {"name": "mortgage", "monthly_payment": "4300.00", "apr": "0.041", "months_remaining": 200},
+    {"name": "car_loan", "monthly_payment": "2100.00", "apr": "0.06", "months_remaining": 30}
+  ],
+  "high_cost_debt": [
+    {"name": "credit_card", "balance": "15000.00", "apr": "0.18", "monthly_payment": "1200.00"}
+  ],
+  "necessary_living": {
+    "fixed": [
+      {"name": "utilities", "amount": "900.00"},
+      {"name": "insurance_premiums", "amount": "800.00"}
+    ],
+    "variable": [
+      {"name": "food", "amount": "3800.00"},
+      {"name": "transport", "amount": "900.00"},
+      {"name": "child_costs", "amount": "2500.00"},
+      {"name": "medical", "amount": "600.00"}
+    ]
+  },
+  "goals": [{"name": "emergency_reserve", "target_amount": null, "deadline": null, "purpose_pool": "liquidity"}],
+  "preferences": {
+    "social_committed_floor": "900.00",
+    "social_free_preference": "1200.00",
+    "reserve_months_target": null,
+    "investment_eligible": true,
+    "capability_plans": [],
+    "lifestyle_protection": "flexible"
+  }
+}

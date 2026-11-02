@@ -1,0 +1,41 @@
+{
+  "schema_version": "5.7.0",
+  "as_of": "2026-11-02",
+  "currency": "CNY",
+  "profile": {"income_stability": "stable", "adults": 1, "dependents": 0, "notes": "SYNTHETIC single salaried renter, Shenzhen-like costs. Not real person data."},
+  "current_period_income": {"amount": "25000.00", "currency": "CNY", "received": true, "recurring": true, "one_off": false, "after_tax": true, "nature": "salary"},
+  "income_history": [
+    {"month": "2026-03", "amount": "25000.00", "received": true, "recurring": true},
+    {"month": "2026-04", "amount": "25100.00", "received": true, "recurring": true},
+    {"month": "2026-05", "amount": "24900.00", "received": true, "recurring": true},
+    {"month": "2026-06", "amount": "25000.00", "received": true, "recurring": true},
+    {"month": "2026-07", "amount": "25200.00", "received": true, "recurring": true},
+    {"month": "2026-08", "amount": "24800.00", "received": true, "recurring": true},
+    {"month": "2026-09", "amount": "25000.00", "received": true, "recurring": true},
+    {"month": "2026-10", "amount": "25100.00", "received": true, "recurring": true}
+  ],
+  "facts": {"safety_eligible_cash": "20000.00", "opening_balance_before_period": null, "pf_simulated_funds": "0.00", "restricted_investment_assets": "0.00", "brokerage_nav_owned": "0.00"},
+  "obligations": [],
+  "high_cost_debt": [],
+  "necessary_living": {
+    "fixed": [
+      {"name": "rent", "amount": "5500.00"},
+      {"name": "utilities_and_comm", "amount": "1200.00"}
+    ],
+    "variable": [
+      {"name": "food", "amount": "2500.00"},
+      {"name": "transport", "amount": "600.00"},
+      {"name": "medical_and_insurance", "amount": "400.00"}
+    ]
+  },
+  "goals": [{"name": "emergency_reserve", "target_amount": null, "deadline": null, "purpose_pool": "liquidity", "already_earmarked_from_existing_assets": null}],
+  "preferences": {
+    "social_committed_floor": "500.00",
+    "social_free_preference": "1500.00",
+    "reserve_months_target": null,
+    "investment_eligible": true,
+    "capability_plans": [{"name": "data_analysis_course", "amount": "2000.00", "once": true}],
+    "lifestyle_protection": "keep"
+  },
+  "current_pattern": {"living": "11000.00", "savings_add": "3000.00", "capability": "0.00", "financial_investment": "3000.00", "social": "3000.00", "unallocated": "5000.00"}
+}

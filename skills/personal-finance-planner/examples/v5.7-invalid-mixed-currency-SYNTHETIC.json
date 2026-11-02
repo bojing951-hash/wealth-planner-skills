@@ -1,0 +1,13 @@
+{
+  "schema_version": "5.7.0",
+  "as_of": "2026-11-02",
+  "currency": "CNY",
+  "profile": {"income_stability": "stable", "adults": 1, "dependents": 0, "notes": "SYNTHETIC NEGATIVE FIXTURE: USD income stream without any dated FX rate must be rejected (cross-currency mixing fail-closed)."},
+  "current_period_income": {"amount": "20000.00", "currency": "CNY", "received": true, "recurring": true, "after_tax": true, "nature": "salary"},
+  "current_period_income_extra": [
+    {"amount": "2000.00", "currency": "USD", "received": true, "recurring": true, "after_tax": true, "nature": "other"}
+  ],
+  "facts": {"safety_eligible_cash": "10000.00"},
+  "necessary_living": {"fixed": [{"name": "rent", "amount": "5000.00"}], "variable": [{"name": "food", "amount": "2000.00"}]},
+  "preferences": {"investment_eligible": false}
+}

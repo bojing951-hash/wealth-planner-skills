@@ -1,11 +1,11 @@
 {
-  "release": "5.6.1",
+  "release": "5.7.0",
   "baseline_name": "Evidence-Based Wealth Planner Skill v0.4 original architecture (2026-10-11)",
   "baseline_file": "docs/BASELINE_ORIGINAL_v0.4.md",
   "baseline_sha256": "552ac0ae1a7150fba23ae5a55a5fa6347b59d303a01b3517ed098a56a8a358bb",
   "skill_path": "skills/personal-finance-planner",
   "skill_name": "personal-finance-planner",
-  "skill_version": "5.6.1",
+  "skill_version": "5.7.0",
   "roles": {
     "host": "reason, search, retrieve, call actually available tools, ask for authorization, create final report",
     "skill": "evidence-based research, decision policy, verification, safety, workflow and disclosure instructions",
@@ -58,7 +58,21 @@
     "schemas/master-plan-v5.6.schema.json",
     "scripts/master_plan_quality.py",
     "examples/v5.6-high-income-trader-SYNTHETIC.json",
-    "examples/v5.6-salary-shenzhen-SYNTHETIC.json"
+    "examples/v5.6-salary-shenzhen-SYNTHETIC.json",
+    "workflows/four-bucket-cashflow.md",
+    "references/budget-decision-method.md",
+    "assets/four-bucket-budget-template.md",
+    "schemas/fourbucket-input-v5.7.schema.json",
+    "schemas/fourbucket-plan-v5.7.schema.json",
+    "scripts/four_bucket_math.py",
+    "examples/v5.7-salary-stable-SYNTHETIC.json",
+    "examples/v5.7-variable-family-SYNTHETIC.json",
+    "examples/v5.7-crossborder-goal-SYNTHETIC.json",
+    "examples/v5.7-deficit-SYNTHETIC.json",
+    "examples/v5.7-two-months-only-SYNTHETIC.json",
+    "examples/v5.7-invalid-mixed-currency-SYNTHETIC.json",
+    "examples/v5.7-invalid-amounts-SYNTHETIC.json",
+    "examples/v5.7-review-followup-SYNTHETIC.json"
   ],
   "ten_domains": [
     {

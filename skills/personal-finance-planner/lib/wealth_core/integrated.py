@@ -6,7 +6,13 @@ from pathlib import Path
 from . import VERSION_V5 as VERSION
 
 # 5.1 changes the *Skill instructions*, not the v5.0 financial schema/math.
+# SKILL_RELEASE stays '5.1.0' by contract: this legacy engine reports the
+# instruction baseline it was built around, NOT the current Skill package
+# release (locked by tests/test_architecture_skill_first.py). Later layers
+# (v5.2 memory ... v5.7 four-bucket cashflow) live in their own modules and
+# carry their own version metadata in SKILL.md / architecture_contract.json.
 SKILL_RELEASE = '5.1.0'
+SKILL_PACKAGE_RELEASE = '5.7.0'  # informational only; not asserted by legacy reports
 from .orchestration import build_plan, digest
 from .profile import validate_profile
 from .host_bridge import make_host_queue

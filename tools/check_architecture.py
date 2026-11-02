@@ -151,6 +151,32 @@ def check(root: Path = ROOT) -> dict:
             if not (skill/rel).is_file():
                 messages.append('v5.4 optional value component missing: '+rel)
 
+    # v5.7 four-bucket cashflow layer: priority allocation, no fixed ratios,
+    # exact conservation, fail-closed FX; static text checks only.
+    if tuple(int(x) for x in contract['release'].split('.')) >= (5,7,0):
+        budget_guide = skill/'workflows/four-bucket-cashflow.md'
+        budget_text = budget_guide.read_text(encoding='utf-8') if budget_guide.is_file() else ''
+        for marker in ('A. Safety', 'no fixed ratios', 'conservation', 'REALLOCATION_NOT_NEW_SAVINGS',
+                       'not a new Agent', 'L1', 'L3'):
+            if marker.lower() not in budget_text.lower():
+                messages.append('v5.7 four-bucket workflow missing principle: '+marker)
+        for marker in ('Four-bucket cashflow management', 'workflows/four-bucket-cashflow.md',
+                       'references/budget-decision-method.md', 'no new Agent'):
+            if marker not in contents:
+                messages.append('SKILL.md not routing four-bucket budget requests: '+marker)
+        fb = skill/'scripts/four_bucket_math.py'
+        fb_text = fb.read_text(encoding='utf-8') if fb.is_file() else ''
+        for marker in ('is_finite', 'conservation', 'dated FX', 'DEFICIT', 'REALLOCATION_NOT_NEW_SAVINGS'):
+            if marker not in fb_text:
+                messages.append('four_bucket_math.py missing invariant: '+marker)
+        if fb.is_file() and 'Decimal' not in fb_text:
+            messages.append('four_bucket_math.py must use exact Decimal money math')
+        for rel in ('references/budget-decision-method.md', 'assets/four-bucket-budget-template.md',
+                    'schemas/fourbucket-input-v5.7.schema.json', 'schemas/fourbucket-plan-v5.7.schema.json',
+                    '../../tests/test_four_bucket_v57.py'):
+            if not (skill/rel).is_file():
+                messages.append('Missing v5.7 four-bucket component: '+rel)
+
     align = root / ('docs/ARCHITECTURE_ALIGNMENT_v'+contract['release']+'.md')
     if not align.is_file():
         messages.append('Every release requires a completed architecture comparison: '+align.name)

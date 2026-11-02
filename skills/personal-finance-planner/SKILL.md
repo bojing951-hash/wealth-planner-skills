@@ -4,12 +4,12 @@ description: Evidence-based, jurisdiction-aware personal wealth planning for Cod
 license: MIT
 compatibility: Portable Agent Skill; no mandatory network connection or Python dependency to give scoped qualitative guidance. Python 3.10+ recommended only for optional deterministic checks. Financial account tools require explicit user consent.
 metadata:
-  version: "5.6.1"
+  version: "5.7.0"
   maturity: "developer-preview"
   architecture_baseline: "original-v0.4"
 ---
 
-# Personal Wealth Planner — Skill-first (5.6.1)
+# Personal Wealth Planner — Skill-first (5.7.0)
 
 ## Responsibility boundary — read first
 
@@ -62,6 +62,14 @@ This client-controlled Master Plan must organize (1) whole-wealth asset/liabilit
 
 **Fail closed on unverified exact tax/asset ownership or an unconditional investable amount, but do not halt useful non-tax planning.** No assumed product pick, model-guaranteed financial independence, fixed arbitrary savings percentage, self-executing bank/broker orders or forced life goals. The three-layer label (*asset ledger, analytic purpose earmark, optional operational account action*) must remain separate. The Skill supplies rules; the **host** does all actual research/decisions/tool calls. Optional stdlib-only `scripts/master_plan_quality.py` checks structured JSON completeness, source labeling, pool over-allocation, rights and approval status (schema: `schemas/master-plan-v5.6.schema.json`); **it does not determine investment suitability**. As of v5.6.1 the optional validator enforces the complete bundled v5.6.0 JSON data contract with standard-library checks; `RECONCILED` requires no unknown owned balances/liabilities plus an explicit reconciliation reference, and `USER_APPROVED` requires an approval reference. These references are only audit claims, never cryptographic proof or professional verification. Master plan and asset data are private, only opt-in memory is allowed for short summaries.
 
+## Four-bucket cashflow management (v5.7) — monthly budget allocation
+
+**MUST TRIGGER** [workflows/four-bucket-cashflow.md](workflows/four-bucket-cashflow.md) and [references/budget-decision-method.md](references/budget-decision-method.md) for budget-intent requests: 预算管理 / 日常消费控制 / 收入分配 / 储蓄计划 / 四账户管理 / "这个月该花多少钱" / 不稳定收入管理 / 财务月度复盘. Load **only** those files for a simple budget question (progressive disclosure) — do not pull the Master Plan or portfolio workflows into a monthly-cashflow request. A complete wealth plan still routes through v5.3→v5.4→(v5.5)→v5.6 and *uses* this layer for its D03 cashflow section.
+
+Split one period's **received** income across four buckets — **A safety & savings, B living (necessary floor), C necessary investment (capability + financial + business capital), D social & discretionary** — under three anti-double-count layers: **L1 fact ledger → L2 four-bucket budget → L3 Master Plan purpose pool (referenced, never re-summed)**. L2 invariant: `allocatable = Σ buckets + unallocated`, exact Decimal conservation every run. **No fixed ratios anywhere**: allocation follows the six-step priority cascade (received income → living floor → reserve gap → high-cost-debt check → investment eligibility → allocate/compare), with every default surfaced as an editable assumption (USER_INPUT / HEURISTIC_EDITABLE / CALCULATED). Volatile income uses ≥6 recurring months for a low/typical/high band; fewer months yields INSUFFICIENT_HISTORY and **no "normal income" or retention-rate claim**. Floor exceeding income produces a DEFICIT gap (never "negative savings"). Multi-currency sums require dated FX or the run fails closed. High-cost debt (APR ≥ threshold) blocks financial investment and redirects surplus to repayment first.
+
+Optional stdlib-only calculator: `scripts/four_bucket_math.py plan|review --input <PRIVATE_JSON|->` (schemas [fourbucket-input-v5.7.schema.json](schemas/fourbucket-input-v5.7.schema.json), [fourbucket-plan-v5.7.schema.json](schemas/fourbucket-plan-v5.7.schema.json); fill-in template [assets/four-bucket-budget-template.md](assets/four-bucket-budget-template.md)). Month-end `review` reports net new savings (income − consumption) with the `REALLOCATION_NOT_NEW_SAVINGS` flag when invested amounts exceed retained cash — internal transfers are never savings. **Prefer `--input -` (stdin) so private figures stay out of shared directories.** Same boundary as every version: the host runs it locally on request; no new Agent, no scheduler, no automatic transfers; user owns every execution decision; `no_change_recommended: true` is an honest outcome when the reported pattern sits within band.
+
 ## Non-negotiable invariants
 
 - Distinguish **verified facts / user-reported / hypothetical / unknown**. User-owned, realized bank income is not the same as gross pay, employer pension, PF simulated profits or nominal firm account balances. Unverified income tax is an unresolved liability or modeled reserve, not zero.
@@ -85,6 +93,7 @@ This client-controlled Master Plan must organize (1) whole-wealth asset/liabilit
 | Value of planning, behavior change, measured progress and counterfactual | [workflows/value-and-behavior.md](workflows/value-and-behavior.md), [references/value-attribution-method.md](references/value-attribution-method.md) |
 | **PF/own-broker trading income, cross-border high-income client** | [workflows/high-income-crossborder-trader.md](workflows/high-income-crossborder-trader.md), [references/wealth-ownership-ledger.md](references/wealth-ownership-ledger.md) |
 | **Comprehensive personal wealth master plan and governance** | [workflows/personal-wealth-master-plan.md](workflows/personal-wealth-master-plan.md), [references/wealth-policy-and-governance.md](references/wealth-policy-and-governance.md), [assets/personal-wealth-master-plan-template.md](assets/personal-wealth-master-plan-template.md) |
+| **Monthly budget / four-bucket cashflow / unstable income / 月度复盘** | [workflows/four-bucket-cashflow.md](workflows/four-bucket-cashflow.md), [references/budget-decision-method.md](references/budget-decision-method.md), [assets/four-bucket-budget-template.md](assets/four-bucket-budget-template.md) |
 | Output requirements, evidence and uncertainty | [workflows/report-contract.md](workflows/report-contract.md), [policies/core-decision.md](policies/core-decision.md) |
 
 ## Optional reproducible calculator (NOT the default workflow)
