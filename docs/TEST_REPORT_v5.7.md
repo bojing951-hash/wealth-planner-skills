@@ -42,6 +42,6 @@
 | Repo tests | `python -m unittest discover -s tests -p 'test_*.py' -q` | **341 tests OK** (skipped=4: pre-existing optional-`jsonschema` skips, unchanged from prior releases) |
 | Skill tests | `python -m unittest discover -s skills/personal-finance-planner/tests -p 'test_*.py' -q` | **46 tests OK** |
 | Manifest | `python tools/manifest.py --write && python tools/manifest.py --verify` | **PASS — 259 files** |
-| CI (GitHub) | matrix 3.10–3.13 incl. new v5.7 smoke step | _filled after CI_ |
+| CI (GitHub) | matrix 3.10–3.13 incl. new v5.7 smoke step | **SUCCESS 4/4** on `80373c5` (first run `eeb8b5f` caught a stale MANIFEST digest — report edited after manifest write; fixed by rebuilding manifest, a real catch by CI) |
 
 **NOT TESTED / NOT RUN:** authenticated Codex/Claude Code host E2E with private user data; Skill-vs-no-Skill budget-adherence A/B; licensed CFP review; live bank/broker integration and automated scheduling (both prohibited by design). Passing these tests is not proof of financial suitability or of behavioral improvement.
