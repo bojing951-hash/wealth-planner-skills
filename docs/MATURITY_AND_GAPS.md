@@ -27,3 +27,9 @@
 - Does not create a new financial advisor Agent, trade engine, wealth management account, fiduciary service, or automatic monitor. Optional `master_plan_quality.py` is a pure static/audit helper only.
 - Not complete: actual current tax calculations, client records and beneficial ownership verification, income/portfolio risk calibration, fully operational retirement/estate implementation, consented real-host E2E, blind comparison of advice quality.
 - Always treat `docs/ARCHITECTURE_ALIGNMENT_v5.6.0.md` and `docs/TEST_REPORT_v5.6.md` as current release-specific evidence; the older sections above are retained for historical context.
+
+## v5.7 additional deliverable — Four-bucket cashflow management (Developer Preview)
+
+- Implemented and tested offline: four-bucket monthly allocation engine (exact Decimal conservation, priority cascade, editable assumptions, DEFICIT gap semantics, fail-closed FX/validation, exit-code contract 0/2/3), month-end review with net-new-savings vs reallocation separation, six-step budget decision method reference, fill-in template, 8 synthetic fixtures and 41 tests across three differentiated personas.
+- Still not proven: real-user budget adherence (no A/B run), calibrated reserve-month optima (3/6/9 are ordering conventions), account-statement ingestion (facts are user-entered by design), host E2E with private data (NOT_RUN by policy), licensed planner review. Fixed-ratio *rejection* is tested structurally; it is not a claim that this allocation beats any particular rule for any particular household.
+- Treat `docs/ARCHITECTURE_ALIGNMENT_v5.7.0.md` and `docs/TEST_REPORT_v5.7.md` as current release-specific evidence; earlier sections retained for historical context.

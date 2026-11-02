@@ -1,0 +1,10 @@
+{
+  "schema_version": "5.7.0",
+  "as_of": "2026-11-02",
+  "currency": "CNY",
+  "profile": {"income_stability": "stable", "adults": 1, "dependents": 0, "notes": "SYNTHETIC NEGATIVE FIXTURE: negative amount and an Infinity entry must both be rejected with clear errors."},
+  "current_period_income": {"amount": "-5000.00", "currency": "CNY", "received": true, "recurring": true, "after_tax": true, "nature": "salary"},
+  "facts": {"safety_eligible_cash": "NaN"},
+  "necessary_living": {"fixed": [{"name": "rent", "amount": "Infinity"}], "variable": []},
+  "preferences": {"investment_eligible": false}
+}

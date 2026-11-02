@@ -1,4 +1,4 @@
-# Codex integration — Wealth Planner Skill v5.3 Developer Preview
+# Codex integration — Wealth Planner Skill v5.7 Developer Preview
 
 This repository uses the open Agent Skills `SKILL.md` contract. The Codex host performs **all actual reasoning, tool calls, file access and report creation**. The Skill only describes professional methods and optional finite Python validators. Do not use the legacy `host-queue` as a required runtime step or treat it as proof of executing a tool.
 
@@ -15,6 +15,8 @@ Optional if Python is available and permission given:
 ```bash
 python skills/personal-finance-planner/scripts/consultation_math.py --input <PRIVATE_HYPOTHETICAL_INPUT_JSON>
 python skills/personal-finance-planner/scripts/plan_quality.py --input <PRIVATE_REPORT_JSON>
+# v5.7 four-bucket monthly budget (stdin keeps private figures off disk; exit 0/2/3 = OK-CONDITIONAL/DEFICIT/invalid):
+python skills/personal-finance-planner/scripts/four_bucket_math.py plan --input -
 ```
 
 Do not write real financial data to the public repository, run financial transactions or create/read/write persistent memory without specific user permission. Current tax, legal, research citations and return forecasts are not supplied automatically by a Skill install.

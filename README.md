@@ -72,6 +72,18 @@ Skill 可以指导 AI 执行复利计算、情景模拟和压力测试，帮助�
 
 **不是一份做完就遗忘的理财计划，而是一套可以反复使用、持续完善的财务管理方法。**
 
+### 06｜四账户月度预算管理（v5.7 新增）
+
+**这个月的钱，到底该怎么分？**
+
+把每月实际到账的收入，按优先级分配到四个账户：**A 安全储蓄、B 日常生活、C 必要投资（能力 + 金融 + 经营）、D 社交与自由消费**。
+
+不是固定的"50/30/20"，而是根据你的收入稳定性、家庭负担、高息负债、储备缺口和近期目标，逐层推导出属于你的分配方案——每一个默认假设都标注来源，你可以随时修改重算。
+
+收入不稳定？用 6～12 个月历史给出低/中/高情景带。收入低于必要开支？如实告诉你缺口多少，而不是假装"负储蓄"。月底复盘？自动区分**真新增储蓄**与"把钱从银行转到券商"的内部划转——转账不是储蓄，这是大多数记账工具都不会告诉你的真相。
+
+**每一分钱都可对账：可分配 = 四账户之和 + 未分配，精确到分。**
+
 ---
 
 ## 为什么它能做到？
@@ -167,9 +179,9 @@ Wealth Planner Skill 将指导 AI 按照六个步骤完成任务：
 
 通过专业知识、结构化规则和可复用工作流，让通用 AI 按照更加严谨的财务规划方法工作。
 
-**当前版本：v5.6.1 Developer Preview**
+**当前版本：v5.7.0 Developer Preview**
 
-已具备基础财务计算、循证理论框架、地区合规预检、长期模拟、动态复盘规则、可选的本地加密记忆（默认关闭，AES-256-GCM 加密，密钥与数据分离存储，仅存本地、绝不上传）、专业咨询规划协议（结构化访谈 → 诊断排序 → 双路径比较 → 30/90/365 天行动计划）、价值归因体系（把每项财务决策换算为对长期目标的实际贡献）、v5.5 跨境交易员资金归属纠错（银行入账/券商盈亏/PF 模拟资金/车贷现金流的严格区分），以及 v5.6 旗舰的**个人财富总体规划**（Personal Wealth Master Plan）：一份用户自持的终身财富宪章——资产负债总账、带日期的人生目标义务、用途专款不重复计入、条件化决策规则、匹配方案与压力测试、可问责的 30/90/365 行动清单和复盘记分卡。
+已具备基础财务计算、循证理论框架、地区合规预检、长期模拟、动态复盘规则、可选的本地加密记忆（默认关闭，AES-256-GCM 加密，密钥与数据分离存储，仅存本地、绝不上传）、专业咨询规划协议（结构化访谈 → 诊断排序 → 双路径比较 → 30/90/365 天行动计划）、价值归因体系（把每项财务决策换算为对长期目标的实际贡献）、v5.5 跨境交易员资金归属纠错（银行入账/券商盈亏/PF 模拟资金/车贷现金流的严格区分）、v5.6 旗舰的**个人财富总体规划**（Personal Wealth Master Plan）：一份用户自持的终身财富宪章——资产负债总账、带日期的人生目标义务、用途专款不重复计入、条件化决策规则、匹配方案与压力测试、可问责的 30/90/365 行动清单和复盘记分卡；以及 v5.7 的**四账户现金流管理系统**：L1 事实账本 → L2 四账户月度预算 → L3 长期用途池三层防重复计算模型，优先级驱动的个性化分配（无固定比例）、精确到分的现金流守恒、失败关闭的多币种处理（无带日期汇率绝不混算）、月度复盘区分新增储蓄与内部划转，全部离线运行（仅标准库 + Decimal），支持 stdin 输入保护隐私。
 
 全球税务精算、完整投资组合优化和真实宿主端到端联调等能力仍在完善中。涉及重大投资、法律与税务决定时，仍需核验权威资料并咨询合资格专业人士。
 
@@ -182,7 +194,7 @@ Wealth Planner Skill 将指导 AI 按照六个步骤完成任务：
 
 请复制完整 Skill 文件夹（而非仅 `SKILL.md`）。可选的本地验算脚本需 Python 3.10+；可选加密记忆另需 `cryptography` 库（`requirements-memory.txt`）。
 
-- [技术架构与开发指南](docs/DEVELOPMENT.md) · [Master Plan 总览](docs/MASTER_PLAN_V5.6_OVERVIEW.md) · [Master Plan 模板](skills/personal-finance-planner/assets/personal-wealth-master-plan-template.md) · [架构逐项对照](docs/ARCHITECTURE_ALIGNMENT_v5.6.0.md) · [发布审查流程](docs/DEVELOPMENT_RELEASE_GATE.md) · [安全与隐私](docs/SECURITY_AND_PRIVACY.md) · [本地记忆安全设计](docs/LOCAL_MEMORY_SECURITY_v5.2.md) · [专业咨询协议](skills/personal-finance-planner/workflows/professional-consultation.md) · [价值归因方法](skills/personal-finance-planner/references/value-attribution-method.md) · [成熟度与缺口](docs/MATURITY_AND_GAPS.md)
+- [技术架构与开发指南](docs/DEVELOPMENT.md) · [Master Plan 总览](docs/MASTER_PLAN_V5.6_OVERVIEW.md) · [Master Plan 模板](skills/personal-finance-planner/assets/personal-wealth-master-plan-template.md) · [四账户预算模板](skills/personal-finance-planner/assets/four-bucket-budget-template.md) · [架构逐项对照](docs/ARCHITECTURE_ALIGNMENT_v5.7.0.md) · [发布审查流程](docs/DEVELOPMENT_RELEASE_GATE.md) · [安全与隐私](docs/SECURITY_AND_PRIVACY.md) · [本地记忆安全设计](docs/LOCAL_MEMORY_SECURITY_v5.2.md) · [专业咨询协议](skills/personal-finance-planner/workflows/professional-consultation.md) · [预算决策方法](skills/personal-finance-planner/references/budget-decision-method.md) · [价值归因方法](skills/personal-finance-planner/references/value-attribution-method.md) · [成熟度与缺口](docs/MATURITY_AND_GAPS.md)
 - MIT 许可。开源仓库只放研究规范、代码和合成示例，**不放真实财务资料**。
 
 ---

@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fourbucket-plan-v5.7.schema.json",
+  "title": "Four-Bucket Cashflow plan output (v5.7)",
+  "description": "Deterministic calculator output. Cash-flow conservation is a hard invariant: allocatable == sum(buckets) + unallocated. Status CONDITIONAL means key facts remain UNKNOWN; DEFICIT means necessary obligations exceed allocatable and no negative savings are fabricated.",
+  "type": "object",
+  "required": ["schema_version", "generated_for", "currency", "status", "allocatable", "buckets", "unallocated", "conservation", "assumptions", "unknowns"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "5.7.0"},
+    "generated_for": {"type": "string"},
+    "currency": {"type": "string"},
+    "status": {"enum": ["OK", "CONDITIONAL", "DEFICIT"]},
+    "allocatable": {
+      "type": "object",
+      "required": ["amount", "basis", "tax_status"],
+      "additionalProperties": false,
+      "properties": {
+        "amount": {"type": "string"},
+        "basis": {"type": "string"},
+        "tax_status": {"enum": ["KNOWN_NET", "UNKNOWN_TAX_CONDITIONAL"]},
+        "fx_conversions": {"type": "array", "items": {"type": "object"}},
+        "excluded_not_received": {"type": ["string", "null"]}
+      }
+    },
+    "income_basis": {
+      "type": "object",
+      "required": ["classification", "months_analyzed"],
+      "additionalProperties": false,
+      "properties": {
+        "classification": {"enum": ["STABLE_SALARY", "VARIABLE_HISTORY", "INSUFFICIENT_HISTORY", "SINGLE_PERIOD"]},
+        "months_analyzed": {"type": "integer", "minimum": 0},
+        "scenario_band": {
+          "type": ["object", "null"],
+          "required": ["low", "typical", "high"],
+          "additionalProperties": false,
+          "properties": {"low": {"type": "string"}, "typical": {"type": "string"}, "high": {"type": "string"}, "method": {"type": "string"}}
+        },
+        "warnings": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "buckets": {
+      "type": "object",
+      "required": ["safety_savings", "living", "necessary_investment", "social_discretionary"],
+      "additionalProperties": false,
+      "properties": {
+        "safety_savings": {
+          "type": "object",
+          "required": ["add_this_period", "existing_eligible", "target_months", "target_amount", "gap_after", "rationale"],
+          "additionalProperties": false,
+          "properties": {
+            "add_this_period": {"type": "string"},
+            "extra_high_cost_debt_repayment": {"type": "string"},
+            "use_of_reserve": {"type": "string"},
+            "existing_eligible": {"type": ["string", "null"]},
+            "target_months": {"type": ["integer", "null"]},
+            "target_amount": {"type": ["string", "null"]},
+            "gap_after": {"type": ["string", "null"]},
+            "rationale": {"type": "string"}
+          }
+        },
+        "living": {
+          "type": "object",
+          "required": ["fixed", "variable", "debt_service_cash", "total", "rationale"],
+          "additionalProperties": false,
+          "properties": {
+            "fixed": {"type": "string"},
+            "variable": {"type": "string"},
+            "debt_service_cash": {"type": "string"},
+            "funded": {"type": "string"},
+            "total": {"type": "string"},
+            "rationale": {"type": "string"}
+          }
+        },
+        "necessary_investment": {
+          "type": "object",
+          "required": ["capability", "financial", "business_capital", "total", "rationale"],
+          "additionalProperties": false,
+          "properties": {
+            "capability": {"type": "string"},
+            "financial": {"type": "string"},
+            "business_capital": {"type": "string"},
+            "total": {"type": "string"},
+            "rationale": {"type": "string"}
+          }
+        },
+        "social_discretionary": {
+          "type": "object",
+          "required": ["committed", "free", "total", "rationale"],
+          "additionalProperties": false,
+          "properties": {
+            "committed": {"type": "string"},
+            "free": {"type": "string"},
+            "total": {"type": "string"},
+            "rationale": {"type": "string"}
+          }
+        }
+      }
+    },
+    "unallocated": {"type": "string"},
+    "conservation": {
+      "type": "object",
+      "required": ["allocatable", "sum_buckets_plus_unallocated", "holds"],
+      "additionalProperties": false,
+      "properties": {
+        "allocatable": {"type": "string"},
+        "sum_buckets_plus_unallocated": {"type": "string"},
+        "holds": {"type": "boolean"}
+      }
+    },
+    "deficit": {
+      "type": ["object", "null"],
+      "required": ["gap", "reserve_draw_available"],
+      "additionalProperties": false,
+      "properties": {
+        "gap": {"type": "string"},
+        "reserve_draw_available": {"type": ["string", "null"]},
+        "note": {"type": "string"}
+      }
+    },
+    "zero_income_stress": {
+      "type": "object",
+      "required": ["floor_monthly", "eligible_cash", "coverage_months"],
+      "additionalProperties": false,
+      "properties": {
+        "floor_monthly": {"type": "string"},
+        "eligible_cash": {"type": ["string", "null"]},
+        "coverage_months": {"type": ["string", "null"]}
+      }
+    },
+    "comparisons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "viable", "summary"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {"enum": ["defensive", "balanced", "status_quo"]},
+          "viable": {"type": ["boolean", "null"]},
+          "buckets": {"type": "object"},
+          "summary": {"type": "string"}
+        }
+      }
+    },
+    "no_change_recommended": {"type": ["boolean", "null"]},
+    "master_plan_links": {
+      "type": "array",
+      "description": "References (not sums) into v5.6 long-term purpose pools; flow budget and asset stock are never added together.",
+      "items": {"type": "object"}
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "value", "source"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "value": {"type": "string"},
+          "source": {"enum": ["USER_INPUT", "HEURISTIC_EDITABLE", "CALCULATED"]}
+        }
+      }
+    },
+    "unknowns": {"type": "array", "items": {"type": "string"}},
+    "review_reminders": {"type": "array", "items": {"type": "string"}}
+  }
+}

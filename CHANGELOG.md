@@ -1,5 +1,16 @@
 # Changelog
 
+## v5.7.0 — Four-bucket cashflow management system (2026-11-02)
+
+- **Monthly budget layer, not a new Agent:** split one period's *received* income across four buckets — A safety & savings, B living (necessary floor), C necessary investment (capability + financial + business capital), D social & discretionary — with exact Decimal conservation (`allocatable = Σ buckets + unallocated`, asserted every run).
+- **No fixed ratios anywhere.** Allocation follows a six-step priority cascade (received income → living floor → reserve gap → high-cost-debt check → investment eligibility → allocate/compare); the only constants (8% APR threshold, 0.5 gap-fill share, 3/6/9 reserve months) are surfaced in every output as HEURISTIC_EDITABLE assumptions a user can override.
+- **Three-layer anti-double-count model:** L1 fact ledger → L2 four-bucket budget → L3 Master Plan purpose pool (referenced via `master_plan_links`, never re-summed). Safety-eligible cash is hard-separated from PF simulated funds, restricted investments, brokerage NAV and unreceived amounts.
+- **Honest treatment of unknowns:** volatile income uses ≥6 recurring months for a low/typical/high band; fewer months yields INSUFFICIENT_HISTORY with an explicit refusal to claim "normal income" or retention rates. Unknown tax keeps every investable amount conditional. Floor exceeding income produces a DEFICIT gap (never "negative savings"); `no_change_recommended` can honestly be true.
+- **Month-end review (`review`):** planned-vs-actual variance per bucket, **net new savings** (income − consumption) with internal transfers and market gains excluded, and the `REALLOCATION_NOT_NEW_SAVINGS` flag when invested amounts exceed retained cash.
+- **Fail-closed engineering:** stdlib + Decimal only, offline; stdin input (`--input -`) preferred so private data stays off disk; cross-currency sums without dated FX are rejected (exit 3); NaN/Infinity/negative amounts and malformed dates rejected with named errors. Exit-code contract: 0 OK/CONDITIONAL, 2 DEFICIT, 3 invalid.
+- Added `four_bucket_math.py`, input/output JSON schemas, budget-decision-method reference, workflow guide, fill-in template, 8 synthetic fixtures (three differentiated personas, deficit, insufficient history, two invalid, review follow-up) and 41 tests. Public examples are **synthetic by design**; real personal finance data never enters the repository.
+- Preserved original v0.4 architecture (ten domains, twelve states), Skill-First boundary, all v5.3–v5.6 layers, memory OFF by default, and the no-automated-action invariant. Alignment report: `docs/ARCHITECTURE_ALIGNMENT_v5.7.0.md`.
+
 ## v5.6.1 — Master Plan integrity hotfix + controlled user-experience evaluation kit (2026-10-12)
 
 - Fix a demonstrated validator gap: `RECONCILED` or arbitrary invalid enumeration values could pass despite unknown balances. Enforce the shipped JSON Schema without an external dependency and cross-check unknown owned assets/liabilities and reconciliation claims.

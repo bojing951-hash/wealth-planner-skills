@@ -89,3 +89,29 @@ jobs:
           python tests/skill_vs_baseline/evaluate_blind.py \
             --scores tests/skill_vs_baseline/SAMPLE_ONLY_scores_v561.json \
             --unblind tests/skill_vs_baseline/SAMPLE_ONLY_unblind_v561.json >/dev/null
+
+      - name: v5.7 four-bucket cashflow smoke (positive personas, deficit, review; fail-closed negatives)
+        shell: bash
+        run: |
+          S=skills/personal-finance-planner
+          # positive personas: three materially different households
+          python $S/scripts/four_bucket_math.py plan --input $S/examples/v5.7-salary-stable-SYNTHETIC.json --format md >/dev/null
+          python $S/scripts/four_bucket_math.py plan --input $S/examples/v5.7-variable-family-SYNTHETIC.json >/dev/null
+          python $S/scripts/four_bucket_math.py plan --input $S/examples/v5.7-crossborder-goal-SYNTHETIC.json >/dev/null
+          # conditional history and month-end review
+          python $S/scripts/four_bucket_math.py plan --input $S/examples/v5.7-two-months-only-SYNTHETIC.json >/dev/null
+          python $S/scripts/four_bucket_math.py review --input $S/examples/v5.7-review-followup-SYNTHETIC.json >/dev/null
+          # deficit fixture must exit 2 (gap reported), not crash and not pass as OK
+          set +e
+          python $S/scripts/four_bucket_math.py plan --input $S/examples/v5.7-deficit-SYNTHETIC.json >/dev/null
+          rc=$?
+          set -e
+          if [ "$rc" -ne 2 ]; then echo "ERROR: deficit fixture exit=$rc, expected 2" >&2; exit 1; fi
+          # fail-closed negatives must exit 3
+          for bad in v5.7-invalid-mixed-currency-SYNTHETIC.json v5.7-invalid-amounts-SYNTHETIC.json; do
+            set +e
+            python $S/scripts/four_bucket_math.py plan --input $S/examples/$bad >/dev/null 2>&1
+            rc=$?
+            set -e
+            if [ "$rc" -ne 3 ]; then echo "ERROR: $bad exit=$rc, expected 3" >&2; exit 1; fi
+          done

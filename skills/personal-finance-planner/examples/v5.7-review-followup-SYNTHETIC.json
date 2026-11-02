@@ -1,0 +1,26 @@
+{
+  "plan": {
+    "schema_version": "5.7.0",
+    "currency": "CNY",
+    "status": "OK",
+    "zero_income_stress": {"floor_monthly": "10200.00", "eligible_cash": "20000.00", "coverage_months": "1.96"},
+    "buckets": {
+      "safety_savings": {"add_this_period": "7400.00", "extra_high_cost_debt_repayment": "0.00"},
+      "living": {"total": "10200.00"},
+      "social_discretionary": {"total": "2000.00"}
+    },
+    "unallocated": "1700.00"
+  },
+  "actuals": {
+    "income_received": "20000.00",
+    "living_spent": "16000.00",
+    "social_spent": "4000.00",
+    "capability_spent": "0.00",
+    "financial_invested": "8000.00",
+    "extra_debt_repayment": "0.00",
+    "reserve_addition_actual": "0.00",
+    "internal_transfers": "0.00",
+    "reserve_end_balance": "20000.00"
+  },
+  "notes": "SYNTHETIC review fixture: overspending plus brokerage purchases funded from existing balances. Net new savings is 0; the 8000 invested must be flagged as reallocation, not new savings."
+}

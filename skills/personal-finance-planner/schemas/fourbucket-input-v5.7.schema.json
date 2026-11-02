@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fourbucket-input-v5.7.schema.json",
+  "title": "Four-Bucket Cashflow input (v5.7)",
+  "description": "Layer-1 fact-ledger derived input for one budget period. All monetary values are nonnegative finite decimal strings in the stated currency unless a dated FX conversion is supplied. UNKNOWN facts are omitted or null — never invented. Synthetic test data only; never commit real personal finance records.",
+  "type": "object",
+  "required": ["schema_version", "as_of", "currency", "current_period_income", "necessary_living"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "5.7.0"},
+    "as_of": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "currency": {"type": "string", "minLength": 3, "maxLength": 3},
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "income_stability": {"enum": ["stable", "variable", "unknown"], "default": "unknown"},
+        "adults": {"type": "integer", "minimum": 1},
+        "dependents": {"type": "integer", "minimum": 0},
+        "notes": {"type": "string"}
+      }
+    },
+    "current_period_income": {
+      "type": "object",
+      "description": "Actually received money for the budgeted period. received=false entries are excluded from allocatable and listed as UNKNOWN.",
+      "additionalProperties": false,
+      "required": ["amount"],
+      "properties": {
+        "amount": {"type": "string"},
+        "currency": {"type": "string", "minLength": 3, "maxLength": 3},
+        "received": {"type": "boolean", "default": true},
+        "recurring": {"type": "boolean", "default": null},
+        "one_off": {"type": "boolean", "default": false},
+        "after_tax": {"type": ["boolean", "null"], "default": null},
+        "nature": {"enum": ["salary", "trading_realized", "business", "mixed", "other"]}
+      }
+    },
+    "current_period_income_extra": {
+      "type": "array",
+      "description": "Additional received income streams for the same period (e.g. CNY salary plus USD consulting). Same rules as current_period_income; cross-currency requires dated FX.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["amount"],
+        "properties": {
+          "amount": {"type": "string"},
+          "currency": {"type": "string", "minLength": 3, "maxLength": 3},
+          "received": {"type": "boolean", "default": true},
+          "recurring": {"type": ["boolean", "null"]},
+          "one_off": {"type": "boolean", "default": false},
+          "after_tax": {"type": ["boolean", "null"]},
+          "nature": {"enum": ["salary", "trading_realized", "business", "mixed", "other"]}
+        }
+      }
+    },
+    "income_history": {
+      "type": "array",
+      "description": "Past received monthly totals, oldest first. 1-5 months => INSUFFICIENT_HISTORY (no long-run claim); >=6 months => scenario band.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["month", "amount", "received"],
+        "properties": {
+          "month": {"type": "string", "pattern": "^\\d{4}-(0[1-9]|1[0-2])$"},
+          "amount": {"type": "string"},
+          "currency": {"type": "string", "minLength": 3, "maxLength": 3},
+          "received": {"type": "boolean"},
+          "recurring": {"type": "boolean"},
+          "one_off": {"type": "boolean", "default": false}
+        }
+      }
+    },
+    "fx": {
+      "type": "object",
+      "description": "Dated user-supplied conversions. Without a dated rate, cross-currency amounts are NEVER summed (fail closed).",
+      "additionalProperties": false,
+      "properties": {
+        "rates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["date", "from", "to", "rate"],
+            "properties": {
+              "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+              "from": {"type": "string", "minLength": 3, "maxLength": 3},
+              "to": {"type": "string", "minLength": 3, "maxLength": 3},
+              "rate": {"type": "string"},
+              "source": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "facts": {
+      "type": "object",
+      "description": "Layer-1 balances. safety_eligible_cash excludes stocks, crypto, restricted accounts and PF simulated funds.",
+      "additionalProperties": false,
+      "properties": {
+        "safety_eligible_cash": {"type": ["string", "null"]},
+        "opening_balance_before_period": {"type": ["string", "null"]},
+        "pf_simulated_funds": {"type": ["string", "null"]},
+        "restricted_investment_assets": {"type": ["string", "null"]},
+        "known_tax_due_this_period": {"type": ["string", "null"]},
+        "business_operating_reserve_required": {"type": ["string", "null"]},
+        "brokerage_nav_owned": {"type": ["string", "null"]}
+      }
+    },
+    "obligations": {
+      "type": "array",
+      "description": "Contractual debt service (cash obligation inside Living bucket; principal vs interest is a net-worth question, not re-deducted here).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "monthly_payment"],
+        "properties": {
+          "name": {"type": "string"},
+          "monthly_payment": {"type": "string"},
+          "apr": {"type": ["string", "null"]},
+          "months_remaining": {"type": ["integer", "null"], "minimum": 0}
+        }
+      }
+    },
+    "high_cost_debt": {
+      "type": "array",
+      "description": "Debt whose apr >= high_cost_apr_threshold (heuristic, editable). Extra repayment priority precedes risk investment.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "balance", "apr", "monthly_payment"],
+        "properties": {
+          "name": {"type": "string"},
+          "balance": {"type": "string"},
+          "apr": {"type": "string"},
+          "monthly_payment": {"type": "string"}
+        }
+      }
+    },
+    "necessary_living": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fixed": {"type": "array", "items": {"$ref": "#/$defs/lineItem"}},
+        "variable": {"type": "array", "items": {"$ref": "#/$defs/lineItem"}}
+      }
+    },
+    "goals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": {"type": "string"},
+          "target_amount": {"type": ["string", "null"]},
+          "deadline": {"type": ["string", "null"]},
+          "purpose_pool": {"enum": ["liquidity", "lifestyle", "longevity", "growth", "legacy", "tax", "operating", "other", null]},
+          "already earmarked_from_existing_assets": {"type": ["string", "null"], "description": "Existing-asset earmark; not re-saved from monthly flow (anti double-count)."}
+        }
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "social_committed_floor": {"type": "string"},
+        "social_free_preference": {"type": "string"},
+        "reserve_months_target": {"type": ["integer", "null"], "minimum": 1, "maximum": 36},
+        "investment_eligible": {"type": "boolean", "default": false},
+        "capability_plans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "amount"],
+            "properties": {"name": {"type": "string"}, "amount": {"type": "string"}, "once": {"type": "boolean"}}
+          }
+        },
+        "business_capital_plan": {"type": ["string", "null"]},
+        "surplus_priority": {
+          "type": "array",
+          "items": {"enum": ["safety", "high_cost_debt", "capability", "financial", "social"]},
+          "uniqueItems": true
+        },
+        "lifestyle_protection": {"enum": ["keep", "flexible"]}
+      }
+    },
+    "current_pattern": {
+      "type": "object",
+      "description": "Optional status-quo monthly pattern for comparison (user-reported habits).",
+      "additionalProperties": false,
+      "properties": {
+        "living": {"type": "string"},
+        "savings_add": {"type": "string"},
+        "capability": {"type": "string"},
+        "financial_investment": {"type": "string"},
+        "social": {"type": "string"},
+        "unallocated": {"type": "string"}
+      }
+    },
+    "assumption_overrides": {
+      "type": "object",
+      "description": "Explicit user edits of heuristic parameters; recorded in output assumptions.",
+      "additionalProperties": false,
+      "properties": {
+        "high_cost_apr_threshold": {"type": "string"},
+        "safety_gap_fill_share": {"type": "string"},
+        "financial_invest_share": {"type": "string"},
+        "defensive_safety_share": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {
+    "lineItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "amount"],
+      "properties": {"name": {"type": "string"}, "amount": {"type": "string"}}
+    }
+  }
+}
